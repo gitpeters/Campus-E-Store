@@ -16,10 +16,6 @@ The Campus E-store is a school-based online marketplace designed to connect stud
 
 2. Create an account: To use the E-store, users must first create an account. Click the "Sign Up" button and follow the prompts to create an account.
 
-3. Browse and purchase items: Once logged in, users can browse the available products and services, and can add items to their cart by clicking the "Add to Cart" button. To purchase items, users can click the "Checkout" button and follow the prompts to complete the transaction.
-
-4. Sell items: Users can also sell items on the E-store by clicking the "Sell" button and following the prompts to create a listing.
-
 ## Collaborators
 
 - gitpeters
