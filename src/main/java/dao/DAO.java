@@ -19,7 +19,7 @@ public class DAO {
 		int i = 0;
 		Connection con = DbConnection.connection();
 		String sql = "INSERT INTO campusestock.vendor(vendorId, vendorName, vendorEmail, vendorMatricNo, vendorPassword, vendorBrandName, vendorSchoolId) values (?,?,?,?,?,?,?)";
-		String sql2 = "INSERT INTO campusestock.position values (?,?)";
+		String sql2 = "INSERT INTO campusestock.position (username, position) values (?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, vn.getVendorId());
@@ -34,8 +34,8 @@ public class DAO {
 			
 			PreparedStatement ps2 = con.prepareStatement(sql2);
 			
-			ps.setString(1, vn.getVendorEmail());
-			ps.setString(2, vn.getPosition());
+			ps2.setString(1, vn.getVendorEmail());
+			ps2.setString(2, vn.getPosition());
 			
 			i+= ps2.executeUpdate();
 			
