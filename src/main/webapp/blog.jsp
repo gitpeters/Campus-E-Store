@@ -31,6 +31,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+/* LOGIN/SIGN MODAL, MOBILE & LARGE SCREEN RESPONSIVENESS */
+
+/* Medium Device = 1200px */
+@media only screen and (min-width: 1200px){
+  .main {
+    transform: scale(1);
+    left: 18%; 
+    margin-top: -200px;
+  }
+}
+/* Tablet Device = 768px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .main {
+    margin-top: -200px;
+    left: 0;
+    transform: scale(0.79);
+  }
+}
+/* Wide Mobile = 480px */
+@media only screen and (max-width: 767px) {
+  .main {
+    transform: scale(0.69);
+    margin-top: -200px;
+    /* top: -10%; */
+    left: -17%;
+    
+  }
+}
+
+/* Small Device > 320px */
+@media only screen and (max-width: 479px) {
+  .main {
+    transform: scale(0.45);
+    margin-top: -200px;
+    /* top: -10%; */
+    left: -52%;
+    
+  }
+}
+/* Small Device = 320px */
+@media only screen and (max-width: 360px) {
+  .main {
+    transform: scale(0.43);
+    margin-top: -200px;
+    /* top: -10%; */
+    left: -60%;
+    
+  }
+}
 
 .header__top__right__auth, .header__cart__price{
 	cursor: pointer;
@@ -43,49 +92,83 @@
 	color: #7fad39;
 }
 
-/* LOGIN/SIGN MODAL, MOBILE & LARGE SCREEN RESPONSIVENESS */
-
-@media (max-width: 1200px) {
-  .main {
-    transform: scale(1);
-    left: 15%;
-    margin-top: -200px;
-  }
+.form_input{
+	padding-left: 20px;
 }
 
-@media (max-width: 1000px) {
-  .main {
-    transform: scale(0.89);
-     left: 10%;
-    margin-top: -200px;
-  }
-}
-	@media (max-width: 800px) {
-  .main {
-    margin-top: -200px;
-    left: 0;
-    transform: scale(0.79);
-  }
-}
-@media (max-width: 600px) {
-  .main {
-    transform: scale(0.69);
-    margin-top: -200px;
-    /* top: -10%; */
-    left: -17%;
-    
-  }
+.form-title{
+	line-height: 1;
+	margin: 15px 0;
 }
 
-@media (max-width: 375px) {
-  .main {
-    transform: scale(0.45);
-    margin-top: -200px;
-    /* top: -10%; */
-    left: -56%;
-    
-  }
+.a-container .button{
+	margin-top: 20px;
 }
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+	margin-top: 10px;
+    max-width: 100%;
+     height: 40px;
+    border-radius: 10px;
+    font-size: 1rem;
+    /* 20px */
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+}
+
+.no-js .inputfile + label {
+    display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #7fad39;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+    /* pointer-events: none; */
+    /* in case of FastClick lib use */
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+}
+
+
+.inputfile-2 + label {
+    color: #7fad39;
+    border: 2px solid #7fad39;
+}
+
+.inputfile-2:focus + label,
+.inputfile-2.has-focus + label,
+.inputfile-2 + label:hover {
+    color: #722040;
+}
+
 </style>
 </head>
 <body>
@@ -568,15 +651,20 @@
     <div class="main">
 		<!-- SIGN UP SECTION -->
 		<div class="modal-container a-container" id="a-container">
-			<form action="SaveUserServlet" class="modal-form" id="a-form">
+			<form action="SaveUserServlet" class="modal-form" id="a-form" enctype="multipart/form-data">
 			<div class="close-modal" onclick="signupToggle()">Close</div>
 				<h2 class="form-title title">Create Account</h2>
 				<div class="form_icons"></div>
-				<span class="form_span">or use email for registration</span> 
+				
 				<input type="text" class="form_input" placeholder="Name" required name="name" /> 
 				<input type="email" class="form_input" placeholder="Email" required name="email"/> 
 				<input type="text" class="form_input" placeholder="Student ID Number" required  name="student_id"/>
 				<input type="password" class="form_input" placeholder="Password" required name="password"/>
+				<input type="text" class="form_input" placeholder="Phone Number" required name="phone" />
+				<div class="box">
+					<input type="file" name="student_id_card" id="file-2" class="inputfile inputfile-2" data-multiple-caption="{count} files selected" multiple />
+					<label for="file-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Upload Student ID Card&hellip;</span></label>
+				</div>
 				<button type="submit" class="form_button button submit">
 					SIGN UP</button>
 			</form>
@@ -632,5 +720,34 @@
     <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/main.js"></script>
     <script src="${pageContext.request.contextPath}/js/signup.js"></script>
+    <script type="text/javascript">
+    ( function ( document, window, index )
+    		{
+    			var inputs = document.querySelectorAll( '.inputfile' );
+    			Array.prototype.forEach.call( inputs, function( input )
+    			{
+    				var label	 = input.nextElementSibling,
+    					labelVal = label.innerHTML;
+
+    				input.addEventListener( 'change', function( e )
+    				{
+    					var fileName = '';
+    					if( this.files && this.files.length > 1 )
+    						fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+    					else
+    						fileName = e.target.value.split( '\\' ).pop();
+
+    					if( fileName )
+    						label.querySelector( 'span' ).innerHTML = fileName;
+    					else
+    						label.innerHTML = labelVal;
+    				});
+
+    				// Firefox bug fix
+    				input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+    				input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+    			});
+    		}( document, window, 0 ));
+    </script>
 </body>
 </html>
