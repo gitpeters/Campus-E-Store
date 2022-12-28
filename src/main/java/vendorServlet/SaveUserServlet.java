@@ -15,6 +15,9 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import dao.DAO;
+import model.Vendor;
+
 /**
  * Servlet implementation class SaveUserServlet
  */
@@ -50,6 +53,36 @@ public class SaveUserServlet extends HttpServlet {
 				
 				FileItem name = (FileItem) items.get(0);
 				String vendorName = name.getString();
+				FileItem email = (FileItem) items.get(1);
+				String vendorEmail = email.getString();
+				FileItem id = (FileItem) items.get(2);
+				String studentId = id.getString();
+				FileItem pass = (FileItem) items.get(3);
+				String password = pass.getString();
+				FileItem tel = (FileItem) items.get(4);
+				String phone = tel.getString();
+				FileItem idCard = (FileItem) items.get(5);
+								
+				String vendorID =  GenerateVendorID.vendorID();
+				
+				Vendor vendor = new Vendor();
+				
+				vendor.setVendorId(vendorID);
+				vendor.setVendorName(vendorName);
+				vendor.setVendorBrandName("");
+				vendor.setVendorEmail(vendorEmail);
+				vendor.setVendorMatricNo(studentId);
+				vendor.setPosition("Vendor");
+				vendor.setVendorPassword(password);
+				vendor.setVendorPhone(phone);
+				
+				if(DAO.saveVendor(vendor, idCard)==2) {
+					out.println("Record saved successfully!");
+				}else {
+					out.println("Something went wrong!");
+				}
+				
+				
 			} catch (FileUploadException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

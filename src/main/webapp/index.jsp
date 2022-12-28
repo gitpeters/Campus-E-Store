@@ -981,7 +981,7 @@
     <div class="main">
 		<!-- SIGN UP SECTION -->
 		<div class="modal-container a-container" id="a-container">
-			<form action="SaveUserServlet" class="modal-form" id="a-form" enctype="multipart/form-data">
+			<form action="SaveUserServlet" method="post" class="modal-form" id="a-form" enctype="multipart/form-data">
 			<div class="close-modal" onclick="signupToggle()">Close</div>
 				<h2 class="form-title title">Create Account</h2>
 				<div class="form_icons"></div>
