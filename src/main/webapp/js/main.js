@@ -234,3 +234,20 @@
     $button.parent().find("input").val(newVal);
   });
 })(jQuery);
+
+
+// LOGIN/REGISTRATION ALERT MESSAGE
+const closeBtn = document.querySelector(".close-alert");
+ 	const alertBox = document.querySelector(".alert");
+ 	const inputField = document.querySelectorAll(".input-field");
+ 	const submitBtn = document.querySelector(".submit-btn");
+ 	
+
+ 	closeBtn.onclick = ()=>{
+ 		alertBox.classList.add("hide");
+	}
+ 	const myTimeout = setTimeout(hideAlert, 5000);
+ 	
+ 	function hideAlert(){
+ 		alertBox.classList.add("hide");
+ 	}

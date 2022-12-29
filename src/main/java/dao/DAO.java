@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.fileupload.FileItem;
 
@@ -96,6 +98,35 @@ public class DAO {
 			e.printStackTrace();
 		}
 		return vendor;
+	}
+	
+	// Query Vendor Table
+	public static List<Vendor> getVendorByEmail(String email){
+		List<Vendor> vendors = new ArrayList<Vendor>();
+		
+		Connection con = DbConnection.connection();
+		String sql = "SELECT * FROM campusestock.vendor WHERE vendorEmail = '"+email+"'";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Vendor vn = new Vendor();
+				
+				vn.setVendorId(rs.getString(1));
+				vn.setVendorName(rs.getString(2));
+				vn.setVendorEmail(rs.getString(3));
+				vn.setVendorMatricNo(rs.getString(4));
+				vn.setVendorBrandName(rs.getString(6));
+				
+				vendors.add(vn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return vendors;
 	}
 
 }
