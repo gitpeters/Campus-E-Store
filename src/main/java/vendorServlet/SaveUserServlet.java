@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -16,6 +17,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import dao.DAO;
+import model.MessageReport;
 import model.Vendor;
 
 /**
@@ -62,6 +64,8 @@ public class SaveUserServlet extends HttpServlet {
 				FileItem tel = (FileItem) items.get(4);
 				String phone = tel.getString();
 				FileItem idCard = (FileItem) items.get(5);
+				
+				String verifiedEmail = "";
 								
 				String vendorID =  GenerateVendorID.vendorID();
 				
@@ -76,11 +80,30 @@ public class SaveUserServlet extends HttpServlet {
 				vendor.setVendorPassword(password);
 				vendor.setVendorPhone(phone);
 				
-				if(DAO.saveVendor(vendor, idCard)==2) {
-					out.println("Record saved successfully!");
-				}else {
-					out.println("Something went wrong!");
+				List<Vendor> vendors = DAO.getVendorByEmail(vendorEmail);
+				for(Vendor vn: vendors) {
+					verifiedEmail = (String)vn.getVendorEmail();
 				}
+				
+				if(!vendorEmail.equals(verifiedEmail)) {
+					if(DAO.saveVendor(vendor, idCard)==2) {
+						MessageReport msg = new MessageReport("Your registration is successful", "alert", "success");
+						HttpSession session = request.getSession();
+						session.setAttribute("msg", msg);
+						response.sendRedirect("index.jsp");
+						
+						//out.println("Record saved successfully!");
+					}else {
+						out.println("Something went wrong!");
+					}
+				}else {
+					MessageReport msg = new MessageReport("Record already exist!!", "alert", "danger");
+					HttpSession session = request.getSession();
+					session.setAttribute("msg", msg);
+					response.sendRedirect("index.jsp");
+//					out.println("Record already exist!");
+				}
+				
 				
 				
 			} catch (FileUploadException e) {
