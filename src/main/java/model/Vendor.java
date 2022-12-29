@@ -2,7 +2,7 @@ package model;
 
 public class Vendor {
 	private String vendorId, vendorName, vendorPhone, vendorMatricNo, vendorPassword,
-			vendorBrandName, vendorEmail;
+			vendorBrandName, vendorEmail, position;
 	private byte vendorSchoolId;
 	
 	public Vendor() {
@@ -12,7 +12,7 @@ public class Vendor {
 	
 
 	public Vendor(String vendorId, String vendorName, String vendorPhone, String vendorMatricNo, String vendorPassword,
-			String vendorBrandName, String vendorEmail, byte vendorSchoolId) {
+			String vendorBrandName, String vendorEmail, String position, byte vendorSchoolId) {
 		super();
 		this.vendorId = vendorId;
 		this.vendorName = vendorName;
@@ -21,6 +21,7 @@ public class Vendor {
 		this.vendorPassword = vendorPassword;
 		this.vendorBrandName = vendorBrandName;
 		this.vendorEmail = vendorEmail;
+		this.position = position;
 		this.vendorSchoolId = vendorSchoolId;
 	}
 
@@ -55,6 +56,18 @@ public class Vendor {
 	}
 
 
+
+
+
+	public String getPosition() {
+		return position;
+	}
+
+
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
 
 
 
