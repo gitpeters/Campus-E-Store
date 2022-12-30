@@ -11,8 +11,7 @@ import java.util.List;
 import org.apache.commons.fileupload.FileItem;
 
 import connection.DbConnection;
-import model.Product;
-import model.Vendor;
+import model.*;
 
 public class DAO {
 	
@@ -64,17 +63,17 @@ public class DAO {
 	}
 	
 	//Authenticate vendor login
-	public static boolean authenticateUser(Vendor vn) {
+	public static boolean authenticateUser(Login_credential lc) {
 		boolean validate = false;
 		
 		Connection con = DbConnection.connection();
 		
-		String sql = "SELECT * FROM campusestock.vendor WHERE vendorEmail = ? and vendorPassword = ?";
+		String sql = "SELECT * FROM campusestock.login_credential WHERE username = ? and password = ?";
 		
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, vn.getVendorEmail());
-			pst.setString(2, vn.getVendorPassword());
+			pst.setString(1, lc.getUsername());
+			pst.setString(2, lc.getPassword());
 			
 			ResultSet rs = pst.executeQuery();
 			
@@ -89,19 +88,19 @@ public class DAO {
 	}
 	
 	// Validate Vendor position
-	public static Vendor validatePosition (Vendor vn) {
+	public static Login_credential validatePosition (Login_credential lc) {
 		Connection con = DbConnection.connection();
-		Vendor vendor = new Vendor();
+		Login_credential vendor = new Login_credential();
 		String sql = "SELECT * FROM campusestock.position WHERE username = ?";
 		
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, vn.getVendorEmail());
+			pst.setString(1, lc.getUsername());
 			
 			ResultSet rst = pst.executeQuery();
 			
 			while(rst.next()) {
-				vn.setPosition(rst.getString(2));
+				vendor.setPosition(rst.getString(2));
 			}
 		} catch (SQLException e) {
 			System.out.println(e+" exception occurred");
