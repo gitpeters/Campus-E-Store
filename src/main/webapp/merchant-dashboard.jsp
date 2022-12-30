@@ -218,21 +218,19 @@ aside .logo img {
 	line-height: 40px;
 }
 </style>
+<script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        
+        setTimeout("preventBack()", 0.0);
+        window.onunload = function () { null };
+    </script>
 </head>
 <body>
-	<%! String vendorId, vendorName, vendorEmail, vendorMatricNo, vendorPassword, vendorBrandName, vendorSchoolId; %>
 	<%
-		/* ArrayList <Vendor> getVendorDetails = (ArrayList<Vendor>)session.getAttribute("vendor");
 		
-		for (Vendor vn: getVendorDetails){
-			vendorId = vn.getVendorId();
-			vendorName = vn.getVendorName();
-			vendorEmail = vn.getVendorEmail();
-			vendorMatricNo = vn.getVendorMatricNo();
-		} */
-		vendorId = (String)session.getAttribute("vendor");
+		Vendor vendor = (Vendor)session.getAttribute("vendor");
 		
-		if (vendorId != null){
+		if (vendor.getVendorId() != null){
 			
 		}else{
 			response.sendRedirect("index.jsp");
@@ -244,6 +242,20 @@ aside .logo img {
     <div id="preloder">
       <div class="loader"></div>
     </div>
+    <%
+		MessageReport m1 = (MessageReport) session.getAttribute("msg");
+		if (m1 != null) {
+		%>
+		<div class="alert alert-<%=m1.getMessageColor()%> show">
+			<p class="alert-msg"><%=m1.getMessageContent()%></p>
+			<div class="close-alert">
+				<span>x</span>
+			</div>
+		</div>
+		
+		<%
+		}
+		%>
     <div class="container">
 
         <!-- sidebar section -->
@@ -305,7 +317,7 @@ aside .logo img {
                     <div class="middle">
                         <div class="left">
                             <h3>Total sales</h3>
-                            <h1>₦879,800</h1>
+                            <h1>&#8358;879,800</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -323,7 +335,7 @@ aside .logo img {
                     <div class="middle">
                         <div class="left">
                             <h3>Total Expenses</h3>
-                            <h1>₦79,400</h1>
+                            <h1>&#8358;79,400</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -341,7 +353,7 @@ aside .logo img {
                     <div class="middle">
                         <div class="left">
                             <h3>Total Income</h3>
-                            <h1>₦800,400</h1>
+                            <h1>&#8358;800,400</h1>
                         </div>
                         <div class="progress">
                             <svg>
