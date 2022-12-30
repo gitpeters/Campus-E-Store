@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merchant Dashboard</title>
+    <title>Add Product</title>
     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/dashboard.css"type="text/css" />
     <link rel="shortcut icon" href="./img/estock1.png" type="image/x-icon">
     <!-- material icon -->
@@ -96,19 +96,137 @@ aside .logo img {
   width: 100%;
   height: auto;
 }
+
+.product{
+	display: flex-row;
+	
+}
+
+.product .product-samples {
+  margin-top: 2rem;
+}
+
+.product .product-samples h2 {
+  margin-bottom: 0.8rem;
+}
+
+.product .product-samples .item {
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+  padding: 1.4rem var(--card-padding);
+  border-radius: var(--border-radius-3);
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+
+.product .product-samples .item:hover {
+  box-shadow: none;
+}
+
+.product .product-samples{
+	margin-top: 2rem;
+	display: flex;
+	justify-content: space-around;
+}
+
+.product .product-samples .add-product {
+  background: transparent;
+  border: 2px dashed var(--color-primary);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.product .product-samples .add-product div {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.product .product-samples .add-product div h3 {
+  font-weight: 600;
+}
+
+.product .product-details{
+	display: flex;
+	justify-content: space-around;
+	margin-top: 2rem;
+}
+
+.product .product-details .product-info{
+	width: 20rem;
+	border:  2px solid var(--color-primary);
+	outline: var(--color-primary);
+	padding: 1rem;
+	margin: 1rem;
+}
+
+.product .product-details .product-info:focus{
+	border:  inset var(--color-primary);
+}
+
+.product .imagePreview .productImage img{
+	max-width: 20rem;
+    max-height: 20rem;
+    object-fit: contain;
+    border: none;
+    outline: none;
+}
+
+.product .imagePreview{
+	display: flex;
+	justify-content: space-around;
+	border: none;
+    outline: none;
+}
+
+.product form .product-samples img{
+	max-width: 20rem;
+    max-height: 20rem;
+    object-fit: contain;
+    border: none;
+    outline: none;
+}
+
+.product form .button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.product form .button:hover {background-color: #3e8e41}
+
+.product form .button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 </style>
 </head>
 <body>
-	<%! String vendorId, vendorName, vendorEmail, vendorMatricNo, vendorPassword, vendorBrandName, vendorSchoolId; %>
+<%! String vendorId, vendorName, vendorEmail, vendorMatricNo, vendorPassword, vendorBrandName, vendorSchoolId; %>
 	<%
-		/* ArrayList <Vendor> getVendorDetails = (ArrayList<Vendor>)session.getAttribute("vendor");
+	/* ArrayList <Vendor> vendor = new ArrayList <Vendor>();
+	vendor = (ArrayList<Vendor>)session.getAttribute("vendor");
 		
-		for (Vendor vn: getVendorDetails){
+		for (Vendor vn: vendor){
 			vendorId = vn.getVendorId();
 			vendorName = vn.getVendorName();
 			vendorEmail = vn.getVendorEmail();
 			vendorMatricNo = vn.getVendorMatricNo();
 		} */
+		
 		vendorId = (String)session.getAttribute("vendor");
 		
 		if (vendorId != null){
@@ -118,7 +236,6 @@ aside .logo img {
 		}
 		
 	%>
-
     <!-- Page Preloder -->
     <div id="preloder">
       <div class="loader"></div>
@@ -161,7 +278,7 @@ aside .logo img {
                     <span class="material-icons">settings</span>
                     <h3>Settings</h3>
                 </a>
-                <a href="add-product.jsp">
+                <a href="#add_product">
                     <span class="material-icons">add</span>
                     <h3>Add Products</h3>
                 </a>
@@ -173,71 +290,81 @@ aside .logo img {
         </aside>
         <!--end of side bar-->
         <main>
-            <h1>Dashboard</h1>
-            <div class="date">
-                <input type="date" name="date" id="date">
-            </div>
-            <!-- Insights -->
-            <div class="insights">
-                <div class="sales">
-                    <span class="material-icons">analytics</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total sales</h3>
-                            <h1>₦879,800</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="text-muted">Last 24hrs</small>
-                </div><!--End of sales-->
-                <div class="expenses">
-                    <span class="material-icons">bar_chart</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Expenses</h3>
-                            <h1>₦79,400</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>21%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="text-muted">Last 24hrs</small>
-                </div><!--End of expense-->
-                <div class="income">
-                    <span class="material-icons">stacked_line_chart</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Income</h3>
-                            <h1>₦800,400</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <p>79%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="text-muted">Last 24hrs</small>
-                </div><!--End of income-->
-            </div>
-
+        	<div class="product">
+        		<form action="AddProduct" method="post" enctype="multipart/form-data">
+        		<h2>Product Information</h2>
+        		<div class="product-details">
+        			
+		        		<input type="text" id="productName" class="product-info" name="productName" placeholder="Product Name" required>
+		        	   	<input type="text" id="productAmount" class="product-info" name="productAmount" placeholder="Product Amount" required>
+		        	   	<input type="hidden" id="VendorId" name="VendorId" value="<%=vendorId %>">
+		        	   	<input type="hidden" id="productStatus" name="productStatus" value="Available">
+		        	   	<select id="productCondition" name="productCondition" class="product-info" required>
+		        	   		<option value="">Product Condition</option>
+		        	   		<option value="New">New</option>
+		        	   		<option value="Fairly Used">Fairly Used</option>
+		        	   		<option value="Used">Used</option>
+		        	   		<option value="Bad">Bad</option>
+		        	   	</select>
+		        	   	<textarea rows="1" cols="" placeholder="Search Keywords" class="product-info" name="searchKeyword"></textarea>
+		        	   	<textarea rows="1" cols="" placeholder="Product Description" class="product-info" name="productDescription"></textarea>
+	        		
+        		</div>
+        		
+        		<div class="product-samples">
+        			<div>
+	        			<div class="item add-product" onclick="productImage1()">
+		                    <div class="complete">
+		                        <span class="material-icons">add</span>
+		                        <h3>Add Product Image</h3>
+		                        <input type="file" class="image" hidden name="productImage1" id="image1" accept="image/*" onchange="loadFile1(event)">
+		                    </div>
+	                	</div>
+	                	<img id="output1"/>
+                	</div>
+                	
+                	<div>
+	        			<div class="item add-product" onclick="productImage2()">
+		                    <div class="complete">
+		                        <span class="material-icons">add</span>
+		                        <h3>Add Product Image</h3>
+		                        <input type="file" class="image" hidden name="productImage2" id="image2" accept="image/*" onchange="loadFile2(event)">
+		                    </div>
+	                	</div>
+	                	<img id="output2"/>
+                	</div>
+                	
+                	<div>
+	        			<div class="item add-product" onclick="productImage3()">
+		                    <div class="complete">
+		                        <span class="material-icons">add</span>
+		                        <h3>Add Product Image</h3>
+		                        <input type="file" class="image" hidden name="productImage3" id="image3" accept="image/*" onchange="loadFile3(event)">
+		                    </div>
+	                	</div>
+	                	<img id="output3"/>
+                	</div>
+                	<button type="submit" class="button">SUbmit</button>
+                	</form>
+        		</div>
+        		
+        		<!-- <div class="imagePreview">
+        			<div class="productImage">
+        				<img id="output1"/>
+        			</div>
+        			<div class="productImage">
+        				<img id="output2"/>
+        			</div>
+        			<div class="productImage">
+        				<img id="output3"/>
+        			</div>
+        		</div> -->
+        	</div>
+           
+           
             <!-- recent orders -->
             <div class="recent-orders">
-                <h2>Recent Orders</h2>
+                <h2>Recent Products</h2>
                 <table>
                     <thead>
                         <tr>
@@ -419,6 +546,7 @@ aside .logo img {
 	<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/js/app.js"></script>
     <script src="${pageContext.request.contextPath}/js/.js"></script>
+    <script src="${pageContext.request.contextPath}/js/productImageSamples.js"></script>
     
     <script>
     /*------------------

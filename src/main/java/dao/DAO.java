@@ -11,6 +11,8 @@ import java.util.List;
 import org.apache.commons.fileupload.FileItem;
 
 import connection.DbConnection;
+import model.DataSupply;
+import model.Product;
 import model.Vendor;
 
 public class DAO {
@@ -49,7 +51,6 @@ public class DAO {
 			e.printStackTrace();
 		}
 				
-		
 		return i;
 	}
 	
@@ -128,5 +129,68 @@ public class DAO {
 		
 		return vendors;
 	}
+	
+	public static List<Vendor> getVendorById(String vendorId){
+		List<Vendor> vendors = new ArrayList<Vendor>();
+		
+		Connection con = DbConnection.connection();
+		String sql = "SELECT * FROM campusestock.vendor WHERE vendorId = '"+vendorId+"'";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Vendor vn = new Vendor();
+				
+				vn.setVendorId(rs.getString(1));
+				vn.setVendorName(rs.getString(2));
+				vn.setVendorEmail(rs.getString(3));
+				vn.setVendorMatricNo(rs.getString(4));
+				vn.setVendorBrandName(rs.getString(5));
+				vn.setVendorBrandName(rs.getString(6));
+				
+				vendors.add(vn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return vendors;
+	}
+	
+	//Adding new Product
+	public static int addProduct (Product pr, FileItem f1, FileItem f2, FileItem f3) {
+		int i = 0;
+		Connection con = DbConnection.connection();
+		String sql = "INSERT INTO campusestock.product values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, pr.getProductId());
+			ps.setString(2, pr.getVendorId());
+			ps.setString(3, pr.getProductName());
+			ps.setString(4, pr.getProductDescription());
+			ps.setString(5, pr.getProductCondition());
+			ps.setString(6, pr.getDatePosted());
+			ps.setString(7, pr.getProductStatus());
+			ps.setBinaryStream(8, f1.getInputStream(), (int) f1.getSize());
+			ps.setBinaryStream(9, f2.getInputStream(), (int) f2.getSize());
+			ps.setBinaryStream(10, f3.getInputStream(), (int) f3.getSize());
+			ps.setString(11, pr.getAdsStatus());
+			ps.setString(12, pr.getBrandName());
+			ps.setString(13, pr.getKeywords());
+			ps.setDouble(14, pr.getProductAmount());
+			i = ps.executeUpdate();
+		}catch (SQLException e) {
+			System.out.println(e+" exception occurred");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println(e+" exception occurred");
+			e.printStackTrace();
+		}
+		
+		return i;
+	}
+	
 
 }
