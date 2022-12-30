@@ -1,17 +1,13 @@
 package model;
 
 public class Product {
-	private String productId, vendorId, productName, datePosted, productStatus, adsStatus, brandName, keywords;
+	private String productId, vendorId, productName, datePosted, productStatus, adsStatus, brandName, keywords, productDescription, productCondition;
 	private byte productSample1, prodcutSample2, productSample3;
-	
 	private double productAmount;
-	
-	
-	
 
 	public Product(String productId, String vendorId, String productName, String datePosted, String productStatus,
-			String adsStatus, String brandName, String keywords, byte productSample1, byte prodcutSample2,
-			byte productSample3, double productAmount) {
+			String adsStatus, String brandName, String keywords, String productDescription, String productCondition,
+			byte productSample1, byte prodcutSample2, byte productSample3, double productAmount) {
 		super();
 		this.productId = productId;
 		this.vendorId = vendorId;
@@ -21,19 +17,17 @@ public class Product {
 		this.adsStatus = adsStatus;
 		this.brandName = brandName;
 		this.keywords = keywords;
+		this.productDescription = productDescription;
+		this.productCondition = productCondition;
 		this.productSample1 = productSample1;
 		this.prodcutSample2 = prodcutSample2;
 		this.productSample3 = productSample3;
 		this.productAmount = productAmount;
 	}
-	
-	
 
 	public Product() {
 		super();
 	}
-
-
 
 	public double getProductAmount() {
 		return productAmount;
@@ -131,4 +125,20 @@ public class Product {
 		this.productSample3 = productSample3;
 	}
 
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
+	public String getProductCondition() {
+		return productCondition;
+	}
+
+	public void setProductCondition(String productCondition) {
+		this.productCondition = productCondition;
+	}
+	
 }

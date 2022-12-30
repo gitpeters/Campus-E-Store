@@ -9,8 +9,6 @@ public class Vendor {
 		super();
 	}
 	
-	
-
 	public Vendor(String vendorId, String vendorName, String vendorPhone, String vendorMatricNo, String vendorPassword,
 			String vendorBrandName, String vendorEmail, String position, byte vendorSchoolId) {
 		super();
@@ -24,8 +22,6 @@ public class Vendor {
 		this.position = position;
 		this.vendorSchoolId = vendorSchoolId;
 	}
-
-
 
 	public String getVendorId() {
 		return vendorId;
@@ -55,29 +51,17 @@ public class Vendor {
 		return vendorPhone;
 	}
 
-
-
-
-
 	public String getPosition() {
 		return position;
 	}
-
-
 
 	public void setPosition(String position) {
 		this.position = position;
 	}
 
-
-
 	public void setVendorPhone(String vendorPhone) {
 		this.vendorPhone = vendorPhone;
 	}
-
-
-
-
 
 	public String getVendorPassword() {
 		return vendorPassword;
