@@ -90,7 +90,6 @@ public class SaveUserServlet extends HttpServlet {
 						MessageReport msg = new MessageReport("Your registration is successful", "alert", "success");
 						HttpSession session = request.getSession();
 						session.setAttribute("msg", msg);
-						session.setAttribute("vendor", vendorID);
 						response.sendRedirect("merchant-dashboard.jsp");
 						
 						//out.println("Record saved successfully!");
