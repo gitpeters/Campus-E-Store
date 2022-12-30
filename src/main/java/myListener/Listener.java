@@ -38,6 +38,10 @@ public class Listener implements ServletContextListener {
 			String sql6 = "create table campusestock.position(username varchar(200), position varchar(200))";
 			PreparedStatement ps6 = con.prepareStatement(sql6);
 			ps6.executeUpdate();
+			
+			String sql7 = "create table campusestock.login_credential(username varchar(200), password varchar(200), position varchar(200))";
+			PreparedStatement ps7 = con.prepareStatement(sql7);
+			ps7.executeUpdate();
 
 		} catch (SQLException e) {
 			System.out.println("Schema/table already exsit!");

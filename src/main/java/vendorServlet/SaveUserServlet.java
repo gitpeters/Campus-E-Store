@@ -49,6 +49,7 @@ public class SaveUserServlet extends HttpServlet {
                 System.out.println("sorry. No file uploaded");
                 return;
             }
+	       
 	        
 	        try {
 				List items = sfu.parseRequest(request);
@@ -86,7 +87,7 @@ public class SaveUserServlet extends HttpServlet {
 				}
 				
 				if(!vendorEmail.equals(verifiedEmail)) {
-					if(DAO.saveVendor(vendor, idCard)==2) {
+					if(DAO.saveVendor(vendor, idCard)==3) {
 						MessageReport msg = new MessageReport("Your registration is successful", "alert", "success");
 						HttpSession session = request.getSession();
 						session.setAttribute("msg", msg);

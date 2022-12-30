@@ -7,6 +7,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="description" content="E-Campus Store" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
 <meta name="keywords" content="E-Campus, store, ecommerce, jsp" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -52,6 +55,9 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+body {
+	overflow-x: hidden;
+}
 /* LOGIN/SIGN MODAL, MOBILE & LARGE SCREEN RESPONSIVENESS */
 
 /* Medium Device = 1200px */
@@ -210,75 +216,36 @@ keyframes show_slide { 0%{
 }
 
 40
-
-
 %
 {
 transform
-
-
 :
-
-
-translateX
-(
-
-
--10
-%
-
-
-)
-;
-
-
+translateX(
+-10%
+);
 }
 80
-
-
 %
 {
 transform
-
-
 :
-
-
-translateX
-(
-
-
-0
-%
-
-
-)
-;
-
-
+translateX(
+0%
+);
 }
 100
-
-
 %
 {
 transform
-
-
 :
-
-
+ 
 translateX
 (
-
-
 -10px
-
-
 )
 ;
 
-
+	
 }
 }
 .alert.hide {
@@ -291,76 +258,31 @@ keyframes hide_slide { 0%{
 }
 
 40
-
-
 %
 {
 transform
-
-
 :
-
-
-translateX
-(
-
-
-0
-%
-
-
-)
-;
-
-
+translateX(
+0%
+);
 }
 80
-
-
 %
 {
 transform
-
-
 :
-
-
-translateX
-(
-
-
--10
-%
-
-
-)
-;
-
-
+translateX(
+-10%
+);
 }
 100
-
-
 %
 {
 transform
-
-
 :
-
-
-translateX
-(
-
-
-100
-%
-
-
-)
-;
-
-
+translateX(
+100%
+);
 }
 }
 .alert-danger {
@@ -428,7 +350,7 @@ translateX
 	line-height: 40px;
 }
 
-.login{
+.login {
 	text-decoration: underline;
 	color: #1058cc;
 	font-weight: bold;
@@ -440,26 +362,35 @@ translateX
 </style>
 </head>
 <body>
+	<script type="text/javascript">
+          history.pushState(null, null, 'index.jsp');
+          window.addEventListener('popstate', function (event) {
+              history.pushState(null, null, 'index.jsp');
+      });
+
+     </script>
 
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
 	<%
-		MessageReport m1 = (MessageReport) session.getAttribute("msg");
-		if (m1 != null) {
-		%>
-		<div class="alert alert-<%=m1.getMessageColor()%> show">
-			<p class="alert-msg"><%=m1.getMessageContent()%></p>
-			<p class="login" onclick="signupToggle()">Proceed to login </p>
-			<div class="close-alert">
-				<span>x</span>
-			</div>
+	response.setHeader( "Pragma", "no-cache" );
+	response.setHeader( "Cache-Control", "no-cache" );
+	response.setDateHeader( "Expires", 0 );
+	MessageReport m1 = (MessageReport) session.getAttribute("msg");
+	if (m1 != null) {%>
+	<div class="alert alert-<%=m1.getMessageColor()%> show">
+		<p class="alert-msg"><%=m1.getMessageContent()%></p>
+		<p class="login" onclick="signupToggle()">Proceed to login</p>
+		<div class="close-alert">
+			<span>x</span>
 		</div>
-		
-		<%
-		}
-		%>
+	</div>
+
+	<%
+	}
+	%>
 	<div class="body-container" id="body-container">
 		<!-- Humberger Begin -->
 		<div class="humberger__menu__overlay"></div>
@@ -1237,7 +1168,8 @@ translateX
 		<!-- login section -->
 		<div class="modal-container b-container" id="b-container">
 
-			<form action="AuthenticateServlet" class="modal-form" id="b-form">
+			<form action="AuthenticateServlet" class="modal-form" id="b-form"
+				method="post">
 				<div class="close-modal" onclick="signupToggle()">Close</div>
 				<h2 class="form_title title">Sign in to dashboard</h2>
 				<div class="form_icons"></div>

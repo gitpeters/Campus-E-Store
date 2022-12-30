@@ -1,3 +1,5 @@
+
+<%@page import="model.MessageReport"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -6,6 +8,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
     <title>Merchant Dashboard</title>
     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/dashboard.css"type="text/css" />
     <link rel="shortcut icon" href="./img/estock1.png" type="image/x-icon">
@@ -92,13 +97,161 @@ aside .logo img {
   width: 100%;
   height: auto;
 }
+
+/* ===========  LOGIN/REGISTRATION ALERT MESSAGE ====================== */
+
+.alert{
+	display: flex;
+	flex-direction: row;
+	padding: 15px 20px;
+	width: 420px;
+	position: absolute;
+	right: 0px;
+	top: 10px;
+	border-radius: 4px;
+	
+	overflow: hidden;
+}
+
+.alert.show{
+	animation: show_slide 1s ease forwards;
+}
+
+@keyframes show_slide{
+	0%{
+		transform: translateX(100%);
+	}
+	40%{
+		transform: translateX(-10%);
+	}
+	80%{
+		transform: translateX(0%);
+	}
+	100%{
+		transform: translateX(-10px);
+	}
+}
+
+
+	
+.alert.hide{
+	animation: hide_slide 1s ease forwards;
+}
+
+@keyframes hide_slide{
+	0%{
+		transform: translateX(-10px);
+	}
+	40%{
+		transform: translateX(0%);
+	}
+	80%{
+		transform: translateX(-10%);
+	}
+	100%{
+		transform: translateX(130%);
+	}
+}
+
+
+
+.alert-danger{
+	border-left: 4px solid #ce8500;
+}
+
+.alert-success{
+	border-left: 4px solid #014214;
+}
+
+.alert-danger{
+	background-color: #ffdb9b;
+	font-weight: bolder;
+}
+
+.alert-success{
+	background: #d6fedf;
+	font-weight: bolder;
+}
+
+.alert .alert-msg{
+	padding: 0 20px;
+	font-size: 18px;
+}
+
+.alert-danger .alert-msg{
+	color: #ce8500;
+}
+
+.alert-success .alert-msg{
+	color: #014214;
+}
+
+.alert .close-alert{
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	padding: 20px 18px;
+	cursor: pointer;
+}
+
+.alert .close-alert:hover{
+	opacity: 0.86;
+}
+
+.alert-success .close-alert{
+	background:  #014214;
+}
+
+ .alert-success .close-alert span{
+	color: #d6fedf;
+	font-size: 22px;
+	line-height: 40px;
+	user-select: none;
+}
+
+
+.alert-danger .close-alert{
+	background-color:  #ce8500;
+}
+
+.alert-danger .close-alert span{
+	color: #ffdb9b;
+	font-size: 22px;
+	line-height: 40px;
+}
 </style>
 </head>
 <body>
+
+<script type="text/javascript">
+          history.pushState(null, null, 'merchant-dashboard.jsp');
+          window.addEventListener('popstate', function (event) {
+              history.pushState(null, null, 'merchant-dashboard.jsp');
+      });
+
+     </script>
     <!-- Page Preloder -->
     <div id="preloder">
       <div class="loader"></div>
     </div>
+    
+    <%
+    response.setHeader( "Pragma", "no-cache" );
+	response.setHeader( "Cache-Control", "no-cache" );
+	response.setDateHeader( "Expires", 0 );
+	MessageReport m1 = (MessageReport) session.getAttribute("msg");
+	if (m1 != null) {%>
+	<div class="alert alert-<%=m1.getMessageColor()%> show">
+		<p class="alert-msg"><%=m1.getMessageContent()%></p>
+		<div class="close-alert">
+			<span>x</span>
+		</div>
+	</div>
+
+	<%
+	}
+	%>
     <div class="container">
 
         <!-- sidebar section -->
@@ -141,7 +294,7 @@ aside .logo img {
                     <span class="material-icons">add</span>
                     <h3>Add Products</h3>
                 </a>
-                <a href="#logout">
+                <a href="Logout">
                     <span class="material-icons">logout</span>
                     <h3>Logout</h3>
                 </a>
@@ -160,7 +313,7 @@ aside .logo img {
                     <div class="middle">
                         <div class="left">
                             <h3>Total sales</h3>
-                            <h1>₦879,800</h1>
+                            <h1>&#8358;879,800</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -178,7 +331,7 @@ aside .logo img {
                     <div class="middle">
                         <div class="left">
                             <h3>Total Expenses</h3>
-                            <h1>₦79,400</h1>
+                            <h1>&#8358;79,400</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -196,7 +349,7 @@ aside .logo img {
                     <div class="middle">
                         <div class="left">
                             <h3>Total Income</h3>
-                            <h1>₦800,400</h1>
+                            <h1>&#8358;800,400</h1>
                         </div>
                         <div class="progress">
                             <svg>
@@ -404,6 +557,24 @@ aside .logo img {
     $("#preloder").delay(200).fadeOut("slow");
 
   });
-    </script>
+    
+  
+  // LOGIN/REGISTRATION ALERT MESSAGE
+     const close = document.querySelector(".close-alert");
+      	const alertBox = document.querySelector(".alert");
+      	const inputField = document.querySelectorAll(".input-field");
+      	const submitBtn = document.querySelector(".submit-btn");
+      	
+
+      	close.onclick = ()=>{
+      		alertBox.classList.add("hide");
+     	}
+      	const myTimeout = setTimeout(hideAlert, 5000);
+      	
+      	function hideAlert(){
+      		alertBox.classList.add("hide");
+      	}
+     </script>
+
 </body>
 </html>
