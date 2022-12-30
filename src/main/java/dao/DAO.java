@@ -200,5 +200,30 @@ public class DAO {
 		return i;
 	}
 	
+	
+	//Query for all Vendor's information
+	
+	public static Vendor getVendor(String email) throws SQLException {
+		Vendor vendor = new Vendor();
+		Connection con = DbConnection.connection();
+		
+		String sql ="SELECT * FROM campusestock.vendor where vendorEmail = ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, email);
+		
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			vendor.setVendorId(rs.getString(1));
+			vendor.setVendorName(rs.getString(2));
+			vendor.setVendorEmail(rs.getString(3));
+			vendor.setVendorMatricNo(rs.getString(4));
+			vendor.setVendorPhone(rs.getString(6));
+			vendor.setVendorBrandName(rs.getString(7));
+		}
+		
+		return vendor;
+	}
+	
 
 }
