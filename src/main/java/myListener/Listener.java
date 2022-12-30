@@ -19,7 +19,7 @@ public class Listener implements ServletContextListener {
 			PreparedStatement ps1 = con.prepareStatement(sql1);
 			ps1.executeUpdate();
 
-			String sql2 = "create table campusestock.vendor(vendorId varchar(200), vendorName varchar(200), vendorEmail varchar(200), vendorMatricNo varchar(200), vendorPassword varchar(200), vendorBrandName varchar(200), vendorSchoolId longBlob)";
+			String sql2 = "create table campusestock.vendor(vendorId varchar(200), vendorName varchar(200), vendorEmail varchar(200), vendorMatricNo varchar(200), vendorPassword varchar(200), vendorPhone varchar(200), vendorBrandName varchar(200), vendorSchoolId longBlob)";
 			PreparedStatement ps2 = con.prepareStatement(sql2);
 			ps2.executeUpdate();
 
@@ -38,6 +38,10 @@ public class Listener implements ServletContextListener {
 			String sql6 = "create table campusestock.position(username varchar(200), position varchar(200))";
 			PreparedStatement ps6 = con.prepareStatement(sql6);
 			ps6.executeUpdate();
+			
+			String sql7 = "create table campusestock.login_credential(username varchar(200), password varchar(200), position varchar(200))";
+			PreparedStatement ps7 = con.prepareStatement(sql7);
+			ps7.executeUpdate();
 
 		} catch (SQLException e) {
 			System.out.println("Schema/table already exsit!");
