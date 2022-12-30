@@ -61,7 +61,7 @@ public class AuthenticateServlet extends HttpServlet {
 				session2.setAttribute("msg", msg);
 				response.sendRedirect("merchant-dashboard.jsp");
 			}else {
-				MessageReport msg = new MessageReport("Login successfully", "alert", "success");
+				MessageReport msg = new MessageReport("Invalide login credentials", "alert", "danger");
 				HttpSession session = request.getSession();
 				session.setAttribute("msg", msg);
 				response.sendRedirect("index.jsp");

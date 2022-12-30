@@ -213,23 +213,19 @@ aside .logo img {
   transform: translateY(4px);
 }
 </style>
+<script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        
+        setTimeout("preventBack()", 0.0);
+        window.onunload = function () { null };
+    </script>
 </head>
 <body>
-<%! String vendorId, vendorName, vendorEmail, vendorMatricNo, vendorPassword, vendorBrandName, vendorSchoolId; %>
-	<%
-	/* ArrayList <Vendor> vendor = new ArrayList <Vendor>();
-	vendor = (ArrayList<Vendor>)session.getAttribute("vendor");
+<%
 		
-		for (Vendor vn: vendor){
-			vendorId = vn.getVendorId();
-			vendorName = vn.getVendorName();
-			vendorEmail = vn.getVendorEmail();
-			vendorMatricNo = vn.getVendorMatricNo();
-		} */
+		Vendor vendor = (Vendor)session.getAttribute("vendor");
 		
-		vendorId = (String)session.getAttribute("vendor");
-		
-		if (vendorId != null){
+		if (vendor.getVendorId() != null){
 			
 		}else{
 			response.sendRedirect("index.jsp");
