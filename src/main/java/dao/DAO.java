@@ -11,7 +11,6 @@ import java.util.List;
 import org.apache.commons.fileupload.FileItem;
 
 import connection.DbConnection;
-import model.DataSupply;
 import model.Product;
 import model.Vendor;
 
@@ -22,8 +21,9 @@ public class DAO {
 	public static int saveVendor(Vendor vn, FileItem fi) {
 		int i = 0;
 		Connection con = DbConnection.connection();
-		String sql = "INSERT INTO campusestock.vendor(vendorId, vendorName, vendorEmail, vendorMatricNo, vendorPassword, vendorBrandName, vendorSchoolId) values (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO campusestock.vendor(vendorId, vendorName, vendorEmail, vendorMatricNo, vendorPassword, vendorPhone, vendorBrandName, vendorSchoolId) values (?,?,?,?,?,?,?,?)";
 		String sql2 = "INSERT INTO campusestock.position (username, position) values (?,?)";
+		String sql3 = "INSERT INTO campusestock.login_credential values (?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, vn.getVendorId());
@@ -31,8 +31,9 @@ public class DAO {
 			ps.setString(3, vn.getVendorEmail());
 			ps.setString(4, vn.getVendorMatricNo());
 			ps.setString(5, vn.getVendorPassword());
-			ps.setString(6, vn.getVendorBrandName());
-			ps.setBinaryStream(7, fi.getInputStream(), (int) fi.getSize());
+			ps.setString(6, vn.getVendorPhone());
+			ps.setString(7, vn.getVendorBrandName());
+			ps.setBinaryStream(8, fi.getInputStream(), (int) fi.getSize());
 			
 			i = ps.executeUpdate();
 			
@@ -42,6 +43,14 @@ public class DAO {
 			ps2.setString(2, vn.getPosition());
 			
 			i+= ps2.executeUpdate();
+			
+			PreparedStatement ps3 = con.prepareStatement(sql3);
+			
+			ps3.setString(1, vn.getVendorEmail());
+			ps3.setString(2, vn.getVendorPhone());
+			ps3.setString(3, vn.getPosition());
+			
+			i+= ps3.executeUpdate();
 			
 		} catch (SQLException e) {
 			System.out.println(e+" exception occurred");
