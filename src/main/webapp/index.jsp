@@ -52,6 +52,10 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+
+body{
+	overflow-x: hidden;
+}
 /* LOGIN/SIGN MODAL, MOBILE & LARGE SCREEN RESPONSIVENESS */
 
 /* Medium Device = 1200px */

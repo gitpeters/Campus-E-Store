@@ -10,8 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
-    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/dashboard.css"type="text/css" />
+    <title>Merchant Dashboard</title>
+    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/add-product.css"type="text/css" />
     <link rel="shortcut icon" href="./img/estock1.png" type="image/x-icon">
     <!-- material icon -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -85,133 +85,13 @@
     border-left-color: transparent;
   }
 }
-.container {
-  display: grid;
-  width: 96%;
-  margin: 0 auto;
-  gap: 1.8rem;
-  grid-template-columns: 12rem auto 16rem;
-}
+
 aside .logo img {
   width: 100%;
   height: auto;
 }
 
-.product{
-	display: flex-row;
-	
-}
 
-.product .product-samples {
-  margin-top: 2rem;
-}
-
-.product .product-samples h2 {
-  margin-bottom: 0.8rem;
-}
-
-.product .product-samples .item {
-  background: var(--color-white);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.7rem;
-  padding: 1.4rem var(--card-padding);
-  border-radius: var(--border-radius-3);
-  box-shadow: var(--box-shadow);
-  transition: all 300ms ease;
-}
-
-.product .product-samples .item:hover {
-  box-shadow: none;
-}
-
-.product .product-samples{
-	margin-top: 2rem;
-	display: flex;
-	justify-content: space-around;
-}
-
-.product .product-samples .add-product {
-  background: transparent;
-  border: 2px dashed var(--color-primary);
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.product .product-samples .add-product div {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.product .product-samples .add-product div h3 {
-  font-weight: 600;
-}
-
-.product .product-details{
-	display: flex;
-	justify-content: space-around;
-	margin-top: 2rem;
-}
-
-.product .product-details .product-info{
-	width: 20rem;
-	border:  2px solid var(--color-primary);
-	outline: var(--color-primary);
-	padding: 1rem;
-	margin: 1rem;
-}
-
-.product .product-details .product-info:focus{
-	border:  inset var(--color-primary);
-}
-
-.product .imagePreview .productImage img{
-	max-width: 20rem;
-    max-height: 20rem;
-    object-fit: contain;
-    border: none;
-    outline: none;
-}
-
-.product .imagePreview{
-	display: flex;
-	justify-content: space-around;
-	border: none;
-    outline: none;
-}
-
-.product form .product-samples img{
-	max-width: 20rem;
-    max-height: 20rem;
-    object-fit: contain;
-    border: none;
-    outline: none;
-}
-
-.product form .button {
-  padding: 15px 25px;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-color: #04AA6D;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-}
-
-.product form .button:hover {background-color: #3e8e41}
-
-.product form .button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
 </style>
 <script type="text/javascript">
         function preventBack() { window.history.forward(); }
@@ -221,7 +101,7 @@ aside .logo img {
     </script>
 </head>
 <body>
-<%
+	<%
 		
 		Vendor vendor = (Vendor)session.getAttribute("vendor");
 		
@@ -232,10 +112,25 @@ aside .logo img {
 		}
 		
 	%>
+
     <!-- Page Preloder -->
     <div id="preloder">
       <div class="loader"></div>
     </div>
+    <%
+		MessageReport m1 = (MessageReport) session.getAttribute("report");
+		if (m1 != null) {
+		%>
+		<div class="alert alert-<%=m1.getMessageColor()%> show">
+			<p class="alert-msg"><%=m1.getMessageContent()%></p>
+			<div class="close-alert">
+				<span>x</span>
+			</div>
+		</div>
+		
+		<%
+		}
+		%>
     <div class="container">
 
         <!-- sidebar section -->
@@ -254,7 +149,7 @@ aside .logo img {
 
             <!-- sidebar -->
             <div class="sidebar">
-                <a href="/" class="active" >
+                <a href="merchant-dashboard.jsp"  >
                     <span class="material-icons">dashboard</span>
                     <h3>Dashboard</h3>
                 </a>
@@ -274,11 +169,11 @@ aside .logo img {
                     <span class="material-icons">settings</span>
                     <h3>Settings</h3>
                 </a>
-                <a href="#add_product">
+                <a href="add-product.jsp" class="active">
                     <span class="material-icons">add</span>
                     <h3>Add Products</h3>
                 </a>
-                <a href="#logout">
+                <a href="Logout">
                     <span class="material-icons">logout</span>
                     <h3>Logout</h3>
                 </a>
@@ -286,81 +181,149 @@ aside .logo img {
         </aside>
         <!--end of side bar-->
         <main>
-        	<div class="product">
-        		<form action="AddProduct" method="post" enctype="multipart/form-data">
-        		<h2>Product Information</h2>
-        		<div class="product-details">
-        			
-		        		<input type="text" id="productName" class="product-info" name="productName" placeholder="Product Name" required>
-		        	   	<input type="text" id="productAmount" class="product-info" name="productAmount" placeholder="Product Amount" required>
-		        	   	<input type="hidden" id="VendorId" name="VendorId" value="<%=vendorId %>">
-		        	   	<input type="hidden" id="productStatus" name="productStatus" value="Available">
-		        	   	<select id="productCondition" name="productCondition" class="product-info" required>
-		        	   		<option value="">Product Condition</option>
-		        	   		<option value="New">New</option>
-		        	   		<option value="Fairly Used">Fairly Used</option>
-		        	   		<option value="Used">Used</option>
-		        	   		<option value="Bad">Bad</option>
-		        	   	</select>
-		        	   	<textarea rows="1" cols="" placeholder="Search Keywords" class="product-info" name="searchKeyword"></textarea>
-		        	   	<textarea rows="1" cols="" placeholder="Product Description" class="product-info" name="productDescription"></textarea>
-	        		
-        		</div>
-        		
-        		<div class="product-samples">
-        			<div>
-	        			<div class="item add-product" onclick="productImage1()">
-		                    <div class="complete">
-		                        <span class="material-icons">add</span>
-		                        <h3>Add Product Image</h3>
-		                        <input type="file" class="image" hidden name="productImage1" id="image1" accept="image/*" onchange="loadFile1(event)">
-		                    </div>
-	                	</div>
-	                	<img id="output1"/>
-                	</div>
-                	
-                	<div>
-	        			<div class="item add-product" onclick="productImage2()">
-		                    <div class="complete">
-		                        <span class="material-icons">add</span>
-		                        <h3>Add Product Image</h3>
-		                        <input type="file" class="image" hidden name="productImage2" id="image2" accept="image/*" onchange="loadFile2(event)">
-		                    </div>
-	                	</div>
-	                	<img id="output2"/>
-                	</div>
-                	
-                	<div>
-	        			<div class="item add-product" onclick="productImage3()">
-		                    <div class="complete">
-		                        <span class="material-icons">add</span>
-		                        <h3>Add Product Image</h3>
-		                        <input type="file" class="image" hidden name="productImage3" id="image3" accept="image/*" onchange="loadFile3(event)">
-		                    </div>
-	                	</div>
-	                	<img id="output3"/>
-                	</div>
-                	<button type="submit" class="button">SUbmit</button>
-                	</form>
-        		</div>
-        		
-        		<!-- <div class="imagePreview">
-        			<div class="productImage">
-        				<img id="output1"/>
-        			</div>
-        			<div class="productImage">
-        				<img id="output2"/>
-        			</div>
-        			<div class="productImage">
-        				<img id="output3"/>
-        			</div>
-        		</div> -->
-        	</div>
-           
-           
+            <h1>ADD PRODUCT</h1>
+            <div class="date">
+                <input type="date" name="date" id="date">
+            </div>
+            <!-- Products -->
+            <div class="products">
+            
+            <!-- Product information -->
+                <div> <h2 class="title">Product Information</h2>
+                	<form action="AddProduct" method="post" enctype="multipart/form-data">
+                	<div class="product-details">
+				      <input
+				        type="text"
+				        id="productName"
+				        class="product-info"
+				        name="productName"
+				        placeholder="Product Name"
+				        required
+				      />
+				      <input
+				        type="text"
+				        id="productAmount"
+				        class="product-info"
+				        name="productAmount"
+				        placeholder="Product Amount"
+				        required
+				      />
+				      <input
+				        type="hidden"
+				        id="VendorId"
+				        name="VendorId"
+				        value="<%= vendor.getVendorId() %>"
+				      />
+				      <input
+				        type="hidden"
+				        id="productStatus"
+				        name="productStatus"
+				        value="Available"
+				      />
+				      <select
+				        id="productCondition"
+				        name="productCondition"
+				        class="product-info"
+				        required
+				      >
+				        <option value="">Product Condition</option>
+				        <option value="New">New</option>
+				        <option value="Fairly Used">Fairly Used</option>
+				        <option value="Used">Used</option>
+				        <option value="Bad">Bad</option>
+				      </select>
+				      <textarea
+				        rows="1"
+				        cols=""
+				        placeholder="Search Keywords"
+				        class="product-info"
+				        name="searchKeyword"
+				      ></textarea>
+				      <textarea
+				        rows="1"
+				        cols=""
+				        placeholder="Product Description"
+				        class="product-info"
+				        name="productDescription"
+				      ></textarea>
+				    </div> <!-- end of product information -->
+				    
+				    <!-- Product sample -->
+				    <div class="product-samples">
+				      <div>
+				        <div class="item add-product" onclick="productImage1()">
+				          <div class="complete">
+				            <span class="material-icons">add</span>
+				            <h3>Add Product Image</h3>
+				            <input
+				              type="file"
+				              class="image"
+				              hidden
+				              name="productImage1"
+				              id="image1"
+				              accept="image/*"
+				              onchange="loadFile1(event)"
+				            />
+				          </div>
+				        </div>
+				        <div class="product-sample-img">
+				        	<img id="output1" />
+				        </div>
+				      </div>
+				
+				      <div>
+				        <div class="item add-product" onclick="productImage2()">
+				          <div class="complete">
+				            <span class="material-icons">add</span>
+				            <h3>Add Product Image</h3>
+				            <input
+				              type="file"
+				              class="image"
+				              hidden
+				              name="productImage2"
+				              id="image2"
+				              accept="image/*"
+				              onchange="loadFile2(event)"
+				            />
+				          </div>
+				        </div>
+				        <div class="product-sample-img">
+				        	<img id="output2" />
+				        </div>
+				      </div>
+				
+				      <div>
+				        <div class="item add-product" onclick="productImage3()">
+				          <div class="complete">
+				            <span class="material-icons">add</span>
+				            <h3>Add Product Image</h3>
+				            <input
+				              type="file"
+				              class="image"
+				              hidden
+				              name="productImage3"
+				              id="image3"
+				              accept="image/*"
+				              onchange="loadFile3(event)"
+				            />
+				          </div>
+				        </div>
+				        <div class="product-sample-img">
+				        	<img id="output3" />
+				        </div>
+				      </div>
+				    </div>
+				     <div class="submit-btn">
+				     	<button type="submit" class="button">Submit</button>
+				     </div>
+                </form>
+                </div>
+                
+            </div> <!--End of Products -->
+
             <!-- recent orders -->
             <div class="recent-orders">
-                <h2>Recent Products</h2>
+                <h2>Recent Orders</h2>
                 <table>
                     <thead>
                         <tr>
@@ -449,94 +412,6 @@ aside .logo img {
                     </div>
             </div>
             <!-- END OF TOP -->
-            <div class="recent-updates">
-                <h2>Recent Updates</h2>
-                <div class="updates">
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./img/profile2.webp" alt="">
-                        </div>
-                        <div class="message">
-                            <p><b>Mike Tyson</b>: received his order of Night Lion Tech GPS Drone</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./img/profile4.jpg" alt="">
-                        </div>
-                        <div class="message">
-                            <p><b>Mike Tyson</b>: received his order of Night Lion Tech GPS Drone</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="./img/profile.png" alt="">
-                        </div>
-                        <div class="message">
-                            <p><b>Mike Tyson</b>: received his order of Night Lion Tech GPS Drone</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--  --------------- END OF RECENT UPDATES -->
-
-            <div class="sales-analytics">
-                <h2>Sales Analytics</h2>
-                <div class="item online">
-                    <div class="icon">
-                        <span class="material-icons">
-                            shopping_cart
-                        </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>ONLINE ORDERS</h3>
-                            <small class="text-muted">Last 24 hours</small>
-                        </div>
-                        <h5 class="success">+39%</h5>
-                        <h3>3849</h3>
-                    </div>
-                </div>
-                <div class="item offline">
-                    <div class="icon">
-                        <span class="material-icons">
-                            local_mall
-                        </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>OFFLINE ORDERS</h3>
-                            <small class="text-muted">Last 24 hours</small>
-                        </div>
-                        <h5 class="danger">-17%</h5>
-                        <h3>1100</h3>
-                    </div>
-                </div>
-                <div class="item customers">
-                    <div class="icon">
-                        <span class="material-icons">
-                            person
-                        </span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>NEW CUSTOMERS</h3>
-                            <small class="text-muted">Last 24 hours</small>
-                        </div>
-                        <h5 class="success">+25%</h5>
-                        <h3>849</h3>
-                    </div>
-                </div>
-                <div class="item add-product">
-                    <div>
-                        <span class="material-icons">add</span>
-                        <h3>Add Product</h3>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 	<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
@@ -552,6 +427,22 @@ aside .logo img {
     $("#preloder").delay(200).fadeOut("slow");
 
   });
+//ALERT MESSAGE
+  const close = document.querySelector(".close-alert");
+   	const alertBox = document.querySelector(".alert");
+   	const inputField = document.querySelectorAll(".input-field");
+   	const submitBtn = document.querySelector(".submit-btn");
+   	
+
+   	close.onclick = ()=>{
+   		alertBox.classList.add("hide");
+  	}
+   	const myTimeout = setTimeout(hideAlert, 5000);
+   	
+   	function hideAlert(){
+   		alertBox.classList.add("hide");
+   	}
+
     </script>
 </body>
 </html>
