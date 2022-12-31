@@ -298,7 +298,7 @@ aside .logo img {
                     <span class="material-icons">add</span>
                     <h3>Add Products</h3>
                 </a>
-                <a href="#logout">
+                <a href="Logout">
                     <span class="material-icons">logout</span>
                     <h3>Logout</h3>
                 </a>
