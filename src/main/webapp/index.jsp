@@ -52,6 +52,10 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
+
+body{
+	overflow-x: hidden;
+}
 /* LOGIN/SIGN MODAL, MOBILE & LARGE SCREEN RESPONSIVENESS */
 
 /* Medium Device = 1200px */
@@ -438,6 +442,12 @@ translateX
 	margin-left: -15px;
 }
 </style>
+<script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        
+        setTimeout("preventBack()", 0.0);
+        window.onunload = function () { null };
+    </script>
 </head>
 <body>
 

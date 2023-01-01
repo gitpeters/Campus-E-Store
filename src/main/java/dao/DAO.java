@@ -11,9 +11,7 @@ import java.util.List;
 import org.apache.commons.fileupload.FileItem;
 
 import connection.DbConnection;
-import model.DataSupply;
-import model.Product;
-import model.Vendor;
+import model.*;
 
 public class DAO {
 	
@@ -22,8 +20,9 @@ public class DAO {
 	public static int saveVendor(Vendor vn, FileItem fi) {
 		int i = 0;
 		Connection con = DbConnection.connection();
-		String sql = "INSERT INTO campusestock.vendor(vendorId, vendorName, vendorEmail, vendorMatricNo, vendorPassword, vendorBrandName, vendorSchoolId) values (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO campusestock.vendor(vendorId, vendorName, vendorEmail, vendorMatricNo, vendorPassword, vendorPhone, vendorBrandName, vendorSchoolId) values (?,?,?,?,?,?,?,?)";
 		String sql2 = "INSERT INTO campusestock.position (username, position) values (?,?)";
+		String sql3 = "INSERT INTO campusestock.login_credential values (?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, vn.getVendorId());
@@ -31,8 +30,9 @@ public class DAO {
 			ps.setString(3, vn.getVendorEmail());
 			ps.setString(4, vn.getVendorMatricNo());
 			ps.setString(5, vn.getVendorPassword());
-			ps.setString(6, vn.getVendorBrandName());
-			ps.setBinaryStream(7, fi.getInputStream(), (int) fi.getSize());
+			ps.setString(6, vn.getVendorPhone());
+			ps.setString(7, vn.getVendorBrandName());
+			ps.setBinaryStream(8, fi.getInputStream(), (int) fi.getSize());
 			
 			i = ps.executeUpdate();
 			
@@ -42,6 +42,14 @@ public class DAO {
 			ps2.setString(2, vn.getPosition());
 			
 			i+= ps2.executeUpdate();
+			
+			PreparedStatement ps3 = con.prepareStatement(sql3);
+			
+			ps3.setString(1, vn.getVendorEmail());
+			ps3.setString(2, vn.getVendorPhone());
+			ps3.setString(3, vn.getPosition());
+			
+			i+= ps3.executeUpdate();
 			
 		} catch (SQLException e) {
 			System.out.println(e+" exception occurred");
@@ -55,17 +63,17 @@ public class DAO {
 	}
 	
 	//Authenticate vendor login
-	public static boolean authenticateUser(Vendor vn) {
+	public static boolean authenticateUser(Login_credential lc) {
 		boolean validate = false;
 		
 		Connection con = DbConnection.connection();
 		
-		String sql = "SELECT * FROM campusestock.vendor WHERE vendorEmail = ? and vendorPassword = ?";
+		String sql = "SELECT * FROM campusestock.login_credential WHERE username = ? and password = ?";
 		
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, vn.getVendorEmail());
-			pst.setString(2, vn.getVendorPassword());
+			pst.setString(1, lc.getUsername());
+			pst.setString(2, lc.getPassword());
 			
 			ResultSet rs = pst.executeQuery();
 			
@@ -80,19 +88,19 @@ public class DAO {
 	}
 	
 	// Validate Vendor position
-	public static Vendor validatePosition (Vendor vn) {
+	public static Login_credential validatePosition (Login_credential lc) {
 		Connection con = DbConnection.connection();
-		Vendor vendor = new Vendor();
+		Login_credential vendor = new Login_credential();
 		String sql = "SELECT * FROM campusestock.position WHERE username = ?";
 		
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, vn.getVendorEmail());
+			pst.setString(1, lc.getUsername());
 			
 			ResultSet rst = pst.executeQuery();
 			
 			while(rst.next()) {
-				vn.setPosition(rst.getString(2));
+				vendor.setPosition(rst.getString(2));
 			}
 		} catch (SQLException e) {
 			System.out.println(e+" exception occurred");
@@ -190,6 +198,31 @@ public class DAO {
 		}
 		
 		return i;
+	}
+	
+	
+	//Query for all Vendor's information
+	
+	public static Vendor getVendor(String email) throws SQLException {
+		Vendor vendor = new Vendor();
+		Connection con = DbConnection.connection();
+		
+		String sql ="SELECT * FROM campusestock.vendor where vendorEmail = ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, email);
+		
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			vendor.setVendorId(rs.getString(1));
+			vendor.setVendorName(rs.getString(2));
+			vendor.setVendorEmail(rs.getString(3));
+			vendor.setVendorMatricNo(rs.getString(4));
+			vendor.setVendorPhone(rs.getString(6));
+			vendor.setVendorBrandName(rs.getString(7));
+		}
+		
+		return vendor;
 	}
 	
 

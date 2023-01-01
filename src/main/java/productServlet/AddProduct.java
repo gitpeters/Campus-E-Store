@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -17,6 +18,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import dao.DAO;
+import model.MessageReport;
 import model.Product;
 
 /**
@@ -56,16 +58,16 @@ public class AddProduct extends HttpServlet {
 				String prodName = productName.getString();
 				FileItem productAmount = (FileItem) items.get(1);
 				String prodAmt = productAmount.getString();
-				FileItem productDescription = (FileItem) items.get(2);
-				String prodDes = productDescription.getString();
-				FileItem VendorId = (FileItem) items.get(3);
+				FileItem VendorId = (FileItem) items.get(2);
 				String vendId = VendorId.getString();
-				FileItem productStatus = (FileItem) items.get(4);
+				FileItem productStatus = (FileItem) items.get(3);
 				String prodStatus = productStatus.getString();
-				FileItem productCondition = (FileItem) items.get(5);
+				FileItem productCondition = (FileItem) items.get(4);
 				String prodCond = productCondition.getString();
-				FileItem searchKeyword = (FileItem) items.get(6);
+				FileItem searchKeyword = (FileItem) items.get(5);
 				String searchWord = searchKeyword.getString();
+				FileItem productDescription = (FileItem) items.get(6);
+				String prodDes = productDescription.getString();
 				FileItem productImage1 = (FileItem) items.get(7);
 				FileItem productImage2 = (FileItem) items.get(8);
 				FileItem productImage3 = (FileItem) items.get(9);
@@ -76,6 +78,7 @@ public class AddProduct extends HttpServlet {
 				String datePosted = date.toString();
 				String adsStatus = "";
 				String brandName = "";
+			
 				
 				Product product = new Product();
 				product.setProductName(prodName);
@@ -88,10 +91,25 @@ public class AddProduct extends HttpServlet {
 				product.setDatePosted(datePosted);
 				product.setAdsStatus(adsStatus);
 				product.setBrandName(brandName);
-				product.setProductAmount(perseDouble(prodAmt));
+				product.setProductAmount(Double.parseDouble(prodAmt));
 				
 				if (DAO.addProduct(product, productImage1, productImage2, productImage3) == 1) {
-					out.println("Product Added Successfully!");
+					MessageReport msg = new MessageReport("Product added successfully", "alert", "success");
+					HttpSession session = request.getSession();
+					session.setAttribute("report", msg);
+					response.sendRedirect("add-product.jsp");
+				}else if(DAO.addProduct(product, productImage1, productImage2, productImage3)==0) {
+					MessageReport msg = new MessageReport("", "", "");
+					HttpSession session = request.getSession();
+					session.setAttribute("report", msg);
+					response.sendRedirect("add-product.jsp");
+				}
+				
+				else {
+					MessageReport msg = new MessageReport("Could not add product. Try again", "alert", "danger");
+					HttpSession session = request.getSession();
+					session.setAttribute("report", msg);
+					response.sendRedirect("add-product.jsp");
 				}
 				
 	        	

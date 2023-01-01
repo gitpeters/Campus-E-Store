@@ -2,6 +2,7 @@ package vendorServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -86,11 +87,16 @@ public class SaveUserServlet extends HttpServlet {
 				}
 				
 				if(!vendorEmail.equals(verifiedEmail)) {
-					if(DAO.saveVendor(vendor, idCard)==2) {
+					if(DAO.saveVendor(vendor, idCard)==3) {
+						Vendor user = DAO.getVendor(verifiedEmail);
+						
 						MessageReport msg = new MessageReport("Your registration is successful", "alert", "success");
 						HttpSession session = request.getSession();
-						session.setAttribute("msg", msg);
-						response.sendRedirect("merchant-dashboard.jsp");
+						session.setAttribute("vendor", user);
+						HttpSession session2 = request.getSession();
+						session2.setAttribute("msg", msg);
+						
+						response.sendRedirect("index.jsp");
 						
 						//out.println("Record saved successfully!");
 					}else {
@@ -106,7 +112,7 @@ public class SaveUserServlet extends HttpServlet {
 				
 				
 				
-			} catch (FileUploadException e) {
+			} catch (FileUploadException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
