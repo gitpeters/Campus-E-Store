@@ -29,6 +29,16 @@
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
+input[type="checkbox" i] {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 4px;
+    padding: initial;
+    border: initial;
+}
+
 /* ======================= DARK THEME VARIABLES ============== */
 .dark-them-variables {
   --color-background: #181a1e;
@@ -369,7 +379,7 @@ main .products .product-details{
 	grid-gap: 10px;
 }
 
-main .products .product-details input, textarea, select{
+main .products .product-details .product-info{
 	border: 1px solid var(--color-primary);
 	width: 100%;
 	padding: var(--padding-2);
@@ -449,6 +459,7 @@ main .products .product-samples .add-product div h3 {
 .submit-btn button:hover{
 	transform: scale(1.07);
 }
+
 
 /* ================== RECENT ORDERS ===============*/
 main .recent-orders {
@@ -782,7 +793,6 @@ main .recent-orders .show-all {
     margin-top: 40rem;
   }
 }
-
 
 /*  add product report alert */
 .alert{

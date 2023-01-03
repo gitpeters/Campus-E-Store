@@ -1,24 +1,4 @@
 
-
-//ALERT MESSAGE
-  const close = document.querySelector(".close-alert");
-   	const alertBox = document.querySelector(".alert");
-   	const inputField = document.querySelectorAll(".input-field");
-   	const submitBtn = document.querySelector(".submit-btn");
-   	
-
-   	close.onclick = ()=>{
-   		alertBox.classList.add("hide");
-  	}
-   	const myTimeout = setTimeout(hideAlert, 5000);
-   	
-   	function hideAlert(){
-   		alertBox.classList.add("hide");
-   	}
-
-
-
-
 function productImage1(){
 	document.getElementById("image1").click();
 }
@@ -54,3 +34,5 @@ function loadFile3(event) {
     URL.revokeObjectURL(output.src) // free memory
    }
 }
+
+   
