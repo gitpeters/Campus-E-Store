@@ -245,9 +245,74 @@ aside .logo img {
 				        placeholder="Product Description"
 				        class="product-info"
 				        name="productDescription"
-				      ></textarea>
-				       
+				      ></textarea><br>
+
 				    </div> <!-- end of product information -->
+				    
+				    <!-- Product Category -->
+				    <div class="product-category-container">
+					      <div class="category-select-btn">
+					        <p class="btn-text">Select Product Catetory</p>
+					        <span class="arrow-down"><i class="fa-solid fa-chevron-down"></i></span>
+					      </div>
+					
+					      <ul class="list-items categories">
+					        <li class="item">
+					            <input type="checkbox" name="productcategory" class="items" value="Supermarket">
+					            <p class="item-text">Supermarket</p>
+					        </li>
+					        <li class="item">
+					            <input type="checkbox" name="productcategory" class="items" value="Health & Beauty">
+					            <p class="item-text">Health & Beauty</p>
+					        </li>
+					        <li class="item">
+					            <input type="checkbox" name="productcategory" class="items" value="Home & Office">
+					            <p class="item-text">Home & Office</p>
+					        </li>
+					        <li class="item">
+					            <input type="checkbox" name="productcategory" class="items" value="Phones & Tablets">
+					            <p class="item-text">Phones & Tablets</p>
+					        </li>
+					        <li class="item">
+					            <input type="checkbox" name="productcategory" class="items" value="Computing">
+					            <p class="item-text">Computing</p>
+					        </li>
+					        <li class="item">
+					            <input type='checkbox' name="productcategory" class="items" value="Electronic">
+					            <p class="item-text">Electronic</p>
+					        </li>
+					        <li class="item">
+					            <input type="checkbox" name="productcategory" class="items" value="Fashion">
+					            <p class="item-text">Fashion</p>
+					        </li>
+					        <li class="item">
+					            <input type='checkbox' name="productcategory" value="Baby Products">
+					            <p class="item-text">Baby Products</p>
+					        </li>
+					        <li class="item">
+					            <input type='checkbox' name="productcategory" value="Gaming">
+					            <p class="item-text">Gaming</p>
+					        </li>
+					        <li class="item">
+					            <input type='checkbox' name="productcategory" value="Automobile">
+					            <p class="item-text">Automobile</p>
+					        </li>
+					        <li class="item">
+					            <input type='checkbox' name="productcategory"  value="Jewelries">
+					            <p class="item-text">Jewelries</p>
+					        </li>
+					        <li class="item">
+					            <input type='checkbox' name="productcategory" value="Accessories">
+					            <p class="item-text">Accessories</p>
+					        </li>
+					        <li class="item">
+					            <input type='checkbox' name="productcategory" value="others">
+					            <p class="item-text">Others</p>
+					            <input type="text" name="productcategory" placeholder="Others? Specify" >
+					        </li>
+					      </ul>
+					    </div>
+				    
 				    
 				    <!-- Product sample -->
 				    <div class="product-samples">
@@ -255,7 +320,7 @@ aside .logo img {
 				        <div class="item add-product" onclick="productImage1()">
 				          <div class="complete">
 				            <span class="material-icons">add</span>
-				            <h3>Add Product Image</h3>
+				            <h3>Add Product Image (Main Image)</h3>
 				            <input
 				              type="file"
 				              class="image"
@@ -320,9 +385,6 @@ aside .logo img {
 				     </div>
                 </form>
                 </div>
-                
-               
-                
             </div> <!--End of Products -->
 
             <!-- recent orders -->
@@ -433,6 +495,15 @@ aside .logo img {
   });
        
 
+    </script>
+    <script type="text/javascript">
+    //Product category display
+    const productCategorySelectBtn = document.querySelector(".category-select-btn"),
+        productCategoryItem = document.querySelectorAll(".item");
+
+    productCategorySelectBtn.addEventListener("click", ()=>{
+    	productCategorySelectBtn.classList.toggle("open");
+    })
     </script>
 </body>
 </html>

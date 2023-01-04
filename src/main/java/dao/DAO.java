@@ -46,7 +46,7 @@ public class DAO {
 			PreparedStatement ps3 = con.prepareStatement(sql3);
 			
 			ps3.setString(1, vn.getVendorEmail());
-			ps3.setString(2, vn.getVendorPhone());
+			ps3.setString(2, vn.getVendorPassword());
 			ps3.setString(3, vn.getPosition());
 			
 			i+= ps3.executeUpdate();
@@ -171,23 +171,24 @@ public class DAO {
 	public static int addProduct (Product pr, FileItem f1, FileItem f2, FileItem f3) {
 		int i = 0;
 		Connection con = DbConnection.connection();
-		String sql = "INSERT INTO campusestock.product values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO campusestock.product values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, pr.getProductId());
 			ps.setString(2, pr.getVendorId());
 			ps.setString(3, pr.getProductName());
 			ps.setString(4, pr.getProductDescription());
-			ps.setString(5, pr.getProductCondition());
-			ps.setString(6, pr.getDatePosted());
-			ps.setString(7, pr.getProductStatus());
-			ps.setBinaryStream(8, f1.getInputStream(), (int) f1.getSize());
-			ps.setBinaryStream(9, f2.getInputStream(), (int) f2.getSize());
-			ps.setBinaryStream(10, f3.getInputStream(), (int) f3.getSize());
-			ps.setString(11, pr.getAdsStatus());
-			ps.setString(12, pr.getBrandName());
-			ps.setString(13, pr.getKeywords());
-			ps.setDouble(14, pr.getProductAmount());
+			ps.setString(5, pr.getProductCategory());
+			ps.setString(6, pr.getProductCondition());
+			ps.setString(7, pr.getDatePosted());
+			ps.setString(8, pr.getProductStatus());
+			ps.setBinaryStream(9, f1.getInputStream(), (int) f1.getSize());
+			ps.setBinaryStream(10, f2.getInputStream(), (int) f2.getSize());
+			ps.setBinaryStream(11, f3.getInputStream(), (int) f3.getSize());
+			ps.setString(12, pr.getAdsStatus());
+			ps.setString(13, pr.getBrandName());
+			ps.setString(14, pr.getKeywords());
+			ps.setDouble(15, pr.getProductAmount());
 			i = ps.executeUpdate();
 		}catch (SQLException e) {
 			System.out.println(e+" exception occurred");
@@ -225,5 +226,56 @@ public class DAO {
 		return vendor;
 	}
 	
-
+	// Query product table
+	public static Product getProductDetails (String prodId) throws SQLException {
+		Product pr = new Product();
+		Connection con = DbConnection.connection();
+		
+		String sql = "SELECT * FROM campusestock.product WHERE productId = '"+prodId+"'";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			pr.setProductId(rs.getString("productId"));
+			pr.setVendorId(rs.getString("vendorId"));
+			pr.setProductName(rs.getString("productName"));
+			pr.setProductDescription(rs.getString("productDescription"));
+			pr.setProductCategory(rs.getString("productCategory"));
+			pr.setProductCondition(rs.getString("productCondition"));
+			pr.setDatePosted(rs.getString("datePosted"));
+			pr.setProductStatus(rs.getString("productStatus"));
+			pr.setAdsStatus(rs.getString("adsStatus"));
+			pr.setBrandName(rs.getString("brandName"));
+			pr.setKeywords(rs.getString("keywords"));
+			pr.setProductAmount(rs.getDouble("productAmount"));
+		}
+		
+		return pr;
+	}
+	public static List <Product> getProductDetailsWithList (String prodId) throws SQLException {
+		List <Product> product = new ArrayList();
+		Connection con = DbConnection.connection();
+		
+		String sql = "SELECT * FROM campusestock.product WHERE productId = '"+prodId+"'";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			Product pr = new Product();
+			pr.setProductId(rs.getString("productId"));
+			pr.setVendorId(rs.getString("vendorId"));
+			pr.setProductName(rs.getString("productName"));
+			pr.setProductDescription(rs.getString("productDescription"));
+			pr.setProductCategory(rs.getString("productCategory"));
+			pr.setProductCondition(rs.getString("productCondition"));
+			pr.setDatePosted(rs.getString("datePosted"));
+			pr.setProductStatus(rs.getString("productStatus"));
+			pr.setAdsStatus(rs.getString("adsStatus"));
+			pr.setBrandName(rs.getString("brandName"));
+			pr.setKeywords(rs.getString("keywords"));
+			pr.setProductAmount(rs.getDouble("productAmount"));
+			
+			product.add(pr);
+		}
+		
+		return product;
+	}
 }

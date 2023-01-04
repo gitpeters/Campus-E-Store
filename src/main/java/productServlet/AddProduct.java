@@ -68,9 +68,11 @@ public class AddProduct extends HttpServlet {
 				String searchWord = searchKeyword.getString();
 				FileItem productDescription = (FileItem) items.get(6);
 				String prodDes = productDescription.getString();
-				FileItem productImage1 = (FileItem) items.get(7);
-				FileItem productImage2 = (FileItem) items.get(8);
-				FileItem productImage3 = (FileItem) items.get(9);
+				FileItem productcategory = (FileItem) items.get(7);
+				String prodCat = productcategory.getString();
+				FileItem productImage1 = (FileItem) items.get(8);
+				FileItem productImage2 = (FileItem) items.get(9);
+				FileItem productImage3 = (FileItem) items.get(10);
 				
 				LocalDate date = LocalDate.now();
 				
@@ -92,13 +94,14 @@ public class AddProduct extends HttpServlet {
 				product.setAdsStatus(adsStatus);
 				product.setBrandName(brandName);
 				product.setProductAmount(Double.parseDouble(prodAmt));
+				product.setProductCategory(prodCat);
 				
 				if (DAO.addProduct(product, productImage1, productImage2, productImage3) == 1) {
 					MessageReport msg = new MessageReport("Product added successfully", "alert", "success");
 					HttpSession session = request.getSession();
 					session.setAttribute("report", msg);
 					response.sendRedirect("add-product.jsp");
-				}else if(DAO.addProduct(product, productImage1, productImage2, productImage3)==0) {
+				}else if(DAO.addProduct(product, productImage1, productImage2, productImage3) == 0) {
 					MessageReport msg = new MessageReport("", "", "");
 					HttpSession session = request.getSession();
 					session.setAttribute("report", msg);

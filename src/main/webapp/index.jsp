@@ -1,5 +1,10 @@
 
 <%@page import="model.MessageReport"%>
+<%@page import="java.util.*"%>
+<%@page import="imageLoader.*"%>
+<%@page import="model.*"%>
+<%@page import="dao.*"%>
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -584,17 +589,19 @@ translateX
 								<i class="fa fa-bars"></i> <span>All departments</span>
 							</div>
 							<ul>
-								<li><a href="#">Half Shoes</a></li>
-								<li><a href="#">Loafers</a></li>
-								<li><a href="#">Boots</a></li>
-								<li><a href="#">Male Palms</a></li>
-								<li><a href="#">Female Palms</a></li>
-								<li><a href="#">Female Shoes</a></li>
-								<li><a href="#">Male Sandals</a></li>
-								<li><a href="#">Female Sandals</a></li>
-								<li><a href="#">Belts</a></li>
-								<li><a href="#">Wallets</a></li>
-								<li><a href="#">Hand bands</a></li>
+								<li><a href="#">Supermarket</a></li>
+								<li><a href="#">Health & Beauty</a></li>
+								<li><a href="#">Home & Office</a></li>
+								<li><a href="#">Phones & Tablets</a></li>
+								<li><a href="#">Computing</a></li>
+								<li><a href="#">Electronic</a></li>
+								<li><a href="#">Fashion</a></li>
+								<li><a href="#">Baby Products</a></li>
+								<li><a href="#">Gaming</a></li>
+								<li><a href="#">Automobile</a></li>
+								<li><a href="#">Jewelries</a></li>
+								<li><a href="#">Accessories</a></li>
+								<li><a href="#">Others</a></li>
 							</ul>
 						</div>
 					</div>
@@ -636,46 +643,40 @@ translateX
 			<div class="container">
 				<div class="row">
 					<div class="categories__slider owl-carousel">
-						<div class="col-lg-3">
-							<div class="categories__item set-bg"
-								data-setbg="img/categories/cat-1.jpg">
-								<h5>
-									<a href="#">Half Shoes</a>
-								</h5>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="categories__item set-bg"
-								data-setbg="img/categories/cat-2.jpg">
-								<h5>
-									<a href="#">Boots</a>
-								</h5>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="categories__item set-bg"
-								data-setbg="img/categories/cat-3.jpg">
-								<h5>
-									<a href="#">Loafers</a>
-								</h5>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="categories__item set-bg"
-								data-setbg="img/categories/cat-4.jpg">
-								<h5>
-									<a href="#">Male Palms</a>
-								</h5>
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="categories__item set-bg"
-								data-setbg="img/categories/cat-5.jpg">
-								<h5>
-									<a href="#">Female Palms</a>
-								</h5>
-							</div>
-						</div>
+					<%! String productName, productId;
+						double productAmount; %>
+					<%
+						Loader ld = new Loader();
+						Random rand = new Random();
+						ld.deleteImage();
+						
+						ld.imageSample2();
+						File dir = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\");
+						File [] dirListing = dir.listFiles();
+						if(dirListing != null){
+							for (File fl: dirListing){
+								String imageName = fl.getName();
+								String prodId = imageName.substring(0, 9);
+								DAO dao = new DAO();
+								ArrayList <Product> pr = (ArrayList<Product>)DAO.getProductDetailsWithList(prodId);
+								for(Product details: pr){
+									productName = details.getProductName();
+									productAmount = details.getProductAmount();
+								}
+								out.println("<div class='col-lg-3'>");
+									out.println("<div class='categories__item set-bg'");
+										out.println("data-setbg='img/allImage/"+imageName+"'>");
+											out.println("<h5>");
+												out.println("<a href='#'>"+productName+"</a>");
+										out.println("</h5>");
+									out.println("</div>");
+								out.println("</div>");
+							}
+						}else{
+							System.out.println("Image File is empty!");
+						}
+														
+					%>
 					</div>
 				</div>
 			</div>
@@ -693,15 +694,16 @@ translateX
 						<div class="featured__controls">
 							<ul>
 								<li class="active" data-filter="*">All</li>
-								<li data-filter=".oranges">Male Shoes</li>
-								<li data-filter=".fresh-meat">Female Shoes</li>
-								<li data-filter=".vegetables">Belts</li>
-								<li data-filter=".fastfood">Wallets</li>
+								<li data-filter=".oranges">Phone & Accessories</li>
+								<li data-filter=".fresh-meat">Jewelries</li>
+								<li data-filter=".vegetables">Fashion</li>
+								<li data-filter=".fastfood">Supermarkets</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<div class="row featured__filter">
+
 					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
 						<div class="featured__item">
 							<div class="featured__item__pic set-bg"
@@ -720,6 +722,7 @@ translateX
 							</div>
 						</div>
 					</div>
+					
 					<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
 						<div class="featured__item">
 							<div class="featured__item__pic set-bg"

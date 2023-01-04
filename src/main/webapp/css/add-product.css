@@ -29,6 +29,9 @@
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
+
+/*=======================Product Category====================  */
+
 input[type="checkbox" i] {
     background-color: initial;
     cursor: default;
@@ -386,7 +389,6 @@ main .products .product-details .product-info{
 	border-radius: var(--border-radius-1)
 }
 
-
 main .products h2 {
   margin: 1rem 0 0.6rem;
   font-size: 1.4rem;
@@ -460,6 +462,110 @@ main .products .product-samples .add-product div h3 {
 	transform: scale(1.07);
 }
 
+/*  =================product category select ======================*/
+
+.product-category-container {
+  position: relative;
+  max-width: 320px;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.category-select-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-select-btn btn-text {
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+}
+
+.category-select-btn .arrow-down {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 21px;
+  width: 21px;
+  background: #6e93f7;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.category-select-btn.open .arrow-down{
+    transform: rotate(-180deg);
+}
+
+
+.list-items {
+  position: absolute;
+  margin-top: 10px;
+  background-color: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  border-radius: 8px;
+  display: none;
+}
+
+.category-select-btn.open ~ .list-items{
+    display: block;
+}
+
+.list-items .item {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 40px;
+  padding: 0 15px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.list-items .item:hover {
+  background-color: #e3f2fd;
+}
+.item input[type="checkbox"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  width: 16px;
+  border: 1.5px solid #408080;
+}
+
+.item input[type="text"] {
+  outline: none;
+  border: 1px solid #e3f2fd;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 6px;
+  color: #333;
+  font-size: 14px;
+}
+
+
+.item input[type="text"]::placeholder{
+    color: #c0c0c0;
+    font-size: 13px;
+}
+
+.item .item-text {
+  padding-left: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+}
 
 /* ================== RECENT ORDERS ===============*/
 main .recent-orders {
