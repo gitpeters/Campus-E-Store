@@ -1,125 +1,125 @@
 package imageLoader;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-
 import connection.DbConnection;
 
 public class Loader {
 
-	public static String productSample1(String productId) {
+	//Load Product Image
+	public static String imageSample1() {
 		String image = "";
 		try {
 			PreparedStatement ps = null;
-			FileOutputStream file;
+			Connection con = null;
+			FileOutputStream file = null;			
 			
-			image = productId + ".jpg";
-			String sql = "select productSample1 from campusestock.product where productId=?";
-			Connection con = DbConnection.connection();
+			String sql = "select * from campusestock.product";
+			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, productId);
 			ResultSet rs = ps.executeQuery();
-			rs.next();
-			Blob blob = rs.getBlob("productSample1");
-			byte [] imageArr = blob.getBytes(1, (int)blob.length());
-			file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Campus-E-Store\\src\\main\\java\\productImages\\" + image);
-			file.write(imageArr);
-			System.out.println("Image Loaded...");
+			while(rs.next()) {
+				image = rs.getString("productId") + "x.jpg";
+				
+				Blob blob = rs.getBlob("productSample1");
+				byte [] imageArr = blob.getBytes(1, (int)blob.length());
+				file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\" + image);
+				file.write(imageArr);	
+				
+				System.out.println("Image Loaded...");	
+			}		
 			file.close();
+			ps.close();
 			con.close();
 			
 		}catch(Exception e) {
-			System.out.println("Invalid Image!");
+			System.out.println("Couldn't Load iMAGE!");
 			e.printStackTrace();
 		}
 		return image;
 	}
 	
-	public static String productSample2(String productId) {
+	public static String imageSample2() {
 		String image = "";
 		try {
 			PreparedStatement ps = null;
-			FileOutputStream file;
+			Connection con = null;
+			FileOutputStream file = null;			
 			
-			image = productId + ".jpg";
-			String sql = "select productSample2 from campusestock.product where productId=?";
-			Connection con = DbConnection.connection();
+			String sql = "select * from campusestock.product";
+			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, productId);
 			ResultSet rs = ps.executeQuery();
-			rs.next();
-			Blob blob = rs.getBlob("productSample2");
-			byte [] imageArr = blob.getBytes(1, (int)blob.length());
-			file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Campus-E-Store\\src\\main\\java\\productImages\\" + image);
-			file.write(imageArr);
-			System.out.println("Image Loaded...");
+			while(rs.next()) {
+				image = rs.getString("productId") + "y.jpg";
+				
+				Blob blob = rs.getBlob("prodcutSample2");
+				byte [] imageArr = blob.getBytes(1, (int)blob.length());
+				file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\" + image);
+				file.write(imageArr);	
+				
+				System.out.println("Image Loaded...");	
+			}		
 			file.close();
+			ps.close();
 			con.close();
 			
 		}catch(Exception e) {
-			System.out.println("Invalid Image!");
+			System.out.println("Couldn't Load iMAGE!");
 			e.printStackTrace();
 		}
 		return image;
 	}
 	
-	public static String productSample3(String productId) {
+	public static String imageSample3() {
 		String image = "";
 		try {
 			PreparedStatement ps = null;
-			FileOutputStream file;
+			Connection con = null;
+			FileOutputStream file = null;			
 			
-			image = productId + ".jpg";
-			String sql = "select productSample3 from campusestock.product where productId=?";
-			Connection con = DbConnection.connection();
+			String sql = "select * from campusestock.product";
+			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, productId);
 			ResultSet rs = ps.executeQuery();
-			rs.next();
-			Blob blob = rs.getBlob("productSample3");
-			byte [] imageArr = blob.getBytes(1, (int)blob.length());
-			file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Campus-E-Store\\src\\main\\java\\productImages\\" + image);
-			file.write(imageArr);
-			System.out.println("Image Loaded...");
+			while(rs.next()) {
+				image = rs.getString("productId") + "z.jpg";
+				
+				Blob blob = rs.getBlob("productSample3");
+				byte [] imageArr = blob.getBytes(1, (int)blob.length());
+				file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\" + image);
+				file.write(imageArr);	
+				
+				System.out.println("Image Loaded...");	
+			}		
 			file.close();
+			ps.close();
 			con.close();
 			
 		}catch(Exception e) {
-			System.out.println("Invalid Image!");
+			System.out.println("Couldn't Load iMAGE!");
 			e.printStackTrace();
 		}
 		return image;
 	}
 	
-	public static String vendorSchoolId(String schoolId) {
-		String image = "";
-		try {
-			PreparedStatement ps = null;
-			FileOutputStream file;
-			
-			image = schoolId + ".jpg";
-			String sql = "select vendorSchoolId from campusestock.vendor where productId=?";
-			Connection con = DbConnection.connection();
-			ps = con.prepareStatement(sql);
-			ps.setString(1, schoolId);
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			Blob blob = rs.getBlob("vendorSchoolId");
-			byte [] imageArr = blob.getBytes(1, (int)blob.length());
-			file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Campus-E-Store\\src\\main\\java\\productImages\\" + image);
-			file.write(imageArr);
-			System.out.println("Image Loaded...");
-			file.close();
-			con.close();
-			
-		}catch(Exception e) {
-			System.out.println("Invalid Image!");
-			e.printStackTrace();
+	
+	//Delete all Existing Image in Folder
+	public static void deleteImage(){
+		File file=new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\");
+		File [] dirListing = file.listFiles();
+		if(dirListing != null){
+			for (File fl: dirListing){
+				file.delete();
+				fl.delete();
+			}
+			System.out.println("Initial Files deleted...");
+		}else {
+			System.out.println("iMAGE folder is empty!");
 		}
-		return image;
 	}
 }

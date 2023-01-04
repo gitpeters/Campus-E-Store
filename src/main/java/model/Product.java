@@ -1,13 +1,14 @@
 package model;
 
 public class Product {
-	private String productId, vendorId, productName, datePosted, productStatus, adsStatus, brandName, keywords, productDescription, productCondition;
+	private String productId, vendorId, productName, datePosted, productStatus, adsStatus, brandName, keywords, productDescription, productCondition, productCategory;
 	private byte productSample1, prodcutSample2, productSample3;
 	private double productAmount;
 
 	public Product(String productId, String vendorId, String productName, String datePosted, String productStatus,
 			String adsStatus, String brandName, String keywords, String productDescription, String productCondition,
-			byte productSample1, byte prodcutSample2, byte productSample3, double productAmount) {
+			String productCategory, byte productSample1, byte prodcutSample2, byte productSample3,
+			double productAmount) {
 		super();
 		this.productId = productId;
 		this.vendorId = vendorId;
@@ -19,6 +20,7 @@ public class Product {
 		this.keywords = keywords;
 		this.productDescription = productDescription;
 		this.productCondition = productCondition;
+		this.productCategory = productCategory;
 		this.productSample1 = productSample1;
 		this.prodcutSample2 = prodcutSample2;
 		this.productSample3 = productSample3;
@@ -140,5 +142,15 @@ public class Product {
 	public void setProductCondition(String productCondition) {
 		this.productCondition = productCondition;
 	}
+
+	public String getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+	
+	
 	
 }
