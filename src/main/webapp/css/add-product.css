@@ -29,7 +29,9 @@
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
+
 /*=======================Product Category====================  */
+
 input[type="checkbox" i] {
     background-color: initial;
     cursor: default;
@@ -380,7 +382,7 @@ main .products .product-details{
 	grid-gap: 10px;
 }
 
-main .products .product-details input, textarea, select{
+main .products .product-details .product-info{
 	border: 1px solid var(--color-primary);
 	width: 100%;
 	padding: var(--padding-2);
@@ -897,7 +899,6 @@ main .recent-orders .show-all {
     margin-top: 40rem;
   }
 }
-
 
 /*  add product report alert */
 .alert{

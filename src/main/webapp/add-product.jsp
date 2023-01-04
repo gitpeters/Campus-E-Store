@@ -246,6 +246,7 @@ aside .logo img {
 				        class="product-info"
 				        name="productDescription"
 				      ></textarea><br>
+
 				    </div> <!-- end of product information -->
 				    
 				    <!-- Product Category -->
@@ -378,6 +379,7 @@ aside .logo img {
 				        </div>
 				      </div>
 				    </div>
+				      
 				     <div class="submit-btn">
 				     	<button type="submit" class="button">Submit</button>
 				     </div>
@@ -491,21 +493,7 @@ aside .logo img {
     $("#preloder").delay(200).fadeOut("slow");
 
   });
-//ALERT MESSAGE
-  const close = document.querySelector(".close-alert");
-   	const alertBox = document.querySelector(".alert");
-   	const inputField = document.querySelectorAll(".input-field");
-   	const submitBtn = document.querySelector(".submit-btn");
-   	
-
-   	close.onclick = ()=>{
-   		alertBox.classList.add("hide");
-  	}
-   	const myTimeout = setTimeout(hideAlert, 5000);
-   	
-   	function hideAlert(){
-   		alertBox.classList.add("hide");
-   	}
+       
 
     </script>
     <script type="text/javascript">
