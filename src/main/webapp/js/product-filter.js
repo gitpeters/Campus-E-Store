@@ -1,9 +1,9 @@
 
-let naira = "\u20A6";
+/*let naira = "\u20A6";
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
 output.innerHTML = naira + slider.value;
-
+*/
 
 
 
@@ -90,7 +90,7 @@ search.addEventListener('keyup', (e)=>{
 })
 
 // filter search by price
-slider.oninput = function() {
+/*slider.oninput = function() {
   output.innerHTML = naira + this.value;
   const searchValue = slider.value.toLowerCase().trim();
     for(var i = 0; i<productCategory.length; i++){
@@ -109,7 +109,7 @@ slider.oninput = function() {
         }
     }
 }
-
+*/
 
 
 // Product Pagination Control

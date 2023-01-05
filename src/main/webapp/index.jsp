@@ -446,6 +446,10 @@ translateX
 	font-size: 12px;
 	margin-left: -15px;
 }
+
+.hero__categories ul li a:hover{
+	color: #7fad39;
+}
 </style>
 <script type="text/javascript">
         function preventBack() { window.history.forward(); }
@@ -589,8 +593,8 @@ translateX
 								<i class="fa fa-bars"></i> <span>All departments</span>
 							</div>
 							<ul>
-								<li><a href="#">Supermarket</a></li>
-								<li><a href="#">Health & Beauty</a></li>
+								<li><a href="supermarket-category.jsp">Supermarket</a></li>
+								<li><a href="health_and_beauty.jsp">Health & Beauty</a></li>
 								<li><a href="#">Home & Office</a></li>
 								<li><a href="#">Phones & Tablets</a></li>
 								<li><a href="#">Computing</a></li>
