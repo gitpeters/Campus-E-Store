@@ -26,6 +26,8 @@ const btns = document.querySelectorAll(".bt_n");
 const products = document.querySelectorAll(".product__item");
 
 // filter by btn
+
+
 for(i=0; i<btns.length; i++){
     btns[i].addEventListener('click', (e)=>{
         e.preventDefault();
@@ -47,6 +49,20 @@ for(i=0; i<btns.length; i++){
 }
 
 
+
+ /*------------------
+            Gallery filter
+        
+    $(".product_filter_control li a").on("click", function () {
+      $(".product_filter_control li a").removeClass("select");
+      $(this).addClass("select");
+    });
+    if ($(".products-content").length > 0) {
+      var containerEl = document.querySelector(".products-content");
+      var mixer = mixitup(containerEl);
+    }
+    
+    --------------------*/
 
 // filter search by name
 const productList = document.getElementById("product-lists");

@@ -361,7 +361,8 @@
             <div class="sidebar">
               <div class="sidebar__item">
                 <h4>Department</h4>
-                <ul>
+                <div class="product_filter_control">
+                	<ul>
                   <li><a href="#" class="bt_n select" data-filter="all">All Department</a></li>
                   <li><a href="#" class="bt_n"  data-filter="supermarket">Supermarket</a></li>
                   <li><a href="#" class="bt_n" data-filter="health_and_beauty">Health & Beauty</a></li>
@@ -376,6 +377,7 @@
                   <li><a href="#" class="bt_n" data-filter="jewelries">Jewelries</a></li>
                   <li><a href="#" class="bt_n" data-filter="accessories">Accessories</a></li>
                 </ul>
+                </div>
               </div>
               <div class="sidebar__item">
                 <h4>Price</h4>
