@@ -198,11 +198,11 @@
 	}
 }
 
-.product_filter_control ul li a:hover{
+.product_filter_control ul li a:hover {
 	color: #7fad39;
 }
 
-.product_filter_control ul li a.selected{
+.product_filter_control ul li a.selected {
 	color: #7fad39;
 }
 </style>
@@ -366,7 +366,7 @@
 				<div class="row">
 					<div class="col-lg-12 text-center">
 						<div class="breadcrumb__text">
-							<h2>Organi Shop</h2>
+							<h2>Shop - Health & Beauty</h2>
 							<div class="breadcrumb__option">
 								<a href="./index.jsp">Home</a> <span>Shop</span>
 							</div>
@@ -376,9 +376,8 @@
 			</div>
 		</section>
 		<!-- Breadcrumb Section End -->
-
-		<!-- Product Section Begin -->
-		<section class="product spad">
+		<!-- Featured Section Begin -->
+		<section class="featured spad">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3 col-md-5">
@@ -387,8 +386,8 @@
 								<h4>Department</h4>
 								<div class="product_filter_control">
 									<ul>
-										<li><a href="#" class="selected">Supermarket</a></li>
-										<li><a href="#">Health & Beauty</a></li>
+										<li><a href="supermarket-category.jsp" >Supermarket</a></li>
+										<li><a href="health_and_beauty.jsp" class="selected">Health & Beauty</a></li>
 										<li><a href="#">Home & Office</a></li>
 										<li><a href="#">Phones & Tablets</a></li>
 										<li><a href="#">Computing</a></li>
@@ -403,84 +402,181 @@
 									</ul>
 								</div>
 							</div>
-							<div class="sidebar__item">
-								<h4>Price</h4>
-								<div class="price-range-wrap">
+						</div>
+					</div>
+					<div class="col-lg-9 col-md-7">
+						<div class="col-lg-12">
+							<div class="section-title">
+								<h2>Featured Product</h2>
+							</div>
+							<div class="featured__controls">
+								<ul>
+									<li class="active" data-filter="*">All</li>
+									<li data-filter=".oranges">Snacks</li>
+									<li data-filter=".fresh-meat">Jewelries</li>
+									<li data-filter=".vegetables">Groceries</li>
+									<li data-filter=".fastfood">Wines</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row featured__filter">
 
-									<div class="slidecontainer">
-										<input type="range" min="1" max="100" value="30"
-											class="slider" id="myRange">
-										<p>
-											Amount: <span id="demo"></span>
-										</p>
+							<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg"
+										data-setbg="img/featured/feature-1.jpg">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+									<div class="featured__item__text">
+										<h6>
+											<a href="#">Female Shoes</a>
+										</h6>
+										<h5>&#8358;5,000.00</h5>
 									</div>
 								</div>
 							</div>
 
-							<div class="sidebar__item">
-								<div class="latest-product__text">
-									<h4>Latest Products</h4>
-									<div class="latest-product__slider owl-carousel">
-										<div class="latest-prdouct__slider__item">
-											<a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-1.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a> <a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-2.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a> <a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-3.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a>
-										</div>
-										<div class="latest-prdouct__slider__item">
-											<a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-1.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a> <a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-2.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a> <a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-3.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a>
-										</div>
+							<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg"
+										data-setbg="/hero/ac/a (8).jpg">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+									<div class="featured__item__text">
+										<h6>
+											<a href="#">Male Shoes</a>
+										</h6>
+										<h5>&#8358;10,000.00</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg"
+										data-setbg="img/featured/feature-3.jpg">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+									<div class="featured__item__text">
+										<h6>
+											<a href="#">Wallets</a>
+										</h6>
+										<h5>&#8358;3,500.00</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg"
+										data-setbg="img/featured/feature-4.jpg">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+									<div class="featured__item__text">
+										<h6>
+											<a href="#">Belts</a>
+										</h6>
+										<h5>&#8358;4,500.00</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg"
+										data-setbg="img/featured/feature-5.jpg">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+									<div class="featured__item__text">
+										<h6>
+											<a href="#">Female Sandals</a>
+										</h6>
+										<h5>&#8358;12,000.00</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg"
+										data-setbg="img/featured/feature-6.jpg">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+									<div class="featured__item__text">
+										<h6>
+											<a href="#">Male Sandals</a>
+										</h6>
+										<h5>&#8358;9,500.00</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg"
+										data-setbg="img/featured/feature-7.jpg">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+									<div class="featured__item__text">
+										<h6>
+											<a href="#">Female slippers</a>
+										</h6>
+										<h5>&#8358;3,000.00</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg"
+										data-setbg="img/featured/feature-8.jpg">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+									<div class="featured__item__text">
+										<h6>
+											<a href="#">Male slippers</a>
+										</h6>
+										<h5>&#8358;7,000.00</h5>
 									</div>
 								</div>
 							</div>
 						</div>
+						</div>
 					</div>
-					<div class="col-lg-9 col-md-7">
+				</div>
+		</section>
+		<!-- Featured Section End -->
+		<!-- Product Section Begin -->
+		<section class="product spad">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
 						<div class="product__discount">
 							<div class="section-title product__discount__title">
 								<h2>Sale Off</h2>
@@ -628,32 +724,12 @@
 								</div>
 							</div>
 						</div>
-						<div class="filter__item">
-							<div class="row">
-								<div class="col-lg-4 col-md-5">
-									<div class="filter__sort">
-										<span>Sort By</span> <select>
-											<option value="0">Default</option>
-											<option value="Gadget"><a href="#gadgets">Gadgets</a></option>
-										</select>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-4">
-									<div class="filter__found">
-										<h6>
-											<span>16</span> Products found
-										</h6>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-3">
-									<div class="filter__option">
-										<span class="icon_grid-2x2"></span> <span class="icon_ul"></span>
-									</div>
-								</div>
-							</div>
-						</div>
+
 
 						<!-- PRODUCTS DISPLAY -->
+						<div class="section-title product__discount__title">
+							<h2>Available Products</h2>
+						</div>
 						<div class="row products-content" id="product-lists"
 							style="display: none;">
 							<div class="col-lg-4 col-md-6 col-sm-6 product_items">

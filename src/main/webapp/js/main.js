@@ -181,6 +181,7 @@
     maxamount = $("#maxamount"),
     minPrice = rangeSlider.data("min"),
     maxPrice = rangeSlider.data("max");
+    
   rangeSlider.slider({
     range: true,
     min: minPrice,
@@ -193,6 +194,7 @@
   });
   minamount.val(naira + rangeSlider.slider("values", 0));
   maxamount.val(naira + rangeSlider.slider("values", 1));
+  
 
   /*--------------------------
         Select

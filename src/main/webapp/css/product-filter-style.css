@@ -1,0 +1,134 @@
+@charset "ISO-8859-1";
+
+.sidebar__item ul li .bt_n{
+	z-index: 99999;
+	transition: color 300ms ease;
+}
+
+.sidebar__item ul li .bt_n:hover, .sidebar__item ul li .bt_n:active, 
+.sidebar__item ul li .bt_n:focus{
+	color: #7fad39;
+}
+
+.sidebar__item ul li a.select{
+	border-bottom: 1.6px solid #7fad39;
+}
+
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #7fad39;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #7fad39;
+  cursor: pointer;
+}
+
+
+/*=========== product pagination ================= */
+
+.product_pagination{
+	text-align: center;
+	margin: 30px 30px 60px;
+	user-select: none;
+}
+
+.product_pagination li{
+	display: inline-block;
+	margin: 5px;
+	box-shadow: 0 5px 25px rgb(1 1 1/10%);
+}
+
+.product_pagination li a{
+	color: #fff;
+	text-decoration: none;
+	font-size: 1.2rem;
+	line-height: 45px;
+}
+
+.previous-page, .next-page{
+	background: #7fad39;
+	width: 80px;
+	border-radius: 45px;
+	cursor: pointer;
+	transition: 300ms ease;
+}
+
+.previous-page:hover{
+	transform: translateX(-5px);
+}
+
+.next-page:hover{
+	transform: translateX(5px);
+}
+
+
+.current-page, .dots{
+	background: #ccc;
+	width: 45px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.selected-page{
+	background: #7fad39;
+}
+
+.disable{
+	background: #ccc;
+}
+
+/* ====== wide media size*/
+
+@media only screen and (max-width: 767px){
+	.product_pagination{
+		transform: scale(0.7);
+		margin: 20px;
+	}
+}
+
+/* Small Device = 320px */
+@media (max-width: 600px){
+	.product_pagination{
+		transform: scale(0.4);
+		margin: 0px;
+		display: flex;
+	}
+}
+
+
+
+
+
+
+
+
