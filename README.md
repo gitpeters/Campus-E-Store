@@ -18,9 +18,9 @@ The Campus E-store is a school-based online marketplace designed to connect stud
 
 ## Collaborators
 
-- gitpeters
-- clepbo
+- [gitpeters](https://github.com/gitpeters)
+- [clepbo](https://github.com/clepbo)
 
 ## License
 
-The Campus E-store is released under the [MIT License](https://opensource.
+The Campus E-store is released under the [MIT License](https://opensource.)
