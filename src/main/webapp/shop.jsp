@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css" />
     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/signup.css"type="text/css" />
+     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/product-filter-style.css"type="text/css" />
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -311,7 +312,7 @@
               <div class="hero__search__form">
                 <form action="#">
 
-                  <input type="text" placeholder="What do yo u need?" />
+                  <input type="text" placeholder="What do yo u need?" id="search"/>
                   <button type="submit" class="site-btn">SEARCH</button>
                 </form>
               </div>
@@ -350,112 +351,32 @@
               <div class="sidebar__item">
                 <h4>Department</h4>
                 <ul>
-                  <li><a href="#">Fresh Meat</a></li>
-                  <li><a href="#">Vegetables</a></li>
-                  <li><a href="#">Fruit & Nut Gifts</a></li>
-                  <li><a href="#">Fresh Berries</a></li>
-                  <li><a href="#">Ocean Foods</a></li>
-                  <li><a href="#">Butter & Eggs</a></li>
-                  <li><a href="#">Fastfood</a></li>
-                  <li><a href="#">Fresh Onion</a></li>
-                  <li><a href="#">Papayaya & Crisps</a></li>
-                  <li><a href="#">Oatmeal</a></li>
+                  <li><a href="#" class="bt_n select" data-filter="all">All Department</a></li>
+                  <li><a href="#" class="bt_n"  data-filter="supermarket">Supermarket</a></li>
+                  <li><a href="#" class="bt_n" data-filter="health_and_beauty">Health & Beauty</a></li>
+                  <li><a href="#" class="bt_n" data-filter="home_and_office">Home & Office</a></li>
+                  <li><a href="#" class="bt_n" data-filter="phones_and_tablets">Phones & Tablets</a></li>
+                  <li><a href="#" class="bt_n" data-filter="computing">Computing</a></li>
+                  <li><a href="#" class="bt_n" data-filter="electronic">Electronic</a></li>
+                  <li><a href="#" class="bt_n" data-filter="fashion">Fashion</a></li>
+                  <li><a href="#" class="bt_n" data-filter="baby_products">Baby Products</a></li>
+                  <li><a href="#" class="bt_n" data-filter="gaming">Gaming</a></li>
+                  <li><a href="#" class="bt_n" data-filter="automobile">Automobile</a></li>
+                  <li><a href="#" class="bt_n" data-filter="jewelries">Jewelries</a></li>
+                  <li><a href="#" class="bt_n" data-filter="accessories">Accessories</a></li>
                 </ul>
               </div>
               <div class="sidebar__item">
                 <h4>Price</h4>
                 <div class="price-range-wrap">
-                  <div
-                    class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                    data-min="10"
-                    data-max="540"
-                  >
-                    <div
-                      class="ui-slider-range ui-corner-all ui-widget-header"
-                    ></div>
-                    <span
-                      tabindex="0"
-                      class="ui-slider-handle ui-corner-all ui-state-default"
-                    ></span>
-                    <span
-                      tabindex="0"
-                      class="ui-slider-handle ui-corner-all ui-state-default"
-                    ></span>
-                  </div>
-                  <div class="range-slider">
-                    <div class="price-input">
-                      <input type="text" id="minamount" />
-                      <input type="text" id="maxamount" />
-                    </div>
-                  </div>
+                 
+                 <div class="slidecontainer">
+  <input type="range" min="1" max="100" value="30" class="slider" id="myRange">
+  <p>Amount: <span id="demo"></span></p>
+</div>
                 </div>
               </div>
-              <div class="sidebar__item sidebar__item__color--option">
-                <h4>Colors</h4>
-                <div class="sidebar__item__color sidebar__item__color--white">
-                  <label for="white">
-                    White
-                    <input type="radio" id="white" />
-                  </label>
-                </div>
-                <div class="sidebar__item__color sidebar__item__color--gray">
-                  <label for="gray">
-                    Gray
-                    <input type="radio" id="gray" />
-                  </label>
-                </div>
-                <div class="sidebar__item__color sidebar__item__color--red">
-                  <label for="red">
-                    Red
-                    <input type="radio" id="red" />
-                  </label>
-                </div>
-                <div class="sidebar__item__color sidebar__item__color--black">
-                  <label for="black">
-                    Black
-                    <input type="radio" id="black" />
-                  </label>
-                </div>
-                <div class="sidebar__item__color sidebar__item__color--blue">
-                  <label for="blue">
-                    Blue
-                    <input type="radio" id="blue" />
-                  </label>
-                </div>
-                <div class="sidebar__item__color sidebar__item__color--green">
-                  <label for="green">
-                    Green
-                    <input type="radio" id="green" />
-                  </label>
-                </div>
-              </div>
-              <div class="sidebar__item">
-                <h4>Popular Size</h4>
-                <div class="sidebar__item__size">
-                  <label for="large">
-                    Large
-                    <input type="radio" id="large" />
-                  </label>
-                </div>
-                <div class="sidebar__item__size">
-                  <label for="medium">
-                    Medium
-                    <input type="radio" id="medium" />
-                  </label>
-                </div>
-                <div class="sidebar__item__size">
-                  <label for="small">
-                    Small
-                    <input type="radio" id="small" />
-                  </label>
-                </div>
-                <div class="sidebar__item__size">
-                  <label for="tiny">
-                    Tiny
-                    <input type="radio" id="tiny" />
-                  </label>
-                </div>
-              </div>
+             
               <div class="sidebar__item">
                 <div class="latest-product__text">
                   <h4>Latest Products</h4>
@@ -550,8 +471,8 @@
                         </ul>
                       </div>
                       <div class="product__discount__item__text">
-                        <span>Dried Fruit</span>
-                        <h5><a href="#">Raisin’n’nuts</a></h5>
+                        <span class="category_name">Dried Fruit</span>
+                        <h5 class="product_name"><a href="#">Raisin’n’nuts</a></h5>
                         <div class="product__item__price">
                           &#8358;30.00 <span>&#8358;36.00</span>
                         </div>
@@ -701,14 +622,14 @@
                 </div>
               </div>
             </div>
-            <div class="filter__item">
+            <div class="filter__item" >
               <div class="row">
                 <div class="col-lg-4 col-md-5">
                   <div class="filter__sort">
                     <span>Sort By</span>
                     <select>
                       <option value="0">Default</option>
-                      <option value="0">Default</option>
+                      <option value="Gadget"><a href="#gadgets">Gadgets</a></option>
                     </select>
                   </div>
                 </div>
@@ -725,9 +646,9 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row" id="product-lists">
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item supermarket">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-1.jpg"
@@ -745,13 +666,13 @@
                     </ul>
                   </div>
                   <div class="product__item__text">
-                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h6><a href="#">Smartwatch</a></h6>
                     <h5>&#8358;30.00</h5>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item supermarket">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-2.jpg"
@@ -775,7 +696,7 @@
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item supermarket">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-3.jpg"
@@ -799,7 +720,7 @@
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item accessories">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-4.jpg"
@@ -823,7 +744,7 @@
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item phones_and_tablets">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-5.jpg"
@@ -847,7 +768,7 @@
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item computing">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-6.jpg"
@@ -871,7 +792,7 @@
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item computing">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-7.jpg"
@@ -895,7 +816,7 @@
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item jewelries">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-8.jpg"
@@ -919,7 +840,7 @@
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item jewelries">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-9.jpg"
@@ -938,12 +859,12 @@
                   </div>
                   <div class="product__item__text">
                     <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>&#8358;30.00</h5>
+                    <h5>&#8358;25.00</h5>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item accessories">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-10.jpg"
@@ -962,12 +883,12 @@
                   </div>
                   <div class="product__item__text">
                     <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>&#8358;30.00</h5>
+                    <h5>&#8358;70.00</h5>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item home_and_office">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-11.jpg"
@@ -986,12 +907,12 @@
                   </div>
                   <div class="product__item__text">
                     <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>&#8358;30.00</h5>
+                    <h5>&#8358;100.00</h5>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="product__item">
+                <div class="product__item home_and_office">
                   <div
                     class="product__item__pic set-bg"
                     data-setbg="img/product/product-12.jpg"
@@ -1010,7 +931,7 @@
                   </div>
                   <div class="product__item__text">
                     <h6><a href="#">Crab Pool Security</a></h6>
-                    <h5>&#8358;30.00</h5>
+                    <h5>&#8358;50.00</h5>
                   </div>
                 </div>
               </div>
@@ -1180,7 +1101,7 @@
     <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/main.js"></script>
     <script src="${pageContext.request.contextPath}/js/signup.js"></script>
-    
+    <script src="${pageContext.request.contextPath}/js/product-filter.js"></script>
     <script type="text/javascript">
     ( function ( document, window, index )
     		{

@@ -651,7 +651,7 @@ translateX
 						ld.deleteImage();
 						
 						ld.imageSample2();
-						File dir = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\");
+						File dir = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\");
 						File [] dirListing = dir.listFiles();
 						if(dirListing != null){
 							for (File fl: dirListing){
@@ -1331,7 +1331,7 @@ translateX
     		}( document, window, 0 ));
     
  // LOGIN/REGISTRATION ALERT MESSAGE
-    const closeBtn = document.querySelector(".close-alert");
+   /* const closeBtn = document.querySelector(".close-alert");
      	const alertBox = document.querySelector(".alert");
      	const inputField = document.querySelectorAll(".input-field");
      	const submitBtn = document.querySelector(".submit-btn");
@@ -1344,7 +1344,7 @@ translateX
      	
      	function hideAlert(){
      		alertBox.classList.add("hide");
-     	}
+     	}*/
     </script>
 </body>
 </html>
