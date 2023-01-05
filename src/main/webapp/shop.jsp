@@ -171,6 +171,17 @@
     color: #722040;
 }
 
+
+
+/* Small Device = 320px */
+@media (max-width: 972px){
+	.product_pagination{
+		transform: scale(0.7);
+		margin: 0px;
+		display: flex;
+	}
+}
+
 </style>
 </head>
 <body>
@@ -646,8 +657,10 @@
                 </div>
               </div>
             </div>
-            <div class="row" id="product-lists">
-              <div class="col-lg-4 col-md-6 col-sm-6">
+            
+            <!-- PRODUCTS DISPLAY -->
+            <div class="row products-content" id="product-lists" style="display: none;">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item supermarket">
                   <div
                     class="product__item__pic set-bg"
@@ -671,7 +684,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item supermarket">
                   <div
                     class="product__item__pic set-bg"
@@ -695,7 +708,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item supermarket">
                   <div
                     class="product__item__pic set-bg"
@@ -719,7 +732,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item accessories">
                   <div
                     class="product__item__pic set-bg"
@@ -743,7 +756,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item phones_and_tablets">
                   <div
                     class="product__item__pic set-bg"
@@ -767,7 +780,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item computing">
                   <div
                     class="product__item__pic set-bg"
@@ -791,7 +804,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item computing">
                   <div
                     class="product__item__pic set-bg"
@@ -815,7 +828,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item jewelries">
                   <div
                     class="product__item__pic set-bg"
@@ -839,7 +852,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item jewelries">
                   <div
                     class="product__item__pic set-bg"
@@ -863,7 +876,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item accessories">
                   <div
                     class="product__item__pic set-bg"
@@ -887,7 +900,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item home_and_office">
                   <div
                     class="product__item__pic set-bg"
@@ -911,7 +924,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
                 <div class="product__item home_and_office">
                   <div
                     class="product__item__pic set-bg"
@@ -935,13 +948,263 @@
                   </div>
                 </div>
               </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
+                <div class="product__item jewelries">
+                  <div
+                    class="product__item__pic set-bg"
+                    data-setbg="img/product/product-8.jpg"
+                  >
+                    <ul class="product__item__pic__hover">
+                      <li>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-retweet"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__item__text">
+                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h5>&#8358;30.00</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
+                <div class="product__item jewelries">
+                  <div
+                    class="product__item__pic set-bg"
+                    data-setbg="img/product/product-9.jpg"
+                  >
+                    <ul class="product__item__pic__hover">
+                      <li>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-retweet"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__item__text">
+                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h5>&#8358;25.00</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
+                <div class="product__item accessories">
+                  <div
+                    class="product__item__pic set-bg"
+                    data-setbg="img/product/product-10.jpg"
+                  >
+                    <ul class="product__item__pic__hover">
+                      <li>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-retweet"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__item__text">
+                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h5>&#8358;70.00</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
+                <div class="product__item home_and_office">
+                  <div
+                    class="product__item__pic set-bg"
+                    data-setbg="img/product/product-11.jpg"
+                  >
+                    <ul class="product__item__pic__hover">
+                      <li>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-retweet"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__item__text">
+                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h5>&#8358;100.00</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
+                <div class="product__item home_and_office">
+                  <div
+                    class="product__item__pic set-bg"
+                    data-setbg="img/product/product-12.jpg"
+                  >
+                    <ul class="product__item__pic__hover">
+                      <li>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-retweet"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__item__text">
+                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h5>&#8358;50.00</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
+                <div class="product__item jewelries">
+                  <div
+                    class="product__item__pic set-bg"
+                    data-setbg="img/product/product-8.jpg"
+                  >
+                    <ul class="product__item__pic__hover">
+                      <li>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-retweet"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__item__text">
+                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h5>&#8358;30.00</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
+                <div class="product__item jewelries">
+                  <div
+                    class="product__item__pic set-bg"
+                    data-setbg="img/product/product-9.jpg"
+                  >
+                    <ul class="product__item__pic__hover">
+                      <li>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-retweet"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__item__text">
+                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h5>&#8358;25.00</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
+                <div class="product__item accessories">
+                  <div
+                    class="product__item__pic set-bg"
+                    data-setbg="img/product/product-10.jpg"
+                  >
+                    <ul class="product__item__pic__hover">
+                      <li>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-retweet"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__item__text">
+                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h5>&#8358;70.00</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
+                <div class="product__item home_and_office">
+                  <div
+                    class="product__item__pic set-bg"
+                    data-setbg="img/product/product-11.jpg"
+                  >
+                    <ul class="product__item__pic__hover">
+                      <li>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-retweet"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__item__text">
+                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h5>&#8358;100.00</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6 product_items">
+                <div class="product__item home_and_office">
+                  <div
+                    class="product__item__pic set-bg"
+                    data-setbg="img/product/product-12.jpg"
+                  >
+                    <ul class="product__item__pic__hover">
+                      <li>
+                        <a href="#"><i class="fa fa-heart"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-retweet"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__item__text">
+                    <h6><a href="#">Crab Pool Security</a></h6>
+                    <h5>&#8358;50.00</h5>
+                  </div>
+                </div>
+              </div>
+            
+            </div><!-- PRODUCTS DISPLAY ENDS-->
+             <!-- Product pagination -->
+            <div class="product_pagination">
+            <!-- 
+             <li class="page-item previous-page disable"><a href="#" class="page_link"><i class="fa fa-long-arrow-left"></i></a></li>
+             <li class="page-item current-page selected-page"><a href="#" class="page_link">1</a></li>
+              <li class="page-item dots"><a href="#" class="page_link">...</a></li>
+              <li class="page-item current-page"><a href="#" class="page_link">5</a></li>
+              <li class="page-item current-page"><a href="#" class="page_link">6</a></li>
+              
+              <li class="page-item current-page"><a href="#" class="page_link">10</a></li>
+              <li class="page-item next-page"><a href="#" class="page_link"><i class="fa fa-long-arrow-right"></i></a></li>
+               -->
             </div>
-            <div class="product__pagination">
-              <a href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-            </div>
+           
+            
           </div>
         </div>
       </div>
