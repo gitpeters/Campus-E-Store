@@ -278,8 +278,8 @@ aside .logo img {
 					            <p class="item-text">Computing</p>
 					        </li>
 					        <li class="item">
-					            <input type='checkbox' name="productcategory" class="items" value="Electronic">
-					            <p class="item-text">Electronic</p>
+					            <input type='checkbox' name="productcategory" class="items" value="Electronics">
+					            <p class="item-text">Electronics</p>
 					        </li>
 					        <li class="item">
 					            <input type="checkbox" name="productcategory" class="items" value="Fashion">
