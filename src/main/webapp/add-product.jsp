@@ -245,11 +245,8 @@ aside .logo img {
 				        placeholder="Product Description"
 				        class="product-info"
 				        name="productDescription"
-				      ></textarea><br>
-
-				    </div> <!-- end of product information -->
-				    
-				    <!-- Product Category -->
+				      ></textarea>
+				      <!-- Product Category -->
 				    <div class="product-category-container">
 					      <div class="category-select-btn">
 					        <p class="btn-text">Select Product Catetory</p>
@@ -312,7 +309,8 @@ aside .logo img {
 					        </li>
 					      </ul>
 					    </div>
-				    
+
+				    </div> <!-- end of product information -->
 				    
 				    <!-- Product sample -->
 				    <div class="product-samples">
@@ -482,7 +480,6 @@ aside .logo img {
     </div>
 	<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/js/app.js"></script>
-    <script src="${pageContext.request.contextPath}/js/.js"></script>
     <script src="${pageContext.request.contextPath}/js/productImageSamples.js"></script>
     
     <script>
@@ -504,6 +501,23 @@ aside .logo img {
     productCategorySelectBtn.addEventListener("click", ()=>{
     	productCategorySelectBtn.classList.toggle("open");
     })
+    
+    // LOGIN/REGISTRATION ALERT MESSAGE
+const close = document.querySelector(".close-alert");
+ 	const alertBox = document.querySelector(".alert");
+ 	const inputField = document.querySelectorAll(".input-field");
+ 	const submitBtn = document.querySelector(".submit-btn");
+ 	
+
+ 	close.onclick = ()=>{
+ 		alertBox.classList.add("hide");
+	}
+ 	const myTimeout = setTimeout(hideAlert, 5000);
+ 	
+ 	function hideAlert(){
+ 		alertBox.classList.add("hide");
+ 	}
+
     </script>
 </body>
 </html>

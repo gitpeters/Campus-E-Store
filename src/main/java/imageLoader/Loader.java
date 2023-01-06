@@ -27,7 +27,7 @@ public class Loader {
 				
 				Blob blob = rs.getBlob("productSample1");
 				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\" + image);
+				file = new FileOutputStream("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\" + image);
 				file.write(imageArr);	
 				
 				System.out.println("Image Loaded...");	
@@ -59,7 +59,7 @@ public class Loader {
 				
 				Blob blob = rs.getBlob("prodcutSample2");
 				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\" + image);
+				file = new FileOutputStream("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\" + image);
 				file.write(imageArr);	
 				
 				System.out.println("Image Loaded...");	
@@ -91,7 +91,7 @@ public class Loader {
 				
 				Blob blob = rs.getBlob("productSample3");
 				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\" + image);
+				file = new FileOutputStream("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\" + image);
 				file.write(imageArr);	
 				
 				System.out.println("Image Loaded...");	
@@ -494,7 +494,7 @@ public class Loader {
 	
 	//Delete all Existing Image in Folder
 	public static void deleteImage(){
-		File file=new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\");
+		File file=new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\");
 		File [] dirListing = file.listFiles();
 		if(dirListing != null){
 			for (File fl: dirListing){
