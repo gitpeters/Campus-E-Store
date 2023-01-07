@@ -178,7 +178,7 @@
 </head>
 <body>
 
-<%! String productID ="", productName="", productCategory="", productStatus ="", productCondition="", productImage1="", productImage2="", productImage3=""; double productAmount =0.0; %>
+<%! String productID ="", productName="", productCategory="", productStatus ="", productDescription ="", productCondition="", productImage1="", productImage2="", productImage3=""; double productAmount =0.0; %>
 
 <% 
 Vendor vendor = (Vendor)session.getAttribute("vendor");
@@ -197,6 +197,7 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
 		productCondition = p.getProductCondition();
 		productStatus = p.getProductStatus();
 		productAmount = p.getProductAmount();
+		productDescription = p.getProductDescription();
 	}
 %>
 
@@ -416,10 +417,7 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
               </div>
               <div class="product__details__price">&#8358;<span id="amount"><%= productAmount%></span></div>
               <p>
-                Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam
-                vehicula elementum sed sit amet dui. Proin eget tortor risus.
+                <%= productDescription%>
               </p>
               <div class="product__details__quantity">
                 <div class="quantity">
@@ -857,6 +855,8 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
     				input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
     			});
     		}( document, window, 0 ));
+    
+    document.getElementById("amount").innerHTML = document.getElementById("amount").innerHTML.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     </script>
 </body>
 </html>
