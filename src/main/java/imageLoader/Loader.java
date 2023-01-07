@@ -559,7 +559,22 @@ public class Loader {
 						}
 						return image;
 					}
-		
+	
+					//Delete all Existing Image in Folder
+					public static void deleteProductImage(){
+						File file=new File(path+"product\\details\\");
+						File [] dirListing = file.listFiles();
+						if(dirListing != null){
+							for (File fl: dirListing){
+								file.delete();
+								fl.delete();
+							}
+							System.out.println("Initial Files deleted...");
+						}else {
+							System.out.println("iMAGE folder is empty!");
+						}
+					}				
+					
 	//Delete all Existing Image in Folder
 	public static void deleteImage(){
 		File file=new File(path+"allImage\\");

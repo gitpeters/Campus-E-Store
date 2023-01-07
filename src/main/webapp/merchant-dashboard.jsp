@@ -4,6 +4,7 @@
     <%@page import="java.util.List"%>
     <%@page import="model.*"%>
     <%@page import="dao.*"%>
+    <%@page import="imageLoader.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -238,6 +239,7 @@ aside .logo img {
     </script>
 </head>
 <body>
+<%! String productImage1="", productImage2="", productImage3="";%>
 	<%
 		
 		Vendor vendor = (Vendor)session.getAttribute("vendor");
@@ -248,6 +250,11 @@ aside .logo img {
 			response.sendRedirect("index.jsp");
 		}
 		
+		
+		if(productImage1!=null && productImage1!=null && productImage3!=null){
+			Loader loader = new Loader();
+			loader.deleteProductImage();
+		}
 	%>
 
     <!-- Page Preloder -->

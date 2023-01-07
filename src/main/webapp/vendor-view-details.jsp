@@ -370,6 +370,8 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
         productImage1 = Loader.productImage1(pID);
         productImage2 = Loader.productImage2(pID);
         productImage3 = Loader.productImage3(pID);
+        
+        Thread.sleep(2000);
     %>
 
     <!-- Product Details Section Begin -->
