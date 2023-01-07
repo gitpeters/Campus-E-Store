@@ -23,7 +23,7 @@ public class Listener implements ServletContextListener {
 			PreparedStatement ps2 = con.prepareStatement(sql2);
 			ps2.executeUpdate();
 
-			String sql3 = "create table campusestock.product(productId varchar(200), vendorId varchar(200), productName varchar(200), productDescription varchar(500), productCategory varchar(500), productCondition varchar(200), datePosted date, productStatus varchar(200), productSample1 longBlob, prodcutSample2 longBlob, productSample3 longblob, adsStatus varchar(200), brandName varchar(200), keywords varchar(500), productAmount double)";
+			String sql3 = "create table campusestock.product(productId varchar(200), vendorId varchar(200), productName varchar(200), productDescription varchar(500), productCategory varchar(500), productCondition varchar(200), datePosted date, productStatus varchar(200), productSample1 longBlob, productSample2 longBlob, productSample3 longblob, adsStatus varchar(200), brandName varchar(200), keywords varchar(500), productAmount double)";
 			PreparedStatement ps3 = con.prepareStatement(sql3);
 			ps3.executeUpdate();
 

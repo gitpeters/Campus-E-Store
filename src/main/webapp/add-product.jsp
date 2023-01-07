@@ -321,8 +321,8 @@ aside .logo img {
 				            <h3>Add Product Image (Main Image)</h3>
 				            <input
 				              type="file"
-				              class="image"
 				              hidden
+				              class="image"
 				              name="productImage1"
 				              id="image1"
 				              accept="image/*"

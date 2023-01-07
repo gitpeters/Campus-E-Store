@@ -181,6 +181,14 @@
 <%! String productID ="", productName="", productCategory="", productStatus ="", productCondition="", productImage1="", productImage2="", productImage3=""; double productAmount =0.0; %>
 
 <% 
+Vendor vendor = (Vendor)session.getAttribute("vendor");
+
+if (vendor.getVendorId() != null){
+	
+}else{
+	response.sendRedirect("index.jsp");
+}
+
 List <Product> product = DAO.getProductDetailsWithList(request.getParameter("productID"));
 	for(Product p:product){
 		productID = p.getProductId();
@@ -344,7 +352,7 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
             <div class="breadcrumb__text">
               <h2><%= productName %></h2>
               <div class="breadcrumb__option">
-                <a href="./index.jsp">Home</a>
+                <a href="./merchant-dashboard.jsp">Home</a>
                 <a href="./shop.jsp"><%= productCategory %></a>
                 <span><%= productName %></span>
               </div>
@@ -372,7 +380,7 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
               <div class="product__details__pic__item">
                 <img
                   class="product__details__pic__item--large"
-                  src="img/product/details/<%= productImage2%>"
+                  src="img/product/details/<%= productImage1%>"
                   alt=""
                 />
               </div>
@@ -420,28 +428,10 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
                   </div>
                 </div>
               </div>
-              <a href="#" class="primary-btn"
-                ><i class="fa fa-phone"></i> Contact Seller</a
-              >
-              <a href="#" class="heart-icon"
-                ><span class="icon_heart_alt"></span
-              ></a>
+             
               <ul>
-                <li><b>Availability</b> <span>In Stock</span></li>
-                <li>
-                  <b>Shipping</b>
-                  <span>01 day shipping. <samp>Free pickup today</samp></span>
-                </li>
-                <li><b>Weight</b> <span>0.5 kg</span></li>
-                <li>
-                  <b>Share on</b>
-                  <div class="share">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                  </div>
-                </li>
+                <li><b>Availability</b> <span><%= productStatus %></span></li>
+                
               </ul>
             </div>
           </div>
@@ -482,7 +472,7 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
               <div class="tab-content">
                 <div class="tab-pane active" id="tabs-1" role="tabpanel">
                   <div class="product__details__tab__desc">
-                    <h6>Products Infomation</h6>
+                    <h6>Products Description</h6>
                     <p>
                       Vestibulum ac diam sit amet quam vehicula elementum sed
                       sit amet dui. Pellentesque in ipsum id orci porta dapibus.
@@ -546,7 +536,7 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
                 </div>
                 <div class="tab-pane" id="tabs-3" role="tabpanel">
                   <div class="product__details__tab__desc">
-                    <h6>Products Infomation</h6>
+                    <h6>Products Reviews</h6>
                     <p>
                       Vestibulum ac diam sit amet quam vehicula elementum sed
                       sit amet dui. Pellentesque in ipsum id orci porta dapibus.
