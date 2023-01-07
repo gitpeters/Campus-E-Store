@@ -593,19 +593,84 @@ translateX
 								<i class="fa fa-bars"></i> <span>All departments</span>
 							</div>
 							<ul>
-								<li><a href="supermarket-category.jsp">Supermarket</a></li>
-								<li><a href="health_and_beauty.jsp">Health & Beauty</a></li>
-								<li><a href="#">Home & Office</a></li>
-								<li><a href="#">Phones & Tablets</a></li>
-								<li><a href="#">Computing</a></li>
-								<li><a href="#">Electronic</a></li>
-								<li><a href="#">Fashion</a></li>
-								<li><a href="#">Baby Products</a></li>
-								<li><a href="#">Gaming</a></li>
-								<li><a href="#">Automobile</a></li>
-								<li><a href="#">Jewelries</a></li>
-								<li><a href="#">Accessories</a></li>
-								<li><a href="#">Others</a></li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Supermarket">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Supermarket</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Health & Beauty">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Health & Beauty</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Home & Office">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Home & Office</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Phones & Tablets">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Phones & Tablets</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Computing">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Computing</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Electronic">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Electronic</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Fashion">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Fashion</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Baby Products">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Baby Products</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Gaming">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Gaming</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Automobile">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Automobile</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Jewelries">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Jewelries</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Accessories">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Accessories</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Others">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Others</button>
+									</form>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -655,7 +720,7 @@ translateX
 						ld.deleteImage();
 						
 						ld.imageSample2();
-						File dir = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\");
+						File dir = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\");
 						File [] dirListing = dir.listFiles();
 						if(dirListing != null){
 							for (File fl: dirListing){
