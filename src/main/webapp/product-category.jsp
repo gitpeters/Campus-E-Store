@@ -1,3 +1,9 @@
+<%@page import="imageLoader.*"%>
+<%@page import="java.io.File"%>
+<%@page import="java.util.*"%>
+<%@page import="imageLoader.*"%>
+<%@page import="model.*"%>
+<%@page import="dao.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -208,6 +214,44 @@
 </style>
 </head>
 <body>
+<%! String category; File [] dirListing;%>
+<% 
+	Loader ld = new Loader();
+	ld.deleteImageInCategoryFolders();
+	category = (String)session.getAttribute("category");
+	System.out.println(category);
+	
+	if(category.equals("Supermarket")){
+		ld.supermarketImage();
+	}else if(category.equals("Health & Beauty")){
+		ld.health_beautyImage();
+	}else if(category.equals("Home & Office")){
+		ld.home_officeImage();
+	}else if(category.equals("Phones & Tablets")){
+		ld.phones_tabletsImage();
+	}else if(category.equals("Computing")){
+		ld.computingImage();
+	}else if(category.equals("Electronic")){
+		ld.electronicsImage();
+	}else if(category.equals("Fashion")){
+		ld.fashionImage();
+	}else if(category.equals("Baby Products")){
+		ld.babyProductImage();
+	}else if(category == "Gaming"){
+		ld.gamingImage();
+	}else if(category.equals("Automobile")){
+		ld.automobileImage();
+	}else if(category.equals("Jewelries")){
+		ld.jewelriesImage();
+	}else if(category.equals("Accessories")){
+		ld.accessoriesImage();
+	}else if(category.equals("Others")){
+		ld.othersImage();
+	}
+	
+	File dir = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\"+category+"\\");
+	dirListing = dir.listFiles();
+%>
 
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -366,7 +410,7 @@
 				<div class="row">
 					<div class="col-lg-12 text-center">
 						<div class="breadcrumb__text">
-							<h2>Shop - Supermarket</h2>
+							<h2>Shop - <%= category %></h2>
 							<div class="breadcrumb__option">
 								<a href="./index.jsp">Home</a> <span>Shop</span>
 							</div>
@@ -386,19 +430,84 @@
 								<h4>Department</h4>
 								<div class="product_filter_control">
 									<ul>
-										<li><a href="supermarket-category.jsp" class="selected">Supermarket</a></li>
-										<li><a href="health_and_beauty.jsp">Health & Beauty</a></li>
-										<li><a href="#">Home & Office</a></li>
-										<li><a href="#">Phones & Tablets</a></li>
-										<li><a href="#">Computing</a></li>
-										<li><a href="#">Electronic</a></li>
-										<li><a href="#">Fashion</a></li>
-										<li><a href="#">Baby Products</a></li>
-										<li><a href="#">Gaming</a></li>
-										<li><a href="#">Automobile</a></li>
-										<li><a href="#">Jewelries</a></li>
-										<li><a href="#">Accessories</a></li>
-										<li><a href="#">Others</a></li>
+										<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Supermarket">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Supermarket</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Health & Beauty">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Health & Beauty</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Home & Office">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Home & Office</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Phones & Tablets">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Phones & Tablets</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Computing">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Computing</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Electronic">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Electronic</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Fashion">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Fashion</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Baby Products">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Baby Products</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Gaming">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Gaming</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Automobile">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Automobile</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Jewelries">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Jewelries</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Accessories">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Accessories</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Others">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Others</button>
+									</form>
+								</li>
 									</ul>
 								</div>
 							</div>
@@ -420,11 +529,24 @@
 							</div>
 						</div>
 						<div class="row featured__filter">
-
+						<%! String productName, productId;
+						double productAmount; %>
+						<%
+						if(dirListing != null){
+							for (File fl: dirListing){
+								String imageName = fl.getName();
+								String prodId = imageName.substring(0, 9);
+								DAO dao = new DAO();
+								ArrayList <Product> pr = (ArrayList<Product>)DAO.getProductDetailsWithList(prodId);
+								for(Product details: pr){
+									productName = details.getProductName();
+									productAmount = details.getProductAmount();
+								}
+						%>
 							<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
 								<div class="featured__item">
 									<div class="featured__item__pic set-bg"
-										data-setbg="img/featured/feature-1.jpg">
+										data-setbg="img/allImage/<%=imageName %>">
 										<ul class="featured__item__pic__hover">
 											<li><a href="#"><i class="fa fa-heart"></i></a></li>
 											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -433,14 +555,20 @@
 									</div>
 									<div class="featured__item__text">
 										<h6>
-											<a href="#">Female Shoes</a>
+											<a href="#"><%=productName %></a>
 										</h6>
-										<h5>&#8358;5,000.00</h5>
+										<h5>&#8358;<%=productAmount %></h5>
 									</div>
 								</div>
 							</div>
+							<%
+									}
+								}else{
+									System.out.println("Image File is empty!");
+								}
+							%>
 
-							<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+							<!-- <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
 								<div class="featured__item">
 									<div class="featured__item__pic set-bg"
 										data-setbg="/hero/ac/a (8).jpg">
@@ -565,7 +693,7 @@
 										<h5>&#8358;7,000.00</h5>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						</div>
 					</div>
