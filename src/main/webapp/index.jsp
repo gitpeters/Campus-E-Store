@@ -654,7 +654,7 @@ translateX
 						Random rand = new Random();
 						ld.deleteImage();
 						
-						ld.imageSample();
+						ld.imageSample1();
 						File dir = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\");
 						File [] dirListing = dir.listFiles();
 						if(dirListing != null){

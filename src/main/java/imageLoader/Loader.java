@@ -11,7 +11,7 @@ import connection.DbConnection;
 public class Loader {
 
 	//Load Product Image
-	public static String imageSample() {
+	public static String imageSample1() {
 		String image = "";
 		int increament = 1;
 		try {
