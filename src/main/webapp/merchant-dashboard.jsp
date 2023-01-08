@@ -4,6 +4,7 @@
     <%@page import="java.util.List"%>
     <%@page import="model.*"%>
     <%@page import="dao.*"%>
+    <%@page import="imageLoader.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,6 +218,18 @@ aside .logo img {
 	font-size: 22px;
 	line-height: 40px;
 }
+.submit-btn{
+	background: #73b0ec;
+	padding: 2px 6px;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: opacity 300ms ease;
+}
+
+.submit-btn:hover{
+	opacity:0.7; 
+}
 </style>
 <script type="text/javascript">
         function preventBack() { window.history.forward(); }
@@ -226,6 +239,7 @@ aside .logo img {
     </script>
 </head>
 <body>
+<%! String productImage1="", productImage2="", productImage3="";%>
 	<%
 		
 		Vendor vendor = (Vendor)session.getAttribute("vendor");
@@ -236,6 +250,11 @@ aside .logo img {
 			response.sendRedirect("index.jsp");
 		}
 		
+		
+		if(productImage1!=null && productImage1!=null && productImage3!=null){
+			Loader loader = new Loader();
+			loader.deleteProductImage();
+		}
 	%>
 
     <!-- Page Preloder -->
@@ -374,56 +393,27 @@ aside .logo img {
                 <table>
                     <thead>
                         <tr>
+                            <th>Product ID</th>
                             <th>Product Name</th>
-                            <th>Product Number</th>
-                            <th>Payment</th>
+                            <th>Product Condition</th>
+                            <th>Product Category</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Cow meat (5kilos)</td>
-                            <td>8993</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Cow meat (5kilos)</td>
-                            <td>8993</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Cow meat (5kilos)</td>
-                            <td>8993</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Cow meat (5kilos)</td>
-                            <td>8993</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Cow meat (5kilos)</td>
-                            <td>8993</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Cow meat (5kilos)</td>
-                            <td>8993</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-                        </tr>
+                        <% 
+                        List <Product> product = DAO.getProductByVendorID(vendor.getVendorId());
+                        	if(product!=null){
+                        		for(Product p:product){
+                        			out.println("<tr><td>"+p.getProductId()+"</td><td>"+p.getProductName()+"</td><td>"+p.getProductCondition()+"</td><td>"+p.getProductCategory()+"</td><td>"+p.getProductStatus()+"</td><td><form action='vendor-view-details.jsp' method='post'><input type='hidden' name='productID' value='"+p.getProductId()+"'/><button type='submit' class='submit-btn'>View</button></form></td></tr>");
+                        		}
+                        		
+                        	}else{
+                        		out.println("<tr><td colspan='6'> No record available!</td></tr>");
+                        	}
+                        	
+                        %>
                     </tbody>
                 </table>
                 <div class="show-all">

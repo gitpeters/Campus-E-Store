@@ -712,15 +712,15 @@ translateX
 			<div class="container">
 				<div class="row">
 					<div class="categories__slider owl-carousel">
-					<%! String productName, productId;
+					<%! String productName, productId, filePath;
 						double productAmount; %>
 					<%
 						Loader ld = new Loader();
 						Random rand = new Random();
 						ld.deleteImage();
-						
-						ld.imageSample2();
-						File dir = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\");
+						filePath = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\";
+						ld.imageSample();
+						File dir = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\");
 						File [] dirListing = dir.listFiles();
 						if(dirListing != null){
 							for (File fl: dirListing){
