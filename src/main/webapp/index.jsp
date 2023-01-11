@@ -1,6 +1,7 @@
 
 <%@page import="model.MessageReport"%>
 <%@page import="java.util.*"%>
+<%@page import="java.util.List"%>
 <%@page import="imageLoader.*"%>
 <%@page import="model.*"%>
 <%@page import="dao.*"%>
@@ -717,14 +718,20 @@ translateX
 					<%
 						Loader ld = new Loader();
 						Random rand = new Random();
-						ld.deleteImage();
-						filePath = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\";
+						ArrayList <File> image = new ArrayList <File>();
+						ld.deleteImageInIndex();
 						ld.imageSample();
-						File dir = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\");
+						String filePath = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\";
+						File dir = new File(filePath).getAbsoluteFile();
 						File [] dirListing = dir.listFiles();
 						if(dirListing != null){
 							for (File fl: dirListing){
-								String imageName = fl.getName();
+								image.add(fl);
+							}
+							Collections.shuffle(image);
+							for(File imageIndex: image){				
+								
+								String imageName = imageIndex.getName();
 								String prodId = imageName.substring(0, 9);
 								DAO dao = new DAO();
 								ArrayList <Product> pr = (ArrayList<Product>)DAO.getProductDetailsWithList(prodId);
@@ -732,14 +739,15 @@ translateX
 									productName = details.getProductName();
 									productAmount = details.getProductAmount();
 								}
-								out.println("<div class='col-lg-3'>");
-									out.println("<div class='categories__item set-bg'");
-										out.println("data-setbg='img/allImage/"+imageName+"'>");
-											out.println("<h5>");
-												out.println("<a href='#'>"+productName+"</a>");
-										out.println("</h5>");
-									out.println("</div>");
-								out.println("</div>");
+					%>
+								<div class="col-lg-3">
+									<div class="categories__item set-bg"
+										data-setbg="img/allImage/<%=imageName %>">
+											<h5><a href="ProductDetails?productId=<%=prodId %>"><%=productName %>
+											</a></h5>
+									</div>
+								</div>
+					<%
 							}
 						}else{
 							System.out.println("Image File is empty!");
@@ -763,20 +771,55 @@ translateX
 						<div class="featured__controls">
 							<ul>
 								<li class="active" data-filter="*">All</li>
-								<li data-filter=".oranges">Phone & Accessories</li>
-								<li data-filter=".fresh-meat">Jewelries</li>
-								<li data-filter=".vegetables">Fashion</li>
-								<li data-filter=".fastfood">Supermarkets</li>
+								<li data-filter=".Phones">Phone & Accessories</li>
+								<li data-filter=".Jewelries">Jewelries</li>
+								<li data-filter=".Fashion">Fashion</li>
+								<li data-filter=".Supermarket">Supermarkets</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<div class="row featured__filter">
+				
+				<%! String productID ="", prodName="", productCategory="", productStatus ="", productDescription ="", productCondition="", productImage1="", productImage2="", productImage3="", path=""; 
+				double productAmt =0.0;%>
+				
+				<%		
+					Loader ld2 = new Loader();
+					ld2.featuredProducts();
+					ArrayList <File> featuredImage = new ArrayList <File>();
+					String featured = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\featuredProduct\\";
+					File dir2 = new File(featured).getAbsoluteFile();
+					dirListing = dir2.listFiles();
+					 if(dirListing != null){
+						 for (File fl: dirListing){
+							 featuredImage.add(fl);
+							}
+							Collections.shuffle(featuredImage);
+							for(File imageIndex: featuredImage){	
+							 String imageName = imageIndex.getName();
+							 productID = imageName.substring(0, 9);
+							 
+							 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID);
+								for(Product p:product){
+				
+									productID = p.getProductId();
+									prodName = p.getProductName();
+									productCategory = p.getProductCategory();
+									productCondition = p.getProductCondition();
+									productStatus = p.getProductStatus();
+									productAmt = p.getProductAmount();
+									productDescription = p.getProductDescription();
+								}
+								if(productCategory.equals("Phones & Tablets")){
+									productCategory = "Phones";
+								}
+				%>
 
-					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+					<div class="col-lg-3 col-md-4 col-sm-6 mix <%=productCategory %>">
 						<div class="featured__item">
 							<div class="featured__item__pic set-bg"
-								data-setbg="img/featured/feature-1.jpg">
+								data-setbg="img/product/featuredProduct/<%= imageName %>">
 								<ul class="featured__item__pic__hover">
 									<li><a href="#"><i class="fa fa-heart"></i></a></li>
 									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -785,139 +828,19 @@ translateX
 							</div>
 							<div class="featured__item__text">
 								<h6>
-									<a href="#">Female Shoes</a>
+									<a href="ProductDetails?productId=<%=productID %>"><%=prodName %></a>
 								</h6>
-								<h5>&#8358;5,000.00</h5>
+								<h5>&#8358;<%= productAmt%></h5>
 							</div>
 						</div>
 					</div>
+				<%
+					 }
+			        }else{
+						System.out.println("Image File is empty!");
+					}
+				%>
 					
-					<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-						<div class="featured__item">
-							<div class="featured__item__pic set-bg"
-								data-setbg="/hero/ac/a (8).jpg">
-								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="featured__item__text">
-								<h6>
-									<a href="#">Male Shoes</a>
-								</h6>
-								<h5>&#8358;10,000.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-						<div class="featured__item">
-							<div class="featured__item__pic set-bg"
-								data-setbg="img/featured/feature-3.jpg">
-								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="featured__item__text">
-								<h6>
-									<a href="#">Wallets</a>
-								</h6>
-								<h5>&#8358;3,500.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-						<div class="featured__item">
-							<div class="featured__item__pic set-bg"
-								data-setbg="img/featured/feature-4.jpg">
-								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="featured__item__text">
-								<h6>
-									<a href="#">Belts</a>
-								</h6>
-								<h5>&#8358;4,500.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-						<div class="featured__item">
-							<div class="featured__item__pic set-bg"
-								data-setbg="img/featured/feature-5.jpg">
-								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="featured__item__text">
-								<h6>
-									<a href="#">Female Sandals</a>
-								</h6>
-								<h5>&#8358;12,000.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-						<div class="featured__item">
-							<div class="featured__item__pic set-bg"
-								data-setbg="img/featured/feature-6.jpg">
-								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="featured__item__text">
-								<h6>
-									<a href="#">Male Sandals</a>
-								</h6>
-								<h5>&#8358;9,500.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-						<div class="featured__item">
-							<div class="featured__item__pic set-bg"
-								data-setbg="img/featured/feature-7.jpg">
-								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="featured__item__text">
-								<h6>
-									<a href="#">Female slippers</a>
-								</h6>
-								<h5>&#8358;3,000.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-						<div class="featured__item">
-							<div class="featured__item__pic set-bg"
-								data-setbg="img/featured/feature-8.jpg">
-								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="featured__item__text">
-								<h6>
-									<a href="#">Male slippers</a>
-								</h6>
-								<h5>&#8358;7,000.00</h5>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</section>
@@ -950,33 +873,69 @@ translateX
 						<div class="latest-product__text">
 							<h4>Latest Products</h4>
 							<div class="latest-product__slider owl-carousel">
-								<div class="latest-prdouct__slider__item">
+								
+								<%! String productID1 ="", prodName1 ="", productCategory1 ="", productStatus1 ="", productDescription1 ="", productCondition1 ="", path3 =""; 
+								double productAmt1 =0.0;%>
+								
+								<%	
+								for(int rept = 1; rept <= 3; rept++){
+									
+								%>
+									<div class="latest-prdouct__slider__item">
+								<%
+									Loader filter1 = new Loader();
+									filter1.featuredProducts();
+									ArrayList <File> filterImage1 = new ArrayList <File>();
+									String path3 = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter1\\";
+									File dir3 = new File(path3).getAbsoluteFile();
+									dirListing = dir3.listFiles();
+									 if(dirListing != null){
+										 for (File fl: dirListing){
+											 featuredImage.add(fl);
+											}
+											Collections.shuffle(filterImage1);
+											for(int i = 1; i <= 3; i++){
+												for(File imageIndex: filterImage1){	
+												 String imageName = imageIndex.getName();
+												 productID = imageName.substring(0, 9);
+												 
+												 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID);
+													for(Product p:product){
+									
+														productID1 = p.getProductId();
+														prodName1 = p.getProductName();
+														productCategory1 = p.getProductCategory();
+														productCondition1 = p.getProductCondition();
+														productStatus1 = p.getProductStatus();
+														productAmt1 = p.getProductAmount();
+														productDescription1 = p.getProductDescription();
+													}
+													if(productCategory1.equals("Phones & Tablets")){
+														productCategory1 = "Phones";
+												}
+								%>
 									<a href="#" class="latest-product__item">
 										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-1.jpg" alt="" />
+											<img src="img/product/filter1/<%= imageName %>" alt="" />
 										</div>
 										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;30,000.00</span>
+											<h6><%= prodName1 %></h6>
+											<span>&#8358;<%= productAmt1 %></span>
 										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-2.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;30,000.00</span>
-										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-3.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;30,000.00</span>
-										</div>
-									</a>
+									</a> 
+								<%
+										 }
+									 }
+							        }else{
+										System.out.println("Image File is empty!");
+									}
+									 
+								%>
 								</div>
+								<%
+								}
+								%>
+								
 								<div class="latest-prdouct__slider__item">
 									<a href="#" class="latest-product__item">
 										<div class="latest-product__item__pic">

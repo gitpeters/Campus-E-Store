@@ -70,9 +70,9 @@ public class AddProduct extends HttpServlet {
 				String prodDes = productDescription.getString();
 				FileItem productcategory = (FileItem) items.get(7);
 				String prodCat = productcategory.getString();
-				FileItem productImage1 = (FileItem) items.get(8);
-				FileItem productImage2 = (FileItem) items.get(9);
-				FileItem productImage3 = (FileItem) items.get(10);
+				FileItem productImage1 = (FileItem) items.get(9);
+				FileItem productImage2 = (FileItem) items.get(10);
+				FileItem productImage3 = (FileItem) items.get(11);
 				
 				LocalDate date = LocalDate.now();
 				

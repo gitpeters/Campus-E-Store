@@ -1,7 +1,6 @@
 <%@page import="imageLoader.*"%>
 <%@page import="java.io.File"%>
 <%@page import="java.util.*"%>
-<%@page import="imageLoader.*"%>
 <%@page import="model.*"%>
 <%@page import="dao.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -214,43 +213,67 @@
 </style>
 </head>
 <body>
-<%! String category; File [] dirListing;%>
+<%! String category, path; File [] dirListing;%>
 <% 
 	Loader ld = new Loader();
 	ld.deleteImageInCategoryFolders();
 	category = (String)session.getAttribute("category");
 	System.out.println(category);
+	path = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\";
 	
 	if(category.equals("Supermarket")){
 		ld.supermarketImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Health & Beauty")){
 		ld.health_beautyImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Home & Office")){
 		ld.home_officeImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Phones & Tablets")){
 		ld.phones_tabletsImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Computing")){
 		ld.computingImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Electronic")){
 		ld.electronicsImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Fashion")){
 		ld.fashionImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Baby Products")){
 		ld.babyProductImage();
-	}else if(category == "Gaming"){
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
+	}else if(category.equals("Gaming")){
 		ld.gamingImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Automobile")){
 		ld.automobileImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Jewelries")){
 		ld.jewelriesImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Accessories")){
 		ld.accessoriesImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}else if(category.equals("Others")){
 		ld.othersImage();
+		File dir = new File(path + category + "\\").getAbsoluteFile();
+		dirListing = dir.listFiles();
 	}
-	
-	File dir = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\"+category+"\\");
-	dirListing = dir.listFiles();
 %>
 
 	<!-- Page Preloder -->
@@ -532,9 +555,15 @@
 						<%! String productName, productId;
 						double productAmount; %>
 						<%
+						ArrayList <File> image = new ArrayList <File>();
 						if(dirListing != null){
 							for (File fl: dirListing){
-								String imageName = fl.getName();
+								image.add(fl);
+							}
+							Collections.shuffle(image);
+							for(File imageIndex: image){				
+								
+								String imageName = imageIndex.getName();
 								String prodId = imageName.substring(0, 9);
 								DAO dao = new DAO();
 								ArrayList <Product> pr = (ArrayList<Product>)DAO.getProductDetailsWithList(prodId);
@@ -567,133 +596,6 @@
 									System.out.println("Image File is empty!");
 								}
 							%>
-
-							<!-- <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg"
-										data-setbg="/hero/ac/a (8).jpg">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-									<div class="featured__item__text">
-										<h6>
-											<a href="#">Male Shoes</a>
-										</h6>
-										<h5>&#8358;10,000.00</h5>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg"
-										data-setbg="img/featured/feature-3.jpg">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-									<div class="featured__item__text">
-										<h6>
-											<a href="#">Wallets</a>
-										</h6>
-										<h5>&#8358;3,500.00</h5>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg"
-										data-setbg="img/featured/feature-4.jpg">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-									<div class="featured__item__text">
-										<h6>
-											<a href="#">Belts</a>
-										</h6>
-										<h5>&#8358;4,500.00</h5>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg"
-										data-setbg="img/featured/feature-5.jpg">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-									<div class="featured__item__text">
-										<h6>
-											<a href="#">Female Sandals</a>
-										</h6>
-										<h5>&#8358;12,000.00</h5>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg"
-										data-setbg="img/featured/feature-6.jpg">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-									<div class="featured__item__text">
-										<h6>
-											<a href="#">Male Sandals</a>
-										</h6>
-										<h5>&#8358;9,500.00</h5>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg"
-										data-setbg="img/featured/feature-7.jpg">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-									<div class="featured__item__text">
-										<h6>
-											<a href="#">Female slippers</a>
-										</h6>
-										<h5>&#8358;3,000.00</h5>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg"
-										data-setbg="img/featured/feature-8.jpg">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-									<div class="featured__item__text">
-										<h6>
-											<a href="#">Male slippers</a>
-										</h6>
-										<h5>&#8358;7,000.00</h5>
-									</div>
-								</div>
-							</div> -->
 						</div>
 						</div>
 					</div>

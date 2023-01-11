@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import connection.DbConnection;
 
 public class Loader {
-	private static String path ="C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\";
+	private static String path ="C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\";
+	private static String otherPath ="C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\";
 
 	//Load Product Image
 	public static String imageSample() {
@@ -27,22 +28,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
 				
 				Blob blob;
 				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
-					image = rs.getString("productId") +increament+ ".jpg";
+					image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path+"allImage\\" + image);
+					file = new FileOutputStream(path + "allImage\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
-					System.out.println(image);	
-					System.out.println("Image Loaded...");	
+					if(increament > 3) {
+						increament = 1;
+					}	
 				}
 			}
-
+			
+			System.out.println("Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -53,8 +57,314 @@ public class Loader {
 		}
 		return image;
 	}
+	
+	//Load Product Image by ID for Vendor View
+	public static String imageSampleById(String productId) {
+		String image = "";
+		int increament = 1;
+		try {
+			PreparedStatement ps = null;
+			Connection con = null;
+			FileOutputStream file = null;			
+			
+			String sql = "SELECT productSample1, productSample2, productSample3 FROM campusestock.product WHERE productId = '"+productId+"'";
+			con = DbConnection.connection();
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					image = productId + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(path + "product\\vendorDetails\\" + image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}
+			
+			System.out.println(productId + " Image Loaded...");
+			file.close();
+			ps.close();
+			con.close();
+			
+		}catch(Exception e) {
+			System.out.println("Couldn't Load iMAGE!");
+			e.printStackTrace();
+		}
+		return image;
+	}
+	
+	//Load Product Image by ID for Product View
+	public static String imageSampleByIdForProduct(String productId) {
+		String image = "";
+		int increament = 1;
+		try {
+			PreparedStatement ps = null;
+			Connection con = null;
+			FileOutputStream file = null;			
+			
+			String sql = "SELECT productSample1, productSample2, productSample3 FROM campusestock.product WHERE productId = '"+productId+"'";
+			con = DbConnection.connection();
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					image = productId + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(path + "product\\productDetails\\" + image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}
+			
+			System.out.println(productId + " Image Loaded...");
+			file.close();
+			ps.close();
+			con.close();
+			
+		}catch(Exception e) {
+			System.out.println("Couldn't Load iMAGE!");
+			e.printStackTrace();
+		}
+		return image;
+	}
+	
+	//Load Product Image by Category 
+	public static String imageSampleByCategory(String category) {
+		String image = "";
+		int increament = 1;
+		try {
+			PreparedStatement ps = null;
+			Connection con = null;
+			FileOutputStream file = null;			
+			
+			String sql = "SELECT productSample1, productSample2, productSample3 FROM campusestock.product WHERE productId = '"+category+"'";
+			con = DbConnection.connection();
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(path + "product\\relatedProduct\\" + image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}
+			
+			System.out.println("Image Loaded...");
+			file.close();
+			ps.close();
+			con.close();
+			
+		}catch(Exception e) {
+			System.out.println("Couldn't Load iMAGE!");
+			e.printStackTrace();
+		}
+		return image;
+	}
+	
+	//Load featured Image 
+	public static String featuredProducts() {
+		String image = "";
+		int increament = 1;
+		try {
+			PreparedStatement ps = null;
+			Connection con = null;
+			FileOutputStream file = null;			
+			
+			String sql = "SELECT * FROM campusestock.product WHERE productCategory = 'Phones & Tablets' OR productCategory = 'Fashion' OR productCategory = 'Supermarket' OR productCategory = 'Jewelries'";
+			con = DbConnection.connection();
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					image = rs.getString("productId") + increament + ".jpg";
+					System.out.println(image);
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(path + "product\\featuredProduct\\" + image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}
+			
+			System.out.println("Featured Image Loaded...");
+			file.close();
+			ps.close();
+			con.close();
+			
+		}catch(Exception e) {
+			System.out.println("Couldn't Load Featured iMAGE!");
+			e.printStackTrace();
+		}
+		return image;
+	}
+	
+	//Load Filter Image 
+	public static String filteredImage1() {
+		String image = "";
+		int increament = 1;
+		try {
+			PreparedStatement ps = null;
+			Connection con = null;
+			FileOutputStream file = null;			
+			
+			String sql = "SELECT * FROM campusestock.product WHERE productCategory = 'Health & Beauty' OR productCategory = 'Home & Office' OR productCategory = 'Computing'";
+			con = DbConnection.connection();
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					image = rs.getString("productId") + increament + ".jpg";
+					System.out.println(image);
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(path + "product\\filter1\\" + image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}
+			
+			System.out.println("filter1 Image Loaded...");
+			file.close();
+			ps.close();
+			con.close();
+			
+		}catch(Exception e) {
+			System.out.println("Couldn't Load filter1 iMAGE!");
+			e.printStackTrace();
+		}
+		return image;
+	}
+	
+	public static String filteredImage2() {
+		String image = "";
+		int increament = 1;
+		try {
+			PreparedStatement ps = null;
+			Connection con = null;
+			FileOutputStream file = null;			
+			
+			String sql = "SELECT * FROM campusestock.product WHERE productCategory = 'Electronic' OR productCategory = 'Baby Products' OR productCategory = 'Gaming'";
+			con = DbConnection.connection();
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					image = rs.getString("productId") + increament + ".jpg";
+					System.out.println(image);
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(path + "product\\filter2\\" + image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}
+			
+			System.out.println("filter2 Image Loaded...");
+			file.close();
+			ps.close();
+			con.close();
+			
+		}catch(Exception e) {
+			System.out.println("Couldn't Load filter2 iMAGE!");
+			e.printStackTrace();
+		}
+		return image;
+	}
+	
+	public static String filteredImage3() {
+		String image = "";
+		int increament = 1;
+		try {
+			PreparedStatement ps = null;
+			Connection con = null;
+			FileOutputStream file = null;			
+			
+			String sql = "SELECT * FROM campusestock.product WHERE productCategory = 'Automobile' OR productCategory = 'Accessories' OR productCategory = 'Others'";
+			con = DbConnection.connection();
+			ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					image = rs.getString("productId") + increament + ".jpg";
+					System.out.println(image);
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(path + "product\\filter3\\" + image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}
+			
+			System.out.println("filter3 Image Loaded...");
+			file.close();
+			ps.close();
+			con.close();
+			
+		}catch(Exception e) {
+			System.out.println("Couldn't Load filter3 iMAGE!");
+			e.printStackTrace();
+		}
+		return image;
+	}
+	
+	//Load Product According to their Categories 
 	public static String accessoriesImage() {
 		String accessories_image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -64,16 +374,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				accessories_image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"accessories\\" + accessories_image);
-				file.write(imageArr);	
-				
-				System.out.println("Accessories Image Loaded...");	
-			}		
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					accessories_image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(path + "accessories\\" + accessories_image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}
+			
+			System.out.println("Accessories Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -87,6 +406,7 @@ public class Loader {
 	
 	public static String automobileImage() {
 		String automobile_image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -96,16 +416,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				automobile_image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"automobile\\" + automobile_image);
-				file.write(imageArr);	
-				
-				System.out.println("Automobile Image Loaded...");	
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					automobile_image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "automobile\\" + automobile_image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
 			}		
+			
+			System.out.println("Automobile Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -119,6 +448,7 @@ public class Loader {
 	
 	public static String babyProductImage() {
 		String babyProduct_image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -128,16 +458,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				babyProduct_image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"babyProduct\\" + babyProduct_image);
-				file.write(imageArr);	
-				
-				System.out.println("Baby Products Image Loaded...");	
-			}		
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					babyProduct_image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "babyProduct\\" + babyProduct_image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}	
+			
+			System.out.println("Baby Products Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -151,6 +490,7 @@ public class Loader {
 	
 	public static String computingImage() {
 		String computing_image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -160,16 +500,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				computing_image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"computing\\" + computing_image);
-				file.write(imageArr);	
-				
-				System.out.println("Computing Image Loaded...");	
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					computing_image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "computing\\" + computing_image );
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
 			}		
+			
+			System.out.println("Computing Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -183,6 +532,7 @@ public class Loader {
 	
 	public static String electronicsImage() {
 		String electronics_Image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -192,16 +542,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				electronics_Image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"electronics\\" + electronics_Image);
-				file.write(imageArr);	
-				
-				System.out.println("Electronics Image Loaded...");	
-			}		
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					electronics_Image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "electronics\\" + electronics_Image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}	
+			
+			System.out.println("Electronics Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -215,6 +574,7 @@ public class Loader {
 	
 	public static String fashionImage() {
 		String fashion_Image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -224,16 +584,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				fashion_Image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"fashion\\" + fashion_Image);
-				file.write(imageArr);	
-				
-				System.out.println("Fashion Image Loaded...");	
-			}		
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					fashion_Image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "fashion\\" + fashion_Image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}	
+			
+			System.out.println("Fashion Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -247,6 +616,7 @@ public class Loader {
 	
 	public static String gamingImage() {
 		String gaming_Image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -256,16 +626,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				gaming_Image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"gaming\\" + gaming_Image);
-				file.write(imageArr);	
-				
-				System.out.println("Gaming Image Loaded...");	
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					gaming_Image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "gaming\\" + gaming_Image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
 			}		
+			
+			System.out.println("Gaming Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -279,6 +658,7 @@ public class Loader {
 	
 	public static String health_beautyImage() {
 		String health_beauty_Image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -288,16 +668,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				health_beauty_Image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"health-beauty\\" + health_beauty_Image);
-				file.write(imageArr);	
-				
-				System.out.println("Health & Beauty Image Loaded...");	
-			}		
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					health_beauty_Image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "healthBeauty\\" + health_beauty_Image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}	
+			
+			System.out.println("Health & Beauty Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -311,6 +700,7 @@ public class Loader {
 	
 	public static String home_officeImage() {
 		String home_office_Image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -320,16 +710,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				home_office_Image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"home-office\\" + home_office_Image);
-				file.write(imageArr);	
-				
-				System.out.println("Home & Office Image Loaded...");	
-			}		
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					home_office_Image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "homeOffice\\" + home_office_Image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}	
+			
+			System.out.println("Home & Office Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -343,6 +742,7 @@ public class Loader {
 	
 	public static String jewelriesImage() {
 		String jewelries_Image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -352,16 +752,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				jewelries_Image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"jewelries\\" + jewelries_Image);
-				file.write(imageArr);	
-				
-				System.out.println("Jewelries Image Loaded...");	
-			}		
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					jewelries_Image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "jewelries\\" + jewelries_Image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}	
+			
+			System.out.println("Jewelries Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -375,6 +784,7 @@ public class Loader {
 	
 	public static String othersImage() {
 		String others_Image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -384,16 +794,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				others_Image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"others\\" + others_Image);
-				file.write(imageArr);	
-				
-				System.out.println("others Image Loaded...");	
-			}		
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					others_Image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "others\\" + others_Image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}	
+			
+			System.out.println("others Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -407,6 +826,7 @@ public class Loader {
 	
 	public static String phones_tabletsImage() {
 		String phones_tablets_Image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -416,16 +836,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				phones_tablets_Image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"phones-tablets\\" + phones_tablets_Image);
-				file.write(imageArr);	
-				
-				System.out.println("Phones & Tablets Image Loaded...");	
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					phones_tablets_Image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "phonesTablets\\" + phones_tablets_Image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
 			}		
+			
+			System.out.println("Phones & Tablets Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -439,6 +868,7 @@ public class Loader {
 	
 	public static String supermarketImage() {
 		String supermarket_Image = "";
+		int increament = 1;
 		try {
 			PreparedStatement ps = null;
 			Connection con = null;
@@ -448,16 +878,25 @@ public class Loader {
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()) {
-				supermarket_Image = rs.getString("productId") + ".jpg";
 				
-				Blob blob = rs.getBlob("prodcutSample2");
-				byte [] imageArr = blob.getBytes(1, (int)blob.length());
-				file = new FileOutputStream(path+"supermarket\\" + supermarket_Image);
-				file.write(imageArr);	
-				
-				System.out.println("Supermarket Image Loaded...");	
-			}		
+				Blob blob;
+				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
+					supermarket_Image = rs.getString("productId") + increament + ".jpg";
+					blob = rs.getBlob("productSample"+imageColumn);
+					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+					file = new FileOutputStream(otherPath + "supermarket\\" + supermarket_Image);
+					file.write(imageArr);	
+					
+					increament++;
+					if(increament > 3) {
+						increament = 1;
+					}	
+				}
+			}	
+			
+			System.out.println("Supermarket Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
@@ -470,114 +909,99 @@ public class Loader {
 	}
 	
 	//Load Product Image by ID
-			public static String productImage1(String id) {
-				String image = "";
-				try {
-					PreparedStatement ps = null;
-					Connection con = null;
-					FileOutputStream file = null;			
-					
-					String sql = "select * from campusestock.product where productId =?";
-					con = DbConnection.connection();
-					ps = con.prepareStatement(sql);
-					ps.setString(1, id);
-					ResultSet rs = ps.executeQuery();
-					rs.next();
-					image = id+"p.jpg";
-					Blob blob = rs.getBlob("productSample1");
-					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path+"product\\details\\" + image);
-					file.write(imageArr);	
-					System.out.println("Product Image1 Loaded...");
-					file.close();
-					ps.close();
-					con.close();
-					
-				}catch(Exception e) {
-					System.out.println("Couldn't Load Product IMAGE!");
-					e.printStackTrace();
-				}
-				return image;
-			}
-			//Load Product Image by ID
-					public static String productImage2(String id) {
-						String image = "";
-						try {
-							PreparedStatement ps = null;
-							Connection con = null;
-							FileOutputStream file = null;			
-							
-							String sql = "select * from campusestock.product where productId =?";
-							con = DbConnection.connection();
-							ps = con.prepareStatement(sql);
-							ps.setString(1, id);
-							ResultSet rs = ps.executeQuery();
-							rs.next();
-							image = id+"w.jpg";
-							Blob blob = rs.getBlob("productSample2");
-							byte [] imageArr = blob.getBytes(1, (int)blob.length());
-							file = new FileOutputStream(path+"product\\details\\" + image);
-							file.write(imageArr);	
-							System.out.println("Product Image2 Loaded...");
-							file.close();
-							ps.close();
-							con.close();
-							
-						}catch(Exception e) {
-							System.out.println("Couldn't Load Product IMAGE!");
-							e.printStackTrace();
-						}
-						return image;
-					}
-					//Load Product Image by ID
-					public static String productImage3(String id) {
-						String image = "";
-						try {
-							PreparedStatement ps = null;
-							Connection con = null;
-							FileOutputStream file = null;			
-							
-							String sql = "select * from campusestock.product where productId =?";
-							con = DbConnection.connection();
-							ps = con.prepareStatement(sql);
-							ps.setString(1, id);
-							ResultSet rs = ps.executeQuery();
-							rs.next();
-							image = id+"s.jpg";
-							Blob blob = rs.getBlob("productSample3");
-							byte [] imageArr = blob.getBytes(1, (int)blob.length());
-							file = new FileOutputStream(path+"product\\details\\" + image);
-							file.write(imageArr);	
-							System.out.println("Product Image3 Loaded...");
-							file.close();
-							ps.close();
-							con.close();
-							
-						}catch(Exception e) {
-							System.out.println("Couldn't Load Product IMAGE!");
-							e.printStackTrace();
-						}
-						return image;
-					}
+//			public static String productImage1(String id) {
+//				String image = "";
+//				try {
+//					PreparedStatement ps = null;
+//					Connection con = null;
+//					FileOutputStream file = null;			
+//					
+//					String sql = "select * from campusestock.product where productId =?";
+//					con = DbConnection.connection();
+//					ps = con.prepareStatement(sql);
+//					ps.setString(1, id);
+//					ResultSet rs = ps.executeQuery();
+//					rs.next();
+//					image = id+"p.jpg";
+//					Blob blob = rs.getBlob("productSample1");
+//					byte [] imageArr = blob.getBytes(1, (int)blob.length());
+//					file = new FileOutputStream(path+"product\\details\\" + image);
+//					file.write(imageArr);	
+//					System.out.println("Product Image1 Loaded...");
+//					file.close();
+//					ps.close();
+//					con.close();
+//					
+//				}catch(Exception e) {
+//					System.out.println("Couldn't Load Product IMAGE!");
+//					e.printStackTrace();
+//				}
+//				return image;
+//			}
+//			//Load Product Image by ID
+//					public static String productImage2(String id) {
+//						String image = "";
+//						try {
+//							PreparedStatement ps = null;
+//							Connection con = null;
+//							FileOutputStream file = null;			
+//							
+//							String sql = "select * from campusestock.product where productId =?";
+//							con = DbConnection.connection();
+//							ps = con.prepareStatement(sql);
+//							ps.setString(1, id);
+//							ResultSet rs = ps.executeQuery();
+//							rs.next();
+//							image = id+"w.jpg";
+//							Blob blob = rs.getBlob("productSample2");
+//							byte [] imageArr = blob.getBytes(1, (int)blob.length());
+//							file = new FileOutputStream(path+"product\\details\\" + image);
+//							file.write(imageArr);	
+//							System.out.println("Product Image2 Loaded...");
+//							file.close();
+//							ps.close();
+//							con.close();
+//							
+//						}catch(Exception e) {
+//							System.out.println("Couldn't Load Product IMAGE!");
+//							e.printStackTrace();
+//						}
+//						return image;
+//					}
+//					//Load Product Image by ID
+//					public static String productImage3(String id) {
+//						String image = "";
+//						try {
+//							PreparedStatement ps = null;
+//							Connection con = null;
+//							FileOutputStream file = null;			
+//							
+//							String sql = "select * from campusestock.product where productId =?";
+//							con = DbConnection.connection();
+//							ps = con.prepareStatement(sql);
+//							ps.setString(1, id);
+//							ResultSet rs = ps.executeQuery();
+//							rs.next();
+//							image = id+"s.jpg";
+//							Blob blob = rs.getBlob("productSample3");
+//							byte [] imageArr = blob.getBytes(1, (int)blob.length());
+//							file = new FileOutputStream(path+"product\\details\\" + image);
+//							file.write(imageArr);	
+//							System.out.println("Product Image3 Loaded...");
+//							file.close();
+//							ps.close();
+//							con.close();
+//							
+//						}catch(Exception e) {
+//							System.out.println("Couldn't Load Product IMAGE!");
+//							e.printStackTrace();
+//						}
+//						return image;
+//					}
 	
-					//Delete all Existing Image in Folder
-					public static void deleteProductImage(){
-						File file=new File(path+"product\\details\\");
-						File [] dirListing = file.listFiles();
-						if(dirListing != null){
-							for (File fl: dirListing){
-								file.delete();
-								fl.delete();
-							}
-							System.out.println("Initial Files deleted...");
-						}else {
-							System.out.println("iMAGE folder is empty!");
-						}
-					}				
-					
 	//Delete all Existing Image in Folder
-	public static void deleteImage(){
-		File file=new File(path+"allImage\\");
+	public static void deleteProductImage(){
+		File file=new File(path+"product\\vendorDetails\\");
 		File [] dirListing = file.listFiles();
 		if(dirListing != null){
 			for (File fl: dirListing){
@@ -588,24 +1012,38 @@ public class Loader {
 		}else {
 			System.out.println("iMAGE folder is empty!");
 		}
-	}
+	}				
+					
+	public static void deleteProductImageInProductDetails(){
+		File file=new File(path+"product\\productDetails\\");
+		File [] dirListing = file.listFiles();
+		if(dirListing != null){
+			for (File fl: dirListing){
+				file.delete();
+				fl.delete();
+			}
+			System.out.println("Initial Files deleted...");
+		}else {
+			System.out.println("iMAGE folder is empty!");
+		}
+	}								
 	
 	public static void deleteImageInCategoryFolders(){
 		ArrayList <String> filePaths = new ArrayList<String>();
 		
-		filePaths.add(path+"accessories\\");
-		filePaths.add(path+"automobile\\");
-		filePaths.add(path+"babyProduct\\");
-		filePaths.add(path+"computing\\");
-		filePaths.add(path+"electronics\\");
-		filePaths.add(path+"fashion\\");
-		filePaths.add(path+"gaming\\");
-		filePaths.add(path+"health-beauty\\");
-		filePaths.add(path+"home-office\\");
-		filePaths.add(path+"jewelries\\");
-		filePaths.add(path+"others\\");
-		filePaths.add(path+"phones-tablets\\");
-		filePaths.add(path+"supermarket\\");
+		filePaths.add(path + "accessories\\");
+		filePaths.add(path + "automobile\\");
+		filePaths.add(path + "babyProduct\\");
+		filePaths.add(path + "computing\\");
+		filePaths.add(path + "electronics\\");
+		filePaths.add(path + "fashion\\");
+		filePaths.add(path + "gaming\\");
+		filePaths.add(path + "healthBeauty\\");
+		filePaths.add(path + "homeOffice\\");
+		filePaths.add(path + "jewelries\\");
+		filePaths.add(path + "others\\");
+		filePaths.add(path + "phonesTablets\\");
+		filePaths.add(path + "supermarket\\");
 		
 		for (String fp: filePaths) {
 			path = fp;
@@ -619,6 +1057,33 @@ public class Loader {
 					fl.delete();
 				}
 				System.out.println("Initial Files deleted...");
+			}else {
+				System.out.println("iMAGE folder is empty!");
+			}
+		}
+	}
+	
+	public static void deleteImageInIndex(){
+		ArrayList <String> filePaths = new ArrayList<String>();
+		
+		filePaths.add(path + "product\\filter1\\");
+		filePaths.add(path + "product\\filter2\\");
+		filePaths.add(path + "product\\filter3\\");
+		filePaths.add(path + "product\\featuredProduct\\");
+		filePaths.add(path + "allImage\\");
+		
+		for (String fp: filePaths) {
+			path = fp;
+			
+			File file=new File(fp);
+			File [] dirListing = file.listFiles();
+			
+			if(dirListing != null){
+				for (File fl: dirListing){
+					file.delete();
+					fl.delete();
+				}
+				System.out.println("All Images in Index deleted...");
 			}else {
 				System.out.println("iMAGE folder is empty!");
 			}

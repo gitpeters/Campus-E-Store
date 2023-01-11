@@ -406,7 +406,7 @@ aside .logo img {
                         List <Product> product = DAO.getProductByVendorID(vendor.getVendorId());
                         	if(product!=null){
                         		for(Product p:product){
-                        			out.println("<tr><td>"+p.getProductId()+"</td><td>"+p.getProductName()+"</td><td>"+p.getProductCondition()+"</td><td>"+p.getProductCategory()+"</td><td>"+p.getProductStatus()+"</td><td><form action='vendor-view-details.jsp' method='post'><input type='hidden' name='productID' value='"+p.getProductId()+"'/><button type='submit' class='submit-btn'>View</button></form></td></tr>");
+                        			out.println("<tr><td>"+p.getProductId()+"</td><td>"+p.getProductName()+"</td><td>"+p.getProductCondition()+"</td><td>"+p.getProductCategory()+"</td><td>"+p.getProductStatus()+"</td><td><form action='VendorView' method='post'><input type='hidden' name='productID' value='"+p.getProductId()+"'/><button type='submit' class='submit-btn'>View</button></form></td></tr>");
                         		}
                         		
                         	}else{
