@@ -5,6 +5,7 @@
     <%@page import="model.*"%>
     <%@page import="dao.*"%>
     <%@page import="imageLoader.*"%>
+	<%@page import="java.io.File"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -178,27 +179,53 @@
 </head>
 <body>
 
-<%! String productID ="", productName="", productCategory="", productStatus ="", productDescription ="", productCondition="", productImage1="", productImage2="", productImage3=""; double productAmount =0.0; %>
+<%! String productID ="", productName="", productCategory="", productStatus ="", productDescription ="", productCondition="", productImage1="", productImage2="", productImage3="", path=""; 
+double productAmount =0.0; 
+File [] dirListing;%>
 
 <% 
-Vendor vendor = (Vendor)session.getAttribute("vendor");
-
-if (vendor.getVendorId() != null){
+	Vendor vendor = (Vendor)session.getAttribute("vendor");
 	
-}else{
-	response.sendRedirect("index.jsp");
-}
-
-List <Product> product = DAO.getProductDetailsWithList(request.getParameter("productID"));
-	for(Product p:product){
-		productID = p.getProductId();
-		productName = p.getProductName();
-		productCategory = p.getProductCategory();
-		productCondition = p.getProductCondition();
-		productStatus = p.getProductStatus();
-		productAmount = p.getProductAmount();
-		productDescription = p.getProductDescription();
+	if (vendor.getVendorId() != null){
+		
+	}else{
+		response.sendRedirect("index.jsp");
 	}
+	
+	productID = (String)session.getAttribute("productId");
+	
+	List <Product> product = DAO.getProductDetailsWithList(productID);
+		for(Product p:product){
+
+			productID = p.getProductId();
+			productName = p.getProductName();
+			productCategory = p.getProductCategory();
+			productCondition = p.getProductCondition();
+			productStatus = p.getProductStatus();
+			productAmount = p.getProductAmount();
+			productDescription = p.getProductDescription();
+		}
+		
+		Loader ld = new Loader();
+		ld.deleteProductImage();
+		ld.imageSampleById(productID);
+		path = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\vendorDetails\\";
+		File dir = new File(path).getAbsoluteFile();
+		dirListing = dir.listFiles();
+		 if(dirListing != null){
+			 for (File fl: dirListing){
+				 String imageName = fl.getName();
+				 if(imageName.equals(productID + "1.jpg")){
+						productImage1 = fl.getName();
+					}else if(imageName.equals(productID + "2.jpg")){
+						productImage2 = fl.getName();
+					}else if(imageName.equals(productID + "3.jpg")){
+						productImage3 = fl.getName();
+					}
+				}
+	        }else{
+				System.out.println("Image File is empty!");
+			}
 %>
 
    <!-- Page Preloder -->
@@ -364,16 +391,6 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
     </section>
     <!-- Breadcrumb Section End -->
     
-    <% 
-    
-    	String pID = request.getParameter("productID");
-        productImage1 = Loader.productImage1(pID);
-        productImage2 = Loader.productImage2(pID);
-        productImage3 = Loader.productImage3(pID);
-        
-        Thread.sleep(2000);
-    %>
-
     <!-- Product Details Section Begin -->
     <section class="product-details spad">
       <div class="container">
@@ -383,24 +400,24 @@ List <Product> product = DAO.getProductDetailsWithList(request.getParameter("pro
               <div class="product__details__pic__item">
                 <img
                   class="product__details__pic__item--large"
-                  src="img/product/details/<%= productImage1%>"
+                  src="img/product/vendorDetails/<%= productImage1%>"
                   alt=""
                 />
               </div>
               <div class="product__details__pic__slider owl-carousel">
                 <img
-                  data-imgbigurl="img/product/details/<%= productImage1%>"
-                  src="img/product/details/<%= productImage1%>"
+                  data-imgbigurl="img/product/vendorDetails/<%= productImage1%>"
+                  src="img/product/vendorDetails/<%= productImage1%>"
                   alt=""
                 />
                 <img
-                  data-imgbigurl="img/product/details/<%= productImage2%>"
-                  src="img/product/details/<%= productImage2%>"
+                  data-imgbigurl="img/product/vendorDetails/<%= productImage2%>"
+                  src="img/product/vendorDetails/<%= productImage2%>"
                   alt=""
                 />
                 <img
-                  data-imgbigurl="img/product/details/<%= productImage3%>"
-                  src="img/product/details/<%= productImage3%>"
+                  data-imgbigurl="img/product/vendorDetails/<%= productImage3%>"
+                  src="img/product/vendorDetails/<%= productImage3%>"
                   alt=""
                 />
               </div>

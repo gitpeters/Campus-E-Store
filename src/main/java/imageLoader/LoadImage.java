@@ -1,28 +1,30 @@
 package imageLoader;
 
+import java.sql.Blob;
+
 public class LoadImage {
-	private byte [] sample1;
-	private byte [] sample2;
-	private byte [] sample3;
+	private Blob sample1;
+	private Blob sample2;
+	private Blob sample3;
 	private String base64Image;
 	private String productId;
 	
-	public byte[] getSample1() {
+	public Blob getSample1() {
 		return sample1;
 	}
-	public void setSample1(byte[] sample1) {
-		this.sample1 = sample1;
+	public void setSample1(Blob blob) {
+		this.sample1 = blob;
 	}
-	public byte[] getSample2() {
+	public Blob getSample2() {
 		return sample2;
 	}
-	public void setSample2(byte[] sample2) {
+	public void setSample2(Blob sample2) {
 		this.sample2 = sample2;
 	}
-	public byte[] getSample3() {
+	public Blob getSample3() {
 		return sample3;
 	}
-	public void setSample3(byte[] sample3) {
+	public void setSample3(Blob sample3) {
 		this.sample3 = sample3;
 	}
 	public String getBase64Image() {

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.ArrayList"%>
+    <%@page import="java.util.List"%>
+    <%@page import="model.*"%>
+    <%@page import="dao.*"%>
+    <%@page import="imageLoader.*"%>
+	<%@page import="java.io.File"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,6 +178,46 @@
 </style>
 </head>
 <body>
+<%! String productID ="", productName="", productCategory="", productStatus ="", productDescription ="", productCondition="", productImage1="", productImage2="", productImage3="", path=""; 
+double productAmount =0.0; 
+File [] dirListing;%>
+
+<% 
+	productID = (String)session.getAttribute("productId");
+	
+	List <Product> product = DAO.getProductDetailsWithList(productID);
+		for(Product p:product){
+
+			productID = p.getProductId();
+			productName = p.getProductName();
+			productCategory = p.getProductCategory();
+			productCondition = p.getProductCondition();
+			productStatus = p.getProductStatus();
+			productAmount = p.getProductAmount();
+			productDescription = p.getProductDescription();
+		}
+		
+		Loader ld = new Loader();
+		ld.deleteProductImageInProductDetails();
+		ld.imageSampleByIdForProduct(productID);
+		path = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\productDetails\\";
+		File dir = new File(path).getAbsoluteFile();
+		dirListing = dir.listFiles();
+		 if(dirListing != null){
+			 for (File fl: dirListing){
+				 String imageName = fl.getName();
+				 if(imageName.equals(productID + "1.jpg")){
+						productImage1 = fl.getName();
+					}else if(imageName.equals(productID + "2.jpg")){
+						productImage2 = fl.getName();
+					}else if(imageName.equals(productID + "3.jpg")){
+						productImage3 = fl.getName();
+					}
+				}
+	        }else{
+				System.out.println("Image File is empty!");
+			}
+%>
 
    <!-- Page Preloder -->
     <div id="preloder">
@@ -323,11 +369,11 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <div class="breadcrumb__text">
-              <h2>Vegetable’s Package</h2>
+              <h2><%= productName %></h2>
               <div class="breadcrumb__option">
                 <a href="./index.jsp">Home</a>
-                <a href="./index.jsp">Vegetables</a>
-                <span>Vegetable’s Package</span>
+                <a href="./index.jsp"><%= productCategory %></a>
+                <span><%= productName %></span>
               </div>
             </div>
           </div>
@@ -345,29 +391,24 @@
               <div class="product__details__pic__item">
                 <img
                   class="product__details__pic__item--large"
-                  src="img/product/details/product-details-1.jpg"
+                  src="img/product/productDetails/<%= productImage1%>"
                   alt=""
                 />
               </div>
               <div class="product__details__pic__slider owl-carousel">
                 <img
-                  data-imgbigurl="img/product/details/product-details-2.jpg"
-                  src="img/product/details/thumb-1.jpg"
+                  data-imgbigurl="img/product/productDetails/<%= productImage1%>"
+                  src="img/product/productDetails/<%= productImage1%>"
                   alt=""
                 />
                 <img
-                  data-imgbigurl="img/product/details/product-details-3.jpg"
-                  src="img/product/details/thumb-2.jpg"
+                  data-imgbigurl="img/product/productDetails/<%= productImage2%>"
+                  src="img/product/productDetails/<%= productImage2%>"
                   alt=""
                 />
                 <img
-                  data-imgbigurl="img/product/details/product-details-5.jpg"
-                  src="img/product/details/thumb-3.jpg"
-                  alt=""
-                />
-                <img
-                  data-imgbigurl="img/product/details/product-details-4.jpg"
-                  src="img/product/details/thumb-4.jpg"
+                  data-imgbigurl="img/product/productDetails/<%= productImage3%>"
+                  src="img/product/productDetails/<%= productImage3%>"
                   alt=""
                 />
               </div>
@@ -375,7 +416,7 @@
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="product__details__text">
-              <h3>Vetgetable’s Package</h3>
+              <h3><%= productName%></h3>
               <div class="product__details__rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -384,12 +425,9 @@
                 <i class="fa fa-star-half-o"></i>
                 <span>(18 reviews)</span>
               </div>
-              <div class="product__details__price">$50.00</div>
+              <div class="product__details__price">&#8358;<span id="amount"><%= productAmount%></span></div>
               <p>
-                Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam
-                vehicula elementum sed sit amet dui. Proin eget tortor risus.
+                <%= productDescription%>
               </p>
               <div class="product__details__quantity">
                 <div class="quantity">
@@ -405,7 +443,7 @@
                 ><span class="icon_heart_alt"></span
               ></a>
               <ul>
-                <li><b>Availability</b> <span>In Stock</span></li>
+                <li><b>Availability</b> <span><%= productStatus %></span></li>
                 <li>
                   <b>Shipping</b>
                   <span>01 day shipping. <samp>Free pickup today</samp></span>
