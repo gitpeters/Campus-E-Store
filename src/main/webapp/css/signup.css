@@ -9,6 +9,11 @@
 }
 
 
+body{
+	position: relative;
+}
+
+
 .main {
   position: absolute;
   top: 55%;
@@ -48,7 +53,7 @@
 @media only screen and (min-width: 1200px){
   .main {
     transform: scale(1);
-    left: 18%; 
+    left: 50%; 
     margin-top: -200px;
   }
 }

@@ -32,6 +32,12 @@ public class ProductDetails extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("productId", productId);
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher("product-details.jsp").forward(request, response);
 	}
 

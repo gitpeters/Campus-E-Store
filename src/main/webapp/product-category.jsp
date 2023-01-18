@@ -584,7 +584,7 @@
 									</div>
 									<div class="featured__item__text">
 										<h6>
-											<a href="#"><%=productName %></a>
+											<a href="ProductDetails?productId=<%=prodId %>"><%=productName %></a>
 										</h6>
 										<h5>&#8358;<%=productAmount %></h5>
 									</div>

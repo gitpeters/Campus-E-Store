@@ -36,7 +36,7 @@ public class Loader {
 					image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "allImage\\" + image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -122,7 +122,7 @@ public class Loader {
 					image = productId + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "product\\productDetails\\" + image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\productDetails\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -144,8 +144,8 @@ public class Loader {
 		return image;
 	}
 	
-	//Load Product Image by Category 
-	public static String imageSampleByCategory(String category) {
+	//Load Related Images 
+	public static String relatedImage(String category) {
 		String image = "";
 		int increament = 1;
 		try {
@@ -153,7 +153,7 @@ public class Loader {
 			Connection con = null;
 			FileOutputStream file = null;			
 			
-			String sql = "SELECT productSample1, productSample2, productSample3 FROM campusestock.product WHERE productId = '"+category+"'";
+			String sql = "SELECT * FROM campusestock.product WHERE productCategory = '"+category+"'";
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -175,13 +175,13 @@ public class Loader {
 				}
 			}
 			
-			System.out.println("Image Loaded...");
+			System.out.println("Related Image Loaded...");
 			file.close();
 			ps.close();
 			con.close();
 			
 		}catch(Exception e) {
-			System.out.println("Couldn't Load iMAGE!");
+			System.out.println("Couldn't Load Related iMAGE!");
 			e.printStackTrace();
 		}
 		return image;
@@ -206,10 +206,9 @@ public class Loader {
 				Blob blob;
 				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
 					image = rs.getString("productId") + increament + ".jpg";
-					System.out.println(image);
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "product\\featuredProduct\\" + image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\featuredProduct\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -250,10 +249,9 @@ public class Loader {
 				Blob blob;
 				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
 					image = rs.getString("productId") + increament + ".jpg";
-					System.out.println(image);
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "product\\filter1\\" + image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter1\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -286,17 +284,16 @@ public class Loader {
 			String sql = "SELECT * FROM campusestock.product WHERE productCategory = 'Electronic' OR productCategory = 'Baby Products' OR productCategory = 'Gaming'";
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery(); 
 			
 			while(rs.next()) {
 				
 				Blob blob;
 				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
 					image = rs.getString("productId") + increament + ".jpg";
-					System.out.println(image);
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "product\\filter2\\" + image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter2\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -336,10 +333,9 @@ public class Loader {
 				Blob blob;
 				for (int imageColumn = 1; imageColumn <= 3; imageColumn++) {
 					image = rs.getString("productId") + increament + ".jpg";
-					System.out.println(image);
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "product\\filter3\\" + image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter3\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -382,7 +378,7 @@ public class Loader {
 					accessories_image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "accessories\\" + accessories_image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\accessories\\" + accessories_image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -424,7 +420,7 @@ public class Loader {
 					automobile_image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "automobile\\" + automobile_image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\automobile\\" + automobile_image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -466,7 +462,7 @@ public class Loader {
 					babyProduct_image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "babyProduct\\" + babyProduct_image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\babyProduct\\" + babyProduct_image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -508,7 +504,7 @@ public class Loader {
 					computing_image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "computing\\" + computing_image );
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\computing\\" + computing_image );
 					file.write(imageArr);	
 					
 					increament++;
@@ -550,7 +546,7 @@ public class Loader {
 					electronics_Image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "electronics\\" + electronics_Image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\electronics\\" + electronics_Image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -592,7 +588,7 @@ public class Loader {
 					fashion_Image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "fashion\\" + fashion_Image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\fashion\\" + fashion_Image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -634,7 +630,7 @@ public class Loader {
 					gaming_Image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "gaming\\" + gaming_Image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\gaming\\" + gaming_Image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -676,7 +672,7 @@ public class Loader {
 					health_beauty_Image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "healthBeauty\\" + health_beauty_Image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\healthBeauty\\" + health_beauty_Image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -718,7 +714,7 @@ public class Loader {
 					home_office_Image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "homeOffice\\" + home_office_Image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\homeOffice\\" + home_office_Image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -760,7 +756,7 @@ public class Loader {
 					jewelries_Image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "jewelries\\" + jewelries_Image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\jewelries\\" + jewelries_Image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -802,7 +798,7 @@ public class Loader {
 					others_Image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "others\\" + others_Image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\others\\" + others_Image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -844,7 +840,7 @@ public class Loader {
 					phones_tablets_Image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "phonesTablets\\" + phones_tablets_Image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\phonesTablets\\" + phones_tablets_Image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -886,7 +882,7 @@ public class Loader {
 					supermarket_Image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(otherPath + "supermarket\\" + supermarket_Image);
+					file = new FileOutputStream("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\supermarket\\" + supermarket_Image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -1014,6 +1010,21 @@ public class Loader {
 		}
 	}				
 					
+	//Delete all Existing Image in Folder
+	public static void deleteRelatedProductImage(){
+		File file=new File(path+"product\\relatedProduct\\");
+		File [] dirListing = file.listFiles();
+		if(dirListing != null){
+			for (File fl: dirListing){
+				file.delete();
+				fl.delete();
+			}
+			System.out.println("Initial Files deleted...");
+		}else {
+			System.out.println("iMAGE folder is empty!");
+		}
+	}				
+	
 	public static void deleteProductImageInProductDetails(){
 		File file=new File(path+"product\\productDetails\\");
 		File [] dirListing = file.listFiles();

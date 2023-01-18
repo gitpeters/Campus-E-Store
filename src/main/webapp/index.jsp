@@ -68,7 +68,7 @@ body{
 @media only screen and (min-width: 1200px) {
 	.main {
 		transform: scale(1);
-		left: 18%;
+		left: 50%;
 		margin-top: -200px;
 	}
 }
@@ -684,6 +684,7 @@ translateX
                     <span class="arrow_carrot-down"></span>
                   </div> -->
 									<input type="text" placeholder="What do yo u need?" />
+									
 									<button type="submit" class="site-btn">SEARCH</button>
 								</form>
 							</div>
@@ -884,37 +885,35 @@ translateX
 									<div class="latest-prdouct__slider__item">
 								<%
 									Loader filter1 = new Loader();
-									filter1.featuredProducts();
+									int count = 0;
+									filter1.filteredImage1();
 									ArrayList <File> filterImage1 = new ArrayList <File>();
-									String path3 = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter1\\";
-									File dir3 = new File(path3).getAbsoluteFile();
+									File dir3 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter1\\").getAbsoluteFile();
 									dirListing = dir3.listFiles();
 									 if(dirListing != null){
 										 for (File fl: dirListing){
-											 featuredImage.add(fl);
+											 filterImage1.add(fl);
 											}
-											Collections.shuffle(filterImage1);
-											for(int i = 1; i <= 3; i++){
+												Collections.shuffle(filterImage1);
 												for(File imageIndex: filterImage1){	
-												 String imageName = imageIndex.getName();
-												 productID = imageName.substring(0, 9);
-												 
-												 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID);
-													for(Product p:product){
-									
-														productID1 = p.getProductId();
-														prodName1 = p.getProductName();
-														productCategory1 = p.getProductCategory();
-														productCondition1 = p.getProductCondition();
-														productStatus1 = p.getProductStatus();
-														productAmt1 = p.getProductAmount();
-														productDescription1 = p.getProductDescription();
-													}
-													if(productCategory1.equals("Phones & Tablets")){
-														productCategory1 = "Phones";
-												}
+													if(filterImage1.indexOf(imageIndex) < 3){
+													 String imageName = imageIndex.getName();
+													 productID1 = imageName.substring(0, 9);
+													 
+													 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID1);
+														for(Product p:product){
+										
+															productID1 = p.getProductId();
+															prodName1 = p.getProductName();
+															productCategory1 = p.getProductCategory();
+															productCondition1 = p.getProductCondition();
+															productStatus1 = p.getProductStatus();
+															productAmt1 = p.getProductAmount();
+															productDescription1 = p.getProductDescription();
+														}
+														
 								%>
-									<a href="#" class="latest-product__item">
+									<a href="ProductDetails?productId=<%=productID1 %>" class="latest-product__item">
 										<div class="latest-product__item__pic">
 											<img src="img/product/filter1/<%= imageName %>" alt="" />
 										</div>
@@ -924,8 +923,8 @@ translateX
 										</div>
 									</a> 
 								<%
+													}
 										 }
-									 }
 							        }else{
 										System.out.println("Image File is empty!");
 									}
@@ -936,33 +935,6 @@ translateX
 								}
 								%>
 								
-								<div class="latest-prdouct__slider__item">
-									<a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-1.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;30,000.00</span>
-										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-2.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;30,000.00</span>
-										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-3.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;30,000.00</span>
-										</div>
-									</a>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -970,60 +942,67 @@ translateX
 						<div class="latest-product__text">
 							<h4>Top Rated Products</h4>
 							<div class="latest-product__slider owl-carousel">
-								<div class="latest-prdouct__slider__item">
-									<a href="#" class="latest-product__item">
+							
+							<%! String productID2 ="", prodName2 ="", productCategory2 ="", productStatus2 ="", productDescription2 ="", productCondition2 ="", path4 =""; 
+								double productAmt2 =0.0;%>
+								
+								<%	
+								for(int rept = 1; rept <= 3; rept++){
+									
+								%>
+									<div class="latest-prdouct__slider__item">
+								<%
+									Loader filter2 = new Loader();
+									int count = 0;
+									filter2.filteredImage2();
+									ArrayList <File> filterImage2 = new ArrayList <File>();
+									File dir4 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter2\\").getAbsoluteFile();
+									dirListing = dir4.listFiles();
+									 if(dirListing != null){
+										 for (File fl: dirListing){
+											 filterImage2.add(fl);
+											}
+												Collections.shuffle(filterImage2);
+												for(File imageIndex: filterImage2){	
+													if(filterImage2.indexOf(imageIndex) < 3){
+													 String imageName = imageIndex.getName();
+													 productID2 = imageName.substring(0, 9);
+													 
+													 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID2);
+														for(Product p:product){
+										
+															productID2 = p.getProductId();
+															prodName2 = p.getProductName();
+															productCategory2 = p.getProductCategory();
+															productCondition2 = p.getProductCondition();
+															productStatus2 = p.getProductStatus();
+															productAmt2 = p.getProductAmount();
+															productDescription2 = p.getProductDescription();
+														}
+														
+								%>
+									<a href="ProductDetails?productId=<%=productID2 %>" class="latest-product__item">
 										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-1.jpg" alt="" />
+											<img src="img/product/filter1/<%= imageName %>" alt="" />
 										</div>
 										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
+											<h6><%= prodName2 %></h6>
+											<span>&#8358;<%= productAmt2 %></span>
 										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-2.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-3.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a>
+									</a> 
+								<%
+													}
+										 }
+							        }else{
+										System.out.println("Image File is empty!");
+									}
+									 
+								%>
 								</div>
-								<div class="latest-prdouct__slider__item">
-									<a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-1.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-2.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-3.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a>
-								</div>
+								<%
+								}
+								%>
+								
 							</div>
 						</div>
 					</div>
@@ -1031,7 +1010,66 @@ translateX
 						<div class="latest-product__text">
 							<h4>Review Products</h4>
 							<div class="latest-product__slider owl-carousel">
-								<div class="latest-prdouct__slider__item">
+								<%! String productID3 ="", prodName3 ="", productCategory3 ="", productStatus3 ="", productDescription3 ="", productCondition3 ="", path5 =""; 
+								double productAmt3 =0.0;%>
+								
+								<%	
+								for(int rept = 1; rept <= 3; rept++){
+									
+								%>
+									<div class="latest-prdouct__slider__item">
+								<%
+									Loader filter3 = new Loader();
+									int count = 0;
+									filter3.filteredImage3();
+									ArrayList <File> filterImage3 = new ArrayList <File>();
+									File dir5 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter3\\").getAbsoluteFile();
+									dirListing = dir5.listFiles();
+									 if(dirListing != null){
+										 for (File fl: dirListing){
+											 filterImage3.add(fl);
+											}
+												Collections.shuffle(filterImage3);
+												for(File imageIndex: filterImage3){	
+													if(filterImage3.indexOf(imageIndex) < 3){
+													 String imageName = imageIndex.getName();
+													 productID3 = imageName.substring(0, 9);
+													 
+													 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID3);
+														for(Product p:product){
+										
+															productID3 = p.getProductId();
+															prodName3 = p.getProductName();
+															productCategory3 = p.getProductCategory();
+															productCondition3 = p.getProductCondition();
+															productStatus3 = p.getProductStatus();
+															productAmt3 = p.getProductAmount();
+															productDescription3 = p.getProductDescription();
+														}
+														
+								%>
+									<a href="ProductDetails?productId=<%=productID3 %>" class="latest-product__item">
+										<div class="latest-product__item__pic">
+											<img src="img/product/filter1/<%= imageName %>" alt="" />
+										</div>
+										<div class="latest-product__item__text">
+											<h6><%= prodName3 %></h6>
+											<span>&#8358;<%= productAmt3 %></span>
+										</div>
+									</a> 
+								<%
+													}
+										 }
+							        }else{
+										System.out.println("Image File is empty!");
+									}
+									 
+								%>
+								</div>
+								<%
+								}
+								%>
+								<!-- <div class="latest-prdouct__slider__item">
 									<a href="#" class="latest-product__item">
 										<div class="latest-product__item__pic">
 											<img src="img/latest-product/lp-1.jpg" alt="" />
@@ -1057,34 +1095,7 @@ translateX
 											<span>&#8358;10,000.00</span>
 										</div>
 									</a>
-								</div>
-								<div class="latest-prdouct__slider__item">
-									<a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-1.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-2.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-3.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>

@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.util.ArrayList"%>
     <%@page import="java.util.List"%>
+    <%@page import="java.util.*"%>
     <%@page import="model.*"%>
     <%@page import="dao.*"%>
     <%@page import="imageLoader.*"%>
@@ -198,10 +199,12 @@ File [] dirListing;%>
 		}
 		
 		Loader ld = new Loader();
+		Loader ld2 = new Loader();
 		ld.deleteProductImageInProductDetails();
 		ld.imageSampleByIdForProduct(productID);
-		path = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\productDetails\\";
-		File dir = new File(path).getAbsoluteFile();
+		ld2.deleteRelatedProductImage();
+		ld2.relatedImage(productCategory);
+		File dir = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\productDetails\\").getAbsoluteFile();
 		dirListing = dir.listFiles();
 		 if(dirListing != null){
 			 for (File fl: dirListing){
@@ -600,31 +603,66 @@ File [] dirListing;%>
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/product/product-1.jpg"
-              >
-                <ul class="product__item__pic__hover">
-                  <li>
-                    <a href="#"><i class="fa fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-retweet"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Crab Pool Security</a></h6>
-                <h5>$30.00</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
+        <%! String productID1 ="", prodName1="", productCategory1="", productStatus1 ="", productDescription1 ="", productCondition1="", path1=""; 
+				double productAmt1 =0.0;%>
+				
+				<%	ArrayList <File> relatedProduct = new ArrayList <File>();
+					File dir2 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\relatedProduct\\").getAbsoluteFile();
+					dirListing = dir2.listFiles();
+					 if(dirListing != null){
+						 for (File fl: dirListing){
+							 relatedProduct.add(fl);
+							}
+							Collections.shuffle(relatedProduct);
+							for(File imageIndex: relatedProduct){	
+							 String imageName = imageIndex.getName();
+							 productID1 = imageName.substring(0, 9);
+							 
+							 List <Product> product2 = (List <Product>)DAO.getProductDetailsWithList(productID1);
+								for(Product p:product2){
+				
+									productID1 = p.getProductId();
+									prodName1 = p.getProductName();
+									productCategory1 = p.getProductCategory();
+									productCondition1 = p.getProductCondition();
+									productStatus1 = p.getProductStatus();
+									productAmt1 = p.getProductAmount();
+									productDescription1 = p.getProductDescription();
+								}
+				%>
+				          <div class="col-lg-3 col-md-4 col-sm-6">
+				            <div class="product__item">
+				              <div
+				                class="product__item__pic set-bg"
+				                data-setbg="img/product/relatedProduct/<%= imageName %>"
+				              >
+				                <ul class="product__item__pic__hover">
+				                  <li>
+				                    <a href="#"><i class="fa fa-heart"></i></a>
+				                  </li>
+				                  <li>
+				                    <a href="#"><i class="fa fa-retweet"></i></a>
+				                  </li>
+				                  <li>
+				                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
+				                  </li>
+				                </ul>
+				              </div>
+				              <div class="product__item__text">
+				                <h6><a href="#"><%= prodName1 %></a></h6>
+				                <h5><%= productAmt1 %></h5>
+				              </div>
+				            </div>
+				          </div>
+				          <%
+													
+										 }
+							        }else{
+										System.out.println("Image File is empty!");
+									}
+									 
+								%>
+         <!--  <div class="col-lg-3 col-md-4 col-sm-6">
             <div class="product__item">
               <div
                 class="product__item__pic set-bg"
@@ -695,7 +733,7 @@ File [] dirListing;%>
                 <h5>$30.00</h5>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
