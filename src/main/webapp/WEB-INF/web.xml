@@ -20,6 +20,10 @@
   </error-page>
   
   <error-page>
-  	<location>/error-440.jsp</location>
+  	<location>/440-error.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<location>/error-500.jsp</location>
   </error-page>
 </web-app>

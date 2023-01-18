@@ -51,6 +51,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/signup.css"
 	type="text/css" />
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/product-filter-style.css"
+	type="text/css" />
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -58,8 +61,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
-
-body{
+body {
 	overflow-x: hidden;
 }
 /* LOGIN/SIGN MODAL, MOBILE & LARGE SCREEN RESPONSIVENESS */
@@ -222,73 +224,105 @@ keyframes show_slide { 0%{
 40
 
 
+
+
 %
 {
 transform
 
 
+
+
 :
 
 
+
+
 translateX
+
+
 (
 
 
+
+
 -10
+
+
 %
-
-
 )
+
+
 ;
-
-
 }
 80
 
 
+
+
 %
 {
 transform
 
 
+
+
 :
 
 
+
+
 translateX
+
+
 (
 
 
+
+
 0
+
+
 %
-
-
 )
+
+
 ;
-
-
 }
 100
 
 
+
+
 %
 {
 transform
 
 
+
+
 :
 
 
+
+
 translateX
+
+
 (
+
+
 
 
 -10px
 
 
+
+
 )
+
+
 ;
-
-
 }
 }
 .alert.hide {
@@ -303,74 +337,104 @@ keyframes hide_slide { 0%{
 40
 
 
+
+
 %
 {
 transform
 
 
+
+
 :
 
 
+
+
 translateX
+
+
 (
 
 
+
+
 0
+
+
 %
-
-
 )
+
+
 ;
-
-
 }
 80
 
 
+
+
 %
 {
 transform
 
 
+
+
 :
 
 
+
+
 translateX
+
+
 (
 
 
+
+
 -10
+
+
 %
-
-
 )
+
+
 ;
-
-
 }
 100
 
 
+
+
 %
 {
 transform
 
 
+
+
 :
 
 
+
+
 translateX
+
+
 (
 
 
+
+
 100
+
+
 %
-
-
 )
+
+
 ;
-
-
 }
 }
 .alert-danger {
@@ -438,7 +502,7 @@ translateX
 	line-height: 40px;
 }
 
-.login{
+.login {
 	text-decoration: underline;
 	color: #1058cc;
 	font-weight: bold;
@@ -448,16 +512,20 @@ translateX
 	margin-left: -15px;
 }
 
-.hero__categories ul li a:hover{
+.hero__categories ul li a:hover {
 	color: #7fad39;
 }
 </style>
 <script type="text/javascript">
-        function preventBack() { window.history.forward(); }
-        
-        setTimeout("preventBack()", 0.0);
-        window.onunload = function () { null };
-    </script>
+	function preventBack() {
+		window.history.forward();
+	}
+
+	setTimeout("preventBack()", 0.0);
+	window.onunload = function() {
+		null
+	};
+</script>
 </head>
 <body>
 
@@ -466,20 +534,20 @@ translateX
 		<div class="loader"></div>
 	</div>
 	<%
-		MessageReport m1 = (MessageReport) session.getAttribute("msg");
-		if (m1 != null) {
-		%>
-		<div class="alert alert-<%=m1.getMessageColor()%> show">
-			<p class="alert-msg"><%=m1.getMessageContent()%></p>
-			<p class="login" onclick="signupToggle()">Proceed to login </p>
-			<div class="close-alert">
-				<span>x</span>
-			</div>
+	MessageReport m1 = (MessageReport) session.getAttribute("msg");
+	if (m1 != null) {
+	%>
+	<div class="alert alert-<%=m1.getMessageColor()%> ">
+		<p class="alert-msg"><%=m1.getMessageContent()%></p>
+		<p class="login" onclick="signupToggle()">Proceed to login</p>
+		<div class="close-alert">
+			<span>x</span>
 		</div>
-		
-		<%
-		}
-		%>
+	</div>
+
+	<%
+	}
+	%>
 	<div class="body-container" id="body-container">
 		<!-- Humberger Begin -->
 		<div class="humberger__menu__overlay"></div>
@@ -597,79 +665,96 @@ translateX
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Supermarket">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Supermarket</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Supermarket</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Health & Beauty">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Health & Beauty</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Health
+											& Beauty</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Home & Office">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Home & Office</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Home
+											& Office</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Phones & Tablets">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Phones & Tablets</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Phones
+											& Tablets</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Computing">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Computing</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Computing</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Electronic">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Electronic</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Electronic</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Fashion">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Fashion</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Fashion</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Baby Products">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Baby Products</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Baby
+											Products</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Gaming">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Gaming</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Gaming</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Automobile">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Automobile</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Automobile</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Jewelries">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Jewelries</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Jewelries</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Accessories">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Accessories</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Accessories</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Others">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Others</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Others</button>
 									</form>
 								</li>
 							</ul>
@@ -684,7 +769,7 @@ translateX
                     <span class="arrow_carrot-down"></span>
                   </div> -->
 									<input type="text" placeholder="What do yo u need?" />
-									<button type="submit" class="site-btn">SEARCH</button>
+									<button type="submit" class="site-btn" id="search">SEARCH</button>
 								</form>
 							</div>
 							<!-- <div class="hero__search__phone">
@@ -713,47 +798,48 @@ translateX
 			<div class="container">
 				<div class="row">
 					<div class="categories__slider owl-carousel">
-					<%! String productName, productId, filePath;
-						double productAmount; %>
-					<%
+						<%!String productName, productId, filePath;
+						double productAmount;%>
+						<%
 						Loader ld = new Loader();
 						Random rand = new Random();
-						ArrayList <File> image = new ArrayList <File>();
+						ArrayList<File> image = new ArrayList<File>();
 						ld.deleteImageInIndex();
 						ld.imageSample();
-						String filePath = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\";
+						String filePath = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\";
 						File dir = new File(filePath).getAbsoluteFile();
-						File [] dirListing = dir.listFiles();
-						if(dirListing != null){
-							for (File fl: dirListing){
+						File[] dirListing = dir.listFiles();
+						if (dirListing != null) {
+							for (File fl : dirListing) {
 								image.add(fl);
 							}
 							Collections.shuffle(image);
-							for(File imageIndex: image){				
-								
+							for (File imageIndex : image) {
+
 								String imageName = imageIndex.getName();
 								String prodId = imageName.substring(0, 9);
 								DAO dao = new DAO();
-								ArrayList <Product> pr = (ArrayList<Product>)DAO.getProductDetailsWithList(prodId);
-								for(Product details: pr){
-									productName = details.getProductName();
-									productAmount = details.getProductAmount();
+								ArrayList<Product> pr = (ArrayList<Product>) DAO.getProductDetailsWithList(prodId);
+								for (Product details : pr) {
+							productName = details.getProductName();
+							productAmount = details.getProductAmount();
 								}
-					%>
-								<div class="col-lg-3">
-									<div class="categories__item set-bg"
-										data-setbg="img/allImage/<%=imageName %>">
-											<h5><a href="ProductDetails?productId=<%=prodId %>"><%=productName %>
-											</a></h5>
-									</div>
-								</div>
-					<%
-							}
-						}else{
-							System.out.println("Image File is empty!");
+						%>
+						<div class="col-lg-3">
+							<div class="categories__item set-bg"
+								data-setbg="img/allImage/<%=imageName%>">
+								<h5>
+									<a href="ProductDetails?productId=<%=prodId%>"><%=productName%>
+									</a>
+								</h5>
+							</div>
+						</div>
+						<%
 						}
-														
-					%>
+						} else {
+						System.out.println("Image File is empty!");
+						}
+						%>
 					</div>
 				</div>
 			</div>
@@ -779,69 +865,88 @@ translateX
 						</div>
 					</div>
 				</div>
-				<div class="row featured__filter">
-				
-				<%! String productID ="", prodName="", productCategory="", productStatus ="", productDescription ="", productCondition="", productImage1="", productImage2="", productImage3="", path=""; 
-				double productAmt =0.0;%>
-				
-				<%		
+				<div class="row featured__filter products-content" id="product-lists">
+
+					<%!String productID = "", prodName = "", productCategory = "", productStatus = "",
+								productDescription = "", productCondition = "", productImage1 = "", productImage2 = "",
+								productImage3 = "", path = "";
+						double productAmt = 0.0;%>
+
+					<%
 					Loader ld2 = new Loader();
 					ld2.featuredProducts();
-					ArrayList <File> featuredImage = new ArrayList <File>();
-					String featured = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\featuredProduct\\";
+					ArrayList<File> featuredImage = new ArrayList<File>();
+					String featured = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\featuredProduct\\";
 					File dir2 = new File(featured).getAbsoluteFile();
 					dirListing = dir2.listFiles();
-					 if(dirListing != null){
-						 for (File fl: dirListing){
-							 featuredImage.add(fl);
-							}
-							Collections.shuffle(featuredImage);
-							for(File imageIndex: featuredImage){	
-							 String imageName = imageIndex.getName();
-							 productID = imageName.substring(0, 9);
-							 
-							 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID);
-								for(Product p:product){
-				
-									productID = p.getProductId();
-									prodName = p.getProductName();
-									productCategory = p.getProductCategory();
-									productCondition = p.getProductCondition();
-									productStatus = p.getProductStatus();
-									productAmt = p.getProductAmount();
-									productDescription = p.getProductDescription();
-								}
-								if(productCategory.equals("Phones & Tablets")){
-									productCategory = "Phones";
-								}
-				%>
+					if (dirListing != null) {
+						for (File fl : dirListing) {
+							featuredImage.add(fl);
+						}
+						Collections.shuffle(featuredImage);
+						for (File imageIndex : featuredImage) {
+							String imageName = imageIndex.getName();
+							productID = imageName.substring(0, 9);
 
-					<div class="col-lg-3 col-md-4 col-sm-6 mix <%=productCategory %>">
+							List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID);
+							for (Product p : product) {
+
+						productID = p.getProductId();
+						prodName = p.getProductName();
+						productCategory = p.getProductCategory();
+						productCondition = p.getProductCondition();
+						productStatus = p.getProductStatus();
+						productAmt = p.getProductAmount();
+						productDescription = p.getProductDescription();
+							}
+							if (productCategory.equals("Phones & Tablets")) {
+						productCategory = "Phones";
+							}
+					%>
+
+					<div class="col-lg-3 col-md-4 col-sm-6 mix product_items <%=productCategory%>">
 						<div class="featured__item">
-							<div class="featured__item__pic set-bg"
-								data-setbg="img/product/featuredProduct/<%= imageName %>">
+								<div class="featured__item__pic set-bg"
+								data-setbg="img/product/featuredProduct/<%=imageName%>">
+							
 								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+									
+									<li><a href="ProductDetails?productId=<%=productID%>"><i class="fa-solid fa-paper-plane"></i></a></li>
+								
 								</ul>
 							</div>
+						
 							<div class="featured__item__text">
 								<h6>
-									<a href="ProductDetails?productId=<%=productID %>"><%=prodName %></a>
+									<a href="ProductDetails?productId=<%=productID%>"><%=prodName%></a>
 								</h6>
-								<h5>&#8358;<%= productAmt%></h5>
+								<h5>
+									&#8358;<span class="amount"><%=productAmt%></span>
+								</h5>
 							</div>
 						</div>
 					</div>
-				<%
-					 }
-			        }else{
-						System.out.println("Image File is empty!");
+					<%
 					}
-				%>
-					
+					} else {
+					System.out.println("Image File is empty!");
+					}
+					%>
+
 				</div>
+				<!-- Product pagination -->
+						<div class="product_pagination">
+			<!--  		
+             <li class="page-item previous-page disable"><a href="#" class="page_link"><i class="fa fa-long-arrow-left"></i></a></li>
+             <li class="page-item current-page selected-page"><a href="#" class="page_link">1</a></li>
+              <li class="page-item dots"><a href="#" class="page_link">...</a></li>
+              <li class="page-item current-page"><a href="#" class="page_link">5</a></li>
+              <li class="page-item current-page"><a href="#" class="page_link">6</a></li>
+              
+              <li class="page-item current-page"><a href="#" class="page_link">10</a></li>
+              <li class="page-item next-page"><a href="#" class="page_link"><i class="fa fa-long-arrow-right"></i></a></li>
+               -->	
+						</div>
 			</div>
 		</section>
 		<!-- Featured Section End -->
@@ -873,69 +978,68 @@ translateX
 						<div class="latest-product__text">
 							<h4>Latest Products</h4>
 							<div class="latest-product__slider owl-carousel">
-								
-								<%! String productID1 ="", prodName1 ="", productCategory1 ="", productStatus1 ="", productDescription1 ="", productCondition1 ="", path3 =""; 
-								double productAmt1 =0.0;%>
-								
-								<%	
-								for(int rept = 1; rept <= 3; rept++){
-									
-								%>
-									<div class="latest-prdouct__slider__item">
+
+								<%!String productID1 = "", prodName1 = "", productCategory1 = "", productStatus1 = "",
+						productDescription1 = "", productCondition1 = "", path3 = "";
+				double productAmt1 = 0.0;%>
+
 								<%
+								for (int rept = 1; rept <= 3; rept++) {
+								%>
+								<div class="latest-prdouct__slider__item">
+									<%
 									Loader filter1 = new Loader();
 									filter1.featuredProducts();
-									ArrayList <File> filterImage1 = new ArrayList <File>();
-									String path3 = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter1\\";
+									ArrayList<File> filterImage1 = new ArrayList<File>();			
+									String path3 = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\filter1\\";
 									File dir3 = new File(path3).getAbsoluteFile();
 									dirListing = dir3.listFiles();
-									 if(dirListing != null){
-										 for (File fl: dirListing){
-											 featuredImage.add(fl);
-											}
-											Collections.shuffle(filterImage1);
-											for(int i = 1; i <= 3; i++){
-												for(File imageIndex: filterImage1){	
-												 String imageName = imageIndex.getName();
-												 productID = imageName.substring(0, 9);
-												 
-												 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID);
-													for(Product p:product){
-									
-														productID1 = p.getProductId();
-														prodName1 = p.getProductName();
-														productCategory1 = p.getProductCategory();
-														productCondition1 = p.getProductCondition();
-														productStatus1 = p.getProductStatus();
-														productAmt1 = p.getProductAmount();
-														productDescription1 = p.getProductDescription();
-													}
-													if(productCategory1.equals("Phones & Tablets")){
-														productCategory1 = "Phones";
-												}
-								%>
+									if (dirListing != null) {
+										for (File fl : dirListing) {
+											featuredImage.add(fl);
+										}
+										Collections.shuffle(filterImage1);
+										for (int i = 1; i <= 3; i++) {
+											for (File imageIndex : filterImage1) {
+										String imageName = imageIndex.getName();
+										productID = imageName.substring(0, 9);
+
+										List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID);
+										for (Product p : product) {
+
+											productID1 = p.getProductId();
+											prodName1 = p.getProductName();
+											productCategory1 = p.getProductCategory();
+											productCondition1 = p.getProductCondition();
+											productStatus1 = p.getProductStatus();
+											productAmt1 = p.getProductAmount();
+											productDescription1 = p.getProductDescription();
+										}
+										if (productCategory1.equals("Phones & Tablets")) {
+											productCategory1 = "Phones";
+										}
+									%>
 									<a href="#" class="latest-product__item">
 										<div class="latest-product__item__pic">
-											<img src="img/product/filter1/<%= imageName %>" alt="" />
+											<img src="img/product/filter1/<%=imageName%>" alt="" />
 										</div>
 										<div class="latest-product__item__text">
-											<h6><%= prodName1 %></h6>
-											<span>&#8358;<%= productAmt1 %></span>
+											<h6><%=prodName1%></h6>
+											<span>&#8358;<%=productAmt1%></span>
 										</div>
-									</a> 
-								<%
-										 }
-									 }
-							        }else{
-										System.out.println("Image File is empty!");
+									</a>
+									<%
 									}
-									 
-								%>
+									}
+									} else {
+									System.out.println("Image File is empty!");
+									}
+									%>
 								</div>
 								<%
 								}
 								%>
-								
+
 								<div class="latest-prdouct__slider__item">
 									<a href="#" class="latest-product__item">
 										<div class="latest-product__item__pic">
@@ -1226,8 +1330,9 @@ translateX
 									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 									Copyright &copy;
 									<script>
-                    document.write(new Date().getFullYear());
-                  </script>
+										document
+												.write(new Date().getFullYear());
+									</script>
 									All rights reserved | This Project is with <i
 										class="fa fa-heart" aria-hidden="true"></i> by <a
 										href="https://colorlib.com" target="_blank">18283177</a>
@@ -1328,51 +1433,51 @@ translateX
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 	<script src="${pageContext.request.contextPath}/js/signup.js"></script>
+	<script src="${pageContext.request.contextPath}/js/product-filter.js"></script>
 
 	<script type="text/javascript">
-    ( function ( document, window, index )
-    		{
-    			var inputs = document.querySelectorAll( '.inputfile' );
-    			Array.prototype.forEach.call( inputs, function( input )
-    			{
-    				var label	 = input.nextElementSibling,
-    					labelVal = label.innerHTML;
 
-    				input.addEventListener( 'change', function( e )
-    				{
-    					var fileName = '';
-    					if( this.files && this.files.length > 1 )
-    						fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-    					else
-    						fileName = e.target.value.split( '\\' ).pop();
+		(function(document, window, index) {
+			var inputs = document.querySelectorAll('.inputfile');
+			Array.prototype.forEach
+					.call(
+							inputs,
+							function(input) {
+								var label = input.nextElementSibling, labelVal = label.innerHTML;
 
-    					if( fileName )
-    						label.querySelector( 'span' ).innerHTML = fileName;
-    					else
-    						label.innerHTML = labelVal;
-    				});
+								input
+										.addEventListener(
+												'change',
+												function(e) {
+													var fileName = '';
+													if (this.files
+															&& this.files.length > 1)
+														fileName = (this
+																.getAttribute('data-multiple-caption') || '')
+																.replace(
+																		'{count}',
+																		this.files.length);
+													else
+														fileName = e.target.value
+																.split('\\')
+																.pop();
 
-    				// Firefox bug fix
-    				input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
-    				input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
-    			});
-    		}( document, window, 0 ));
-    
- // LOGIN/REGISTRATION ALERT MESSAGE
-   /* const closeBtn = document.querySelector(".close-alert");
-     	const alertBox = document.querySelector(".alert");
-     	const inputField = document.querySelectorAll(".input-field");
-     	const submitBtn = document.querySelector(".submit-btn");
-     	
+													if (fileName)
+														label
+																.querySelector('span').innerHTML = fileName;
+													else
+														label.innerHTML = labelVal;
+												});
 
-     	closeBtn.onclick = ()=>{
-     		alertBox.classList.add("hide");
-    	}
-     	const myTimeout = setTimeout(hideAlert, 5000);
-     	
-     	function hideAlert(){
-     		alertBox.classList.add("hide");
-     	}*/
-    </script>
+								// Firefox bug fix
+								input.addEventListener('focus', function() {
+									input.classList.add('has-focus');
+								});
+								input.addEventListener('blur', function() {
+									input.classList.remove('has-focus');
+								});
+							});
+		}(document, window, 0));
+	</script>
 </body>
 </html>

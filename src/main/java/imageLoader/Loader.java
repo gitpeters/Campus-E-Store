@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import connection.DbConnection;
 
 public class Loader {
-	private static String path ="C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\";
-	private static String otherPath ="C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\";
+	private static String path ="C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\";
+	private static String otherPath ="C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\";
 
 	//Load Product Image
 	public static String imageSample() {
@@ -36,7 +36,7 @@ public class Loader {
 					image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "allImage\\" + image);
+					file = new FileOutputStream("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -79,7 +79,7 @@ public class Loader {
 					image = productId + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "product\\vendorDetails\\" + image);
+					file = new FileOutputStream("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\vendorDetails\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -122,7 +122,7 @@ public class Loader {
 					image = productId + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "product\\productDetails\\" + image);
+					file = new FileOutputStream("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\productDetails\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -209,7 +209,7 @@ public class Loader {
 					System.out.println(image);
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "product\\featuredProduct\\" + image);
+					file = new FileOutputStream("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\featuredProduct\\" + image);
 					file.write(imageArr);	
 					
 					increament++;
@@ -1015,7 +1015,7 @@ public class Loader {
 	}				
 					
 	public static void deleteProductImageInProductDetails(){
-		File file=new File(path+"product\\productDetails\\");
+		File file=new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\productDetails\\");
 		File [] dirListing = file.listFiles();
 		if(dirListing != null){
 			for (File fl: dirListing){

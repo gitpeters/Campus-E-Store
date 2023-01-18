@@ -155,7 +155,8 @@ public class DAO {
 				vn.setVendorEmail(rs.getString(3));
 				vn.setVendorMatricNo(rs.getString(4));
 				vn.setVendorBrandName(rs.getString(5));
-				vn.setVendorBrandName(rs.getString(6));
+				vn.setVendorPhone(rs.getString(6));
+				vn.setVendorBrandName(rs.getString(7));
 				
 				vendors.add(vn);
 			}

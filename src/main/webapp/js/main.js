@@ -238,7 +238,7 @@
 })(jQuery);
 
 
-// LOGIN/REGISTRATION ALERT MESSAGE
+// ALERT MESSAGE
 const closeBtn = document.querySelector(".close-alert");
  	const alertBox = document.querySelector(".alert");
  	const inputField = document.querySelectorAll(".input-field");
@@ -253,3 +253,7 @@ const closeBtn = document.querySelector(".close-alert");
  	function hideAlert(){
  		alertBox.classList.add("hide");
  	}
+ 	
+ 	function hideAlert(){
+		 alertBox.style.display = "none";
+	 }

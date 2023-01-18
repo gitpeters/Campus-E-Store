@@ -219,7 +219,7 @@
 	ld.deleteImageInCategoryFolders();
 	category = (String)session.getAttribute("category");
 	System.out.println(category);
-	path = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\";
+	path = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\";
 	
 	if(category.equals("Supermarket")){
 		ld.supermarketImage();
