@@ -1,3 +1,10 @@
+<%@page import="model.MessageReport"%>
+<%@page import="java.util.*"%>
+<%@page import="java.util.List"%>
+<%@page import="imageLoader.*"%>
+<%@page import="model.*"%>
+<%@page import="dao.*"%>
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -328,17 +335,84 @@
 								<i class="fa fa-bars"></i> <span>All departments</span>
 							</div>
 							<ul>
-								<li><a href="#">Fresh Meat</a></li>
-								<li><a href="#">Vegetables</a></li>
-								<li><a href="#">Fruit & Nut Gifts</a></li>
-								<li><a href="#">Fresh Berries</a></li>
-								<li><a href="#">Ocean Foods</a></li>
-								<li><a href="#">Butter & Eggs</a></li>
-								<li><a href="#">Fastfood</a></li>
-								<li><a href="#">Fresh Onion</a></li>
-								<li><a href="#">Papayaya & Crisps</a></li>
-								<li><a href="#">Oatmeal</a></li>
-								<li><a href="#">Fresh Bananas</a></li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Supermarket">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Supermarket</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Health & Beauty">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Health & Beauty</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Home & Office">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Home & Office</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Phones & Tablets">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Phones & Tablets</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Computing">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Computing</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Electronic">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Electronic</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Fashion">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Fashion</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Baby Products">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Baby Products</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Gaming">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Gaming</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Automobile">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Automobile</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Jewelries">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Jewelries</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Accessories">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Accessories</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Others">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Others</button>
+									</form>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -419,64 +493,72 @@
 
 							<div class="sidebar__item">
 								<div class="latest-product__text">
-									<h4>Latest Products</h4>
-									<div class="latest-product__slider owl-carousel">
-										<div class="latest-prdouct__slider__item">
-											<a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-1.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a> <a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-2.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a> <a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-3.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a>
+							<h4>Latest Products</h4>
+							<div class="latest-product__slider owl-carousel">
+								
+								<%! String productID1 ="", prodName1 ="", productCategory1 ="", productStatus1 ="", productDescription1 ="", productCondition1 ="", path3 =""; 
+								double productAmt1 =0.0;%>
+								
+								<%	
+								for(int rept = 1; rept <= 3; rept++){
+									
+								%>
+									<div class="latest-prdouct__slider__item">
+								<%
+									Loader filter1 = new Loader();
+									int count = 0;
+									filter1.filteredImage1();
+									ArrayList <File> filterImage1 = new ArrayList <File>();
+									File dir3 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter1\\").getAbsoluteFile();
+									File [] dirListing = dir3.listFiles();
+									dirListing = dir3.listFiles();
+									 if(dirListing != null){
+										 for (File fl: dirListing){
+											 filterImage1.add(fl);
+											}
+												Collections.shuffle(filterImage1);
+												for(File imageIndex: filterImage1){	
+													if(filterImage1.indexOf(imageIndex) < 3){
+													 String imageName = imageIndex.getName();
+													 productID1 = imageName.substring(0, 9);
+													 
+													 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID1);
+														for(Product p:product){
+										
+															productID1 = p.getProductId();
+															prodName1 = p.getProductName();
+															productCategory1 = p.getProductCategory();
+															productCondition1 = p.getProductCondition();
+															productStatus1 = p.getProductStatus();
+															productAmt1 = p.getProductAmount();
+															productDescription1 = p.getProductDescription();
+														}
+														
+								%>
+									<a href="ProductDetails?productId=<%=productID1 %>" class="latest-product__item">
+										<div class="latest-product__item__pic">
+											<img src="img/product/filter1/<%= imageName %>" alt="" />
 										</div>
-										<div class="latest-prdouct__slider__item">
-											<a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-1.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a> <a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-2.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a> <a href="#" class="latest-product__item">
-												<div class="latest-product__item__pic">
-													<img src="img/latest-product/lp-3.jpg" alt="" />
-												</div>
-												<div class="latest-product__item__text">
-													<h6>Crab Pool Security</h6>
-													<span>&#8358;30.00</span>
-												</div>
-											</a>
+										<div class="latest-product__item__text">
+											<h6><%= prodName1 %></h6>
+											<span>&#8358;<%= productAmt1 %></span>
 										</div>
-									</div>
+									</a> 
+								<%
+													}
+										 }
+							        }else{
+										System.out.println("Image File is empty!");
+									}
+									 
+								%>
 								</div>
+								<%
+								}
+								%>
+								
+							</div>
+						</div>
 							</div>
 						</div>
 					</div>
