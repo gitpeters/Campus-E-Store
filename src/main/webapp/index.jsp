@@ -51,6 +51,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/signup.css"
 	type="text/css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/product-filter-style.css"
+	type="text/css" />
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -68,7 +71,7 @@ body{
 @media only screen and (min-width: 1200px) {
 	.main {
 		transform: scale(1);
-		left: 50%;
+		left: 20%;
 		margin-top: -200px;
 	}
 }
@@ -451,6 +454,8 @@ translateX
 .hero__categories ul li a:hover{
 	color: #7fad39;
 }
+
+
 </style>
 <script type="text/javascript">
         function preventBack() { window.history.forward(); }
@@ -722,7 +727,7 @@ translateX
 						ArrayList <File> image = new ArrayList <File>();
 						ld.deleteImageInIndex();
 						ld.imageSample();
-						String filePath = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\";
+						String filePath = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\";
 						File dir = new File(filePath).getAbsoluteFile();
 						File [] dirListing = dir.listFiles();
 						if(dirListing != null){
@@ -780,69 +785,88 @@ translateX
 						</div>
 					</div>
 				</div>
-				<div class="row featured__filter">
-				
-				<%! String productID ="", prodName="", productCategory="", productStatus ="", productDescription ="", productCondition="", productImage1="", productImage2="", productImage3="", path=""; 
-				double productAmt =0.0;%>
-				
-				<%		
+				<div class="row featured__filter products-content" id="product-lists">
+
+					<%!String productID = "", prodName = "", productCategory = "", productStatus = "",
+								productDescription = "", productCondition = "", productImage1 = "", productImage2 = "",
+								productImage3 = "", path = "";
+						double productAmt = 0.0;%>
+
+					<%
 					Loader ld2 = new Loader();
 					ld2.featuredProducts();
-					ArrayList <File> featuredImage = new ArrayList <File>();
-					String featured = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\featuredProduct\\";
+					ArrayList<File> featuredImage = new ArrayList<File>();
+					String featured = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\featuredProduct\\";
 					File dir2 = new File(featured).getAbsoluteFile();
 					dirListing = dir2.listFiles();
-					 if(dirListing != null){
-						 for (File fl: dirListing){
-							 featuredImage.add(fl);
-							}
-							Collections.shuffle(featuredImage);
-							for(File imageIndex: featuredImage){	
-							 String imageName = imageIndex.getName();
-							 productID = imageName.substring(0, 9);
-							 
-							 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID);
-								for(Product p:product){
-				
-									productID = p.getProductId();
-									prodName = p.getProductName();
-									productCategory = p.getProductCategory();
-									productCondition = p.getProductCondition();
-									productStatus = p.getProductStatus();
-									productAmt = p.getProductAmount();
-									productDescription = p.getProductDescription();
-								}
-								if(productCategory.equals("Phones & Tablets")){
-									productCategory = "Phones";
-								}
-				%>
+					if (dirListing != null) {
+						for (File fl : dirListing) {
+							featuredImage.add(fl);
+						}
+						Collections.shuffle(featuredImage);
+						for (File imageIndex : featuredImage) {
+							String imageName = imageIndex.getName();
+							productID = imageName.substring(0, 9);
 
-					<div class="col-lg-3 col-md-4 col-sm-6 mix <%=productCategory %>">
+							List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID);
+							for (Product p : product) {
+
+						productID = p.getProductId();
+						prodName = p.getProductName();
+						productCategory = p.getProductCategory();
+						productCondition = p.getProductCondition();
+						productStatus = p.getProductStatus();
+						productAmt = p.getProductAmount();
+						productDescription = p.getProductDescription();
+							}
+							if (productCategory.equals("Phones & Tablets")) {
+						productCategory = "Phones";
+							}
+					%>
+
+					<div class="col-lg-3 col-md-4 col-sm-6 mix product_items <%=productCategory%>">
 						<div class="featured__item">
-							<div class="featured__item__pic set-bg"
-								data-setbg="img/product/featuredProduct/<%= imageName %>">
+								<div class="featured__item__pic set-bg"
+								data-setbg="img/product/featuredProduct/<%=imageName%>">
+							
 								<ul class="featured__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+									
+									<li><a href="ProductDetails?productId=<%=productID%>"><i class="fa-solid fa-paper-plane"></i></a></li>
+								
 								</ul>
 							</div>
+						
 							<div class="featured__item__text">
 								<h6>
-									<a href="ProductDetails?productId=<%=productID %>"><%=prodName %></a>
+									<a href="ProductDetails?productId=<%=productID%>"><%=prodName%></a>
 								</h6>
-								<h5>&#8358;<%= productAmt%></h5>
+								<h5>
+									&#8358;<span class="amount"><%=productAmt%></span>
+								</h5>
 							</div>
 						</div>
 					</div>
-				<%
-					 }
-			        }else{
-						System.out.println("Image File is empty!");
+					<%
 					}
-				%>
-					
+					} else {
+					System.out.println("Image File is empty!");
+					}
+					%>
+
 				</div>
+				<!-- Product pagination -->
+						<div class="product_pagination">
+			<!--  		
+             <li class="page-item previous-page disable"><a href="#" class="page_link"><i class="fa fa-long-arrow-left"></i></a></li>
+             <li class="page-item current-page selected-page"><a href="#" class="page_link">1</a></li>
+              <li class="page-item dots"><a href="#" class="page_link">...</a></li>
+              <li class="page-item current-page"><a href="#" class="page_link">5</a></li>
+              <li class="page-item current-page"><a href="#" class="page_link">6</a></li>
+              
+              <li class="page-item current-page"><a href="#" class="page_link">10</a></li>
+              <li class="page-item next-page"><a href="#" class="page_link"><i class="fa fa-long-arrow-right"></i></a></li>
+               -->	
+						</div>
 			</div>
 		</section>
 		<!-- Featured Section End -->
@@ -1339,6 +1363,7 @@ translateX
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 	<script src="${pageContext.request.contextPath}/js/signup.js"></script>
+	<script src="${pageContext.request.contextPath}/js/product-filter.js"></script>
 
 	<script type="text/javascript">
     ( function ( document, window, index )
@@ -1369,21 +1394,84 @@ translateX
     			});
     		}( document, window, 0 ));
     
- // LOGIN/REGISTRATION ALERT MESSAGE
-   /* const closeBtn = document.querySelector(".close-alert");
-     	const alertBox = document.querySelector(".alert");
-     	const inputField = document.querySelectorAll(".input-field");
-     	const submitBtn = document.querySelector(".submit-btn");
-     	
+ // Product Pagination Control
 
-     	closeBtn.onclick = ()=>{
-     		alertBox.classList.add("hide");
+    function getPageList(totalPages, page, maxLength){
+    	function range(start, end){
+    		return Array.from(Array(end - start + 1), (_, i)=> i + start);
     	}
-     	const myTimeout = setTimeout(hideAlert, 5000);
+    	
+    	var sideWidth = maxLength < 9 ? 1 : 2;
+    	var leftWidth = (maxLength - sideWidth * 2 -3) >> 1;
+    	var rightWidth = (maxLength - sideWidth * 2 -3) >> 1;
+    	
+    	if(totalPages <= maxLength){
+    		return range(1, totalPages)
+    	}
+    	
+    	if(page <= maxLength - sideWidth - 1 - rightWidth){
+    		return range(1, maxLength - sideWidth -1).concat(0, range(totalPages - sideWidth + 1, totalPages));
+    	}
+    	
+    	if(page >= totalPages -sideWidth - 1 - rightWidth){
+    		return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+    	}
+    	
+    	return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
+    }
+
+    $(function(){
+    	var numberOfItems = $(".products-content .product_items").length;
+    	var limitPerPage = 8; //How many card items visible per a page
+    	var totalPages = Math.ceil(numberOfItems / limitPerPage)
+    	var paginationSize = 5; //How many page elements visible in the pagination
+    	var currentPage;
+    	
+    	
+    	function showPage(whichPage){
+    		if(whichPage < 1 || whichPage > totalPages) return false;
+    		
+    		currentPage = whichPage;
+    		
+    		$(".products-content .product_items").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+    		
+    		$(".product_pagination li").slice(1, -1).remove();
+    		
+    		getPageList(totalPages, currentPage, paginationSize).forEach(item =>{
+    			$("<li>").addClass("page-item").addClass(item ? "current-page" : "dots").toggleClass("selected-page", item === currentPage).append($("<a>").addClass("page_link")
+    			.attr({href: "javascript:void(0)"}).text(item || "...")).insertBefore(".next-page");
+    		});
+    		
+    		$(".previous-page").toggleClass("disable", currentPage ===1);
+    		$(".next-page").toggleClass("disable", currentPage ===totalPages);
+    		
+    		return true;
+    	}
+    	
+    	$(".product_pagination").append(
+    		$("<li>").addClass("page-item").addClass("previous-page").append($("<a>").addClass("page_link").attr({
+    			href: "javascript:void(0)"}).text("").addClass("fa fa-long-arrow-left")),
+    		$("<li>").addClass("page-item").addClass("next-page").append($("<a>").addClass("page_link").attr({
+    			href: "javascript:void(0)"}).text("").addClass("fa fa-long-arrow-right"))
+    	);
+    	
+    	$(".products-content").show();
+    	showPage(1);
+    	
+    	$(document).on("click", ".product_pagination li.current-page:not(.selected-page)", function(){
+    		return showPage(+$(this).text());
+    	});
+    	
+    	$(".next-page").on("click", function(){
+    		return showPage(currentPage + 1);
+    	});
+    	
+    	$(".previous-page").on("click", function(){
+    		return showPage(currentPage - 1);
+    	});
+    });
      	
-     	function hideAlert(){
-     		alertBox.classList.add("hide");
-     	}*/
+     	
     </script>
 </body>
 </html>
