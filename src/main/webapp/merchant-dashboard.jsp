@@ -240,8 +240,8 @@ aside .logo img {
 	border-radius: 6px;
 	position: absolute;
 	top: 0;
-	left: 50%;
-	transition: translate(-50%, -50%) scale(0.1);
+	left: 40%;
+	transition: translate(-50%, -40%) scale(0.1);
 	text-align: center;
 	padding: 0 30px 0 30px;
 	color: #333;
@@ -263,10 +263,15 @@ aside .logo img {
 	margin: 30px 0 10px;
 	background: #ff7782;
 	color: #fff;
+	position: absolute;
+	width: 80%;
+	top: -30%;
+	border-radius: 5px;
 }
 
 .call_action_popup p{
 	font-size: 18px;
+	margin-top: 20px;
 	font-weight: bolder;
 	padding: 12px 0px;
 }
