@@ -544,8 +544,7 @@ aside .logo img {
     <script src="${pageContext.request.contextPath}/js/.js"></script>
     
     <script>
-    /*------------------
-   --------------------*/
+    /*--------------------------------------*/
   $(window).on("load", function () {
     $(".loader").fadeOut();
     $("#preloder").delay(200).fadeOut("slow");

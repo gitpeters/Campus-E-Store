@@ -176,16 +176,91 @@
     color: #722040;
 }
 
+#rate{
+	color: #7fad39;
+	cursor: pointer;
+}
+.call_action{
+	position: relative;
+}
+.call_action_popup{
+	width: 300px;
+	background: #fff;
+	border-radius: 6px;
+	position: absolute;
+	top: 0;
+	left: 5%;
+	transition: translate(-5%, -50%) scale(0.1);
+	text-align: center;
+	padding: 0 30px 30px;
+	color: #333;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+	transition: 300ms ease;
+	visibility: hidden;
+	transition: transform 0.4s, top 0.4s;
+}
+
+.open-call_action_popup{
+	visibility: visible;
+	top: 50%;
+	transition: translate(-20%, -50%) scale(1);
+}
+
+.call_action_popup img{
+	width: 60px;
+	margin-top: -50px;
+	border-radius: 50%;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.call_action_popup h2{
+	font-size: 30px;
+	font-weight: 500px;
+	margin: 30px 0 10px;
+}
+
+.call_action_popup p{
+	font-size: 40px;
+	font-weight: bolder;
+	padding: 12px 0px;
+}
+
+.call_action_popup .call_action_popup_btn{
+	border: none;
+	outline: none;
+	background: #7fad39;
+	width: 100%;
+	color: #fff;
+	border-radius: 8px;
+	padding: 4px;
+	cursor: pointer;
+	margin-top: -20px;
+	font-size: 18px;
+	box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+	transition: 200ms ease;
+	z-index: 3;
+}
+
+.call_action_popup .call_action_popup_btn button{
+	border: none;
+	outline: none;
+	background: transparent;
+	color: #fff;
+	width: 100%;
+}
+
+.call_action_popup button:hover{
+	box-shadow: none;
+}
 </style>
 </head>
 <body>
-<%! String productID ="", productName="", productCategory="", productStatus ="", productDescription ="", productCondition="", productImage1="", productImage2="", productImage3="", path=""; 
+<%! String productID ="", productName="", vendorPhone ="", vendorID="", productCategory="", productStatus ="", productDescription ="", productCondition="", productImage1="", productImage2="", productImage3="", path=""; 
 double productAmount =0.0; 
 File [] dirListing;%>
 
 <% 
 	productID = (String)session.getAttribute("productId");
-	
 	List <Product> product = DAO.getProductDetailsWithList(productID);
 		for(Product p:product){
 
@@ -196,15 +271,19 @@ File [] dirListing;%>
 			productStatus = p.getProductStatus();
 			productAmount = p.getProductAmount();
 			productDescription = p.getProductDescription();
+			vendorID = p.getVendorId();
+		}
+		List<Vendor> vendorDetails = DAO.getVendorById(vendorID);
+		
+		for(Vendor vn: vendorDetails){
+			vendorPhone = vn.getVendorPhone();
 		}
 		
 		Loader ld = new Loader();
-		Loader ld2 = new Loader();
 		ld.deleteProductImageInProductDetails();
 		ld.imageSampleByIdForProduct(productID);
-		ld2.deleteRelatedProductImage();
-		ld2.relatedImage(productCategory);
-		File dir = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\productDetails\\").getAbsoluteFile();
+		path = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\productDetails\\";
+		File dir = new File(path).getAbsoluteFile();
 		dirListing = dir.listFiles();
 		 if(dirListing != null){
 			 for (File fl: dirListing){
@@ -439,28 +518,21 @@ File [] dirListing;%>
                   </div>
                 </div>
               </div>
-              <a href="#" class="primary-btn"
-                ><i class="fa fa-phone"></i> Contact Seller</a
-              >
-              <a href="#" class="heart-icon"
-                ><span class="icon_heart_alt"></span
-              ></a>
+              	<div class="call_action">
+              		<button onclick="showPopup()" style="border: none; outline: none;" class="primary-btn"><i class="fa fa-phone"></i> Contact Seller</button>
+              	
+              	<div class ="call_action_popup" id="popup">
+              		<img src="img/phone-flat.png" alt="" />
+              		<h2>Seller's Number</h2>
+              		<p><%=vendorPhone %></p>
+              		<div class="call_action_popup_btn">
+              			<button type="button" onclick="hidePopup()">OK</button>
+              		</div>
+              	</div>
+              	</div>
               <ul>
                 <li><b>Availability</b> <span><%= productStatus %></span></li>
-                <li>
-                  <b>Shipping</b>
-                  <span>01 day shipping. <samp>Free pickup today</samp></span>
-                </li>
-                <li><b>Weight</b> <span>0.5 kg</span></li>
-                <li>
-                  <b>Share on</b>
-                  <div class="share">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                  </div>
-                </li>
+                <li>Rate: <span><i class="fa-regular fa-star" id="rate"></i></span></li>
               </ul>
             </div>
           </div>
@@ -591,8 +663,7 @@ File [] dirListing;%>
       </div>
     </section>
     <!-- Product Details Section End -->
-
-    <!-- Related Product Section Begin -->
+	<!-- Related Product Section Begin -->
     <section class="related-product">
       <div class="container">
         <div class="row">
@@ -607,7 +678,7 @@ File [] dirListing;%>
 				double productAmt1 =0.0;%>
 				
 				<%	ArrayList <File> relatedProduct = new ArrayList <File>();
-					File dir2 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\relatedProduct\\").getAbsoluteFile();
+					File dir2 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\relatedProduct\\").getAbsoluteFile();
 					dirListing = dir2.listFiles();
 					 if(dirListing != null){
 						 for (File fl: dirListing){
@@ -734,6 +805,117 @@ File [] dirListing;%>
               </div>
             </div>
           </div> -->
+        </div>
+      </div>
+    </section>
+    <!-- Related Product Section End -->
+    <!-- Related Product Section Begin -->
+    <section class="related-product">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-title related__product__title">
+              <h2>Related Product</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="product__item">
+              <div
+                class="product__item__pic set-bg"
+                data-setbg="img/product/product-1.jpg"
+              >
+                <ul class="product__item__pic__hover">
+                  <li>
+                    <a href="#"><i class="fa fa-heart"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-retweet"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="product__item__text">
+                <h6><a href="#">Crab Pool Security</a></h6>
+                <h5>$30.00</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="product__item">
+              <div
+                class="product__item__pic set-bg"
+                data-setbg="img/product/product-2.jpg"
+              >
+                <ul class="product__item__pic__hover">
+                  <li>
+                    <a href="#"><i class="fa fa-heart"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-retweet"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="product__item__text">
+                <h6><a href="#">Crab Pool Security</a></h6>
+                <h5>$30.00</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="product__item">
+              <div
+                class="product__item__pic set-bg"
+                data-setbg="img/product/product-3.jpg"
+              >
+                <ul class="product__item__pic__hover">
+                  <li>
+                    <a href="#"><i class="fa fa-heart"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-retweet"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="product__item__text">
+                <h6><a href="#">Crab Pool Security</a></h6>
+                <h5>$30.00</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="product__item">
+              <div
+                class="product__item__pic set-bg"
+                data-setbg="img/product/product-7.jpg"
+              >
+                <ul class="product__item__pic__hover">
+                  <li>
+                    <a href="#"><i class="fa fa-heart"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-retweet"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="product__item__text">
+                <h6><a href="#">Crab Pool Security</a></h6>
+                <h5>$30.00</h5>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -921,6 +1103,24 @@ File [] dirListing;%>
     				input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
     			});
     		}( document, window, 0 ));
+    document.getElementById("amount").innerHTML = document.getElementById("amount").innerHTML.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+	const rateProduct = document.querySelector("#rate");
+    
+    rateProduct.onclick = ()=>{
+    	rateProduct.classList.toggle("fa-solid");
+    }
+    
+    
+    let callPopup = document.getElementById("popup");
+    
+    function showPopup(){
+    	callPopup.classList.add("open-call_action_popup");
+    }
+    
+    function hidePopup(){
+    	callPopup.classList.remove("open-call_action_popup");
+    }
     </script>
 </body>
 </html>
