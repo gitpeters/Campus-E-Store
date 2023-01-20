@@ -18,7 +18,7 @@ body{
   position: absolute;
   top: 50%;
   left: 20%;
-  transform: translate(-50%, -20%);
+  transform: translate(-50%, -50%);
   width: 800px;
   min-width: 800px;
   min-height: 450px;
@@ -35,7 +35,7 @@ body{
 
 .main.active{
 	top: 50%;
-	left: 50%;
+	left: 20%;
 	transition: .5s;
 	visibility: visible;
 	opacity: 1;

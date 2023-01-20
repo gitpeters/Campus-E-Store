@@ -130,7 +130,6 @@ aside .logo img {
 	}
 }
 
-
 	
 .alert.hide{
 	animation: hide_slide 1s ease forwards;
@@ -218,7 +217,7 @@ aside .logo img {
 	font-size: 22px;
 	line-height: 40px;
 }
-.submit-btn{
+.submit-btn, .del-btn{
 	background: #73b0ec;
 	padding: 2px 6px;
 	color: #fff;
@@ -227,8 +226,82 @@ aside .logo img {
 	transition: opacity 300ms ease;
 }
 
-.submit-btn:hover{
+.del-btn{
+	background: #ff7782;
+}
+
+.submit-btn:hover, .del-btn:hover{
 	opacity:0.7; 
+}
+
+.call_action_popup{
+	width: 300px;
+	background: #fff;
+	border-radius: 6px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transition: translate(-50%, -50%) scale(0.1);
+	text-align: center;
+	padding: 0 30px 0 30px;
+	color: #333;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+	transition: 300ms ease;
+	visibility: hidden;
+	transition: transform 0.4s, top 0.4s;
+}
+
+.open-call_action_popup{
+	visibility: visible;
+	top: 50%;
+	transition: translate(-20%, -50%) scale(1);
+}
+
+.call_action_popup h2{
+	font-size: 20px;
+	font-weight: 500px;
+	margin: 30px 0 10px;
+	background: #ff7782;
+	color: #fff;
+}
+
+.call_action_popup p{
+	font-size: 18px;
+	font-weight: bolder;
+	padding: 12px 0px;
+}
+
+.call_action_popup_btn{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px; 
+}
+
+.call_action_popup_btn button{
+	border: none;
+	outline: none;
+	cursor: pointer;
+	margin: 0 15px;
+	padding: 5px;
+	width: 120px;
+	border-radius: 5px;
+	background: #57b952;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 500;
+	transition: 300ms ease;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.call_action_popup_btn button:nth-child(2){
+	background: #ff7782;
+}
+
+
+
+.call_action_popup button:hover{
+	box-shadow: none;
 }
 </style>
 <script type="text/javascript">
@@ -406,7 +479,7 @@ aside .logo img {
                         List <Product> product = DAO.getProductByVendorID(vendor.getVendorId());
                         	if(product!=null){
                         		for(Product p:product){
-                        			out.println("<tr><td>"+p.getProductId()+"</td><td>"+p.getProductName()+"</td><td>"+p.getProductCondition()+"</td><td>"+p.getProductCategory()+"</td><td>"+p.getProductStatus()+"</td><td><form action='VendorView' method='post'><input type='hidden' name='productID' value='"+p.getProductId()+"'/><button type='submit' class='submit-btn'>View</button></form></td></tr>");
+                        			out.println("<tr><td>"+p.getProductId()+"</td><td>"+p.getProductName()+"</td><td>"+p.getProductCondition()+"</td><td>"+p.getProductCategory()+"</td><td>"+p.getProductStatus()+"</td><td><form action='VendorView' method='post'><input type='hidden' name='productID' value='"+p.getProductId()+"'/><button type='submit' class='submit-btn'>View</button></form></td><td><button type='button' onclick='productDeletePopup()' class='del-btn' >Delete</button></td></tr>");
                         		}
                         		
                         	}else{
@@ -539,6 +612,15 @@ aside .logo img {
             </div>
         </div>
     </div>
+    <div class ="call_action_popup" id="popup">
+              		<img src="img/phone-flat.png" alt="" />
+              		<h2>Delete User</h2>
+              		<p>Are sure you want to delete this product?</p>
+              		<div class="call_action_popup_btn">
+              			<button type="button">Yes</button>
+              			<button type="button" onclick="hidePopup()">Cancel</button>
+              		</div>
+              	</div>
 	<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/js/app.js"></script>
     <script src="${pageContext.request.contextPath}/js/.js"></script>
@@ -566,6 +648,16 @@ aside .logo img {
    	function hideAlert(){
    		alertBox.classList.add("hide");
    	}
+   	
+ let callPopup = document.getElementById("popup");
+    
+    function productDeletePopup(){
+    	callPopup.classList.add("open-call_action_popup");
+    }
+    
+    function hidePopup(){
+    	callPopup.classList.remove("open-call_action_popup");
+    }
     </script>
 </body>
 </html>

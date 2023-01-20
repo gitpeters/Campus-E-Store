@@ -677,8 +677,13 @@ File [] dirListing;%>
         <%! String productID1 ="", prodName1="", productCategory1="", productStatus1 ="", productDescription1 ="", productCondition1="", path1=""; 
 				double productAmt1 =0.0;%>
 				
-				<%	ArrayList <File> relatedProduct = new ArrayList <File>();
-					File dir2 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\relatedProduct\\").getAbsoluteFile();
+				
+				<%	
+				Loader loader = new Loader();
+				loader.deleteRelatedProductImage();
+				loader.relatedImage(productCategory);
+				ArrayList <File> relatedProduct = new ArrayList <File>();
+					File dir2 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\relatedProduct\\");
 					dirListing = dir2.listFiles();
 					 if(dirListing != null){
 						 for (File fl: dirListing){
@@ -689,8 +694,8 @@ File [] dirListing;%>
 							 String imageName = imageIndex.getName();
 							 productID1 = imageName.substring(0, 9);
 							 
-							 List <Product> product2 = (List <Product>)DAO.getProductDetailsWithList(productID1);
-								for(Product p:product2){
+							 List <Product> product2 = DAO.getProductDetailsWithList(productID1);
+								for(Product p : product2){
 				
 									productID1 = p.getProductId();
 									prodName1 = p.getProductName();
@@ -700,6 +705,7 @@ File [] dirListing;%>
 									productAmt1 = p.getProductAmount();
 									productDescription1 = p.getProductDescription();
 								}
+								
 				%>
 				          <div class="col-lg-3 col-md-4 col-sm-6">
 				            <div class="product__item">
@@ -708,15 +714,7 @@ File [] dirListing;%>
 				                data-setbg="img/product/relatedProduct/<%= imageName %>"
 				              >
 				                <ul class="product__item__pic__hover">
-				                  <li>
-				                    <a href="#"><i class="fa fa-heart"></i></a>
-				                  </li>
-				                  <li>
-				                    <a href="#"><i class="fa fa-retweet"></i></a>
-				                  </li>
-				                  <li>
-				                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-				                  </li>
+				                   <li><a href="ProductDetails?productId=<%=productID1%>"><i class="fa-solid fa-paper-plane"></i></a></li>
 				                </ul>
 				              </div>
 				              <div class="product__item__text">
@@ -809,118 +807,7 @@ File [] dirListing;%>
       </div>
     </section>
     <!-- Related Product Section End -->
-    <!-- Related Product Section Begin -->
-    <section class="related-product">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="section-title related__product__title">
-              <h2>Related Product</h2>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/product/product-1.jpg"
-              >
-                <ul class="product__item__pic__hover">
-                  <li>
-                    <a href="#"><i class="fa fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-retweet"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Crab Pool Security</a></h6>
-                <h5>$30.00</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/product/product-2.jpg"
-              >
-                <ul class="product__item__pic__hover">
-                  <li>
-                    <a href="#"><i class="fa fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-retweet"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Crab Pool Security</a></h6>
-                <h5>$30.00</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/product/product-3.jpg"
-              >
-                <ul class="product__item__pic__hover">
-                  <li>
-                    <a href="#"><i class="fa fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-retweet"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Crab Pool Security</a></h6>
-                <h5>$30.00</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/product/product-7.jpg"
-              >
-                <ul class="product__item__pic__hover">
-                  <li>
-                    <a href="#"><i class="fa fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-retweet"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Crab Pool Security</a></h6>
-                <h5>$30.00</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Related Product Section End -->
-
+    
     <!-- Footer Section Begin -->
     <footer class="footer spad">
       <div class="container">

@@ -254,7 +254,7 @@ public class DAO {
 	}
 	
 	public static List <Product> getProductDetailsWithList (String prodId) throws SQLException {
-		List <Product> product = new ArrayList();
+		List <Product> product = new ArrayList<Product>();
 		Connection con = DbConnection.connection();
 		
 		String sql = "SELECT * FROM campusestock.product WHERE productId = '"+prodId+"'";
