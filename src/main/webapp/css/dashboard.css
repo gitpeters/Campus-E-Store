@@ -651,19 +651,19 @@ main .recent-orders .show-all {
     text-align: center;
   }
 
-  main table thead tr th:last-child,
-  main table thead tr th:first-child {
+  main table thead tr th:nth-child(3),
+  main table thead tr th:nth-child(4) {
     display: none;
   }
 
-  main table tbody tr td:last-child,
-  main table tbody tr td:first-child {
+  main table tbody tr td:nth-child(3),
+  main table tbody tr td:nth-child(4) {
     display: none;
   }
 }
 
 /* ================ Small Tablets & Mobile ========= */
-
+/*
 @media screen and (max-width: 768px) {
   .container {
     width: 100%;
@@ -778,45 +778,4 @@ main .recent-orders .show-all {
   }
 }
 
-/* #dropDown{
-  position: relative;
-  width: 100%;
-}
-
-.drop_down_arrow {
-  transform: rotate(180deg);
-  transition: all 300ms ease;
-}
-
-.drop-down-menu{
-  position: relative;
-  width: 100%;
-  display: block;
-  gap: 0;
-  transition: all 300ms ease;
-}
-
-.drop-down-item{
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  padding-left: 30px;
-  width: 100%;
-  gap: 0;
-  padding: 0;
-  background: var(--company-lightColor);
-  color: var(--company-mainColor);
-}
-
-.drop-down-menu:hover{
-  margin-bottom: 2.5rem;
-}
-
-.drop-down-menu:hover #dropDownArrow{
-  transform: rotate(180deg);
-}
-
-.drop-down-menu:hover .drop-down-item{
-  display: flex;
-}
 */

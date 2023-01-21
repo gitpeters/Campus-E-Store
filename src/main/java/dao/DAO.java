@@ -336,4 +336,14 @@ public class DAO {
 		
 		return product;
 	}
+	
+	// Delete Product by productId
+	public static int deleteProductById(Product product) throws SQLException {
+		int i = 0;
+		Connection con = DbConnection.connection();
+		String sql = "DELETE FROM campusestock.product WHERE productId = '"+product.getProductId()+"'";
+		PreparedStatement pst = con.prepareStatement(sql);
+		i = pst.executeUpdate();
+		return i;
+	}
 }
