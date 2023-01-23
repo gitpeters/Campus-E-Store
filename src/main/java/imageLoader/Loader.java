@@ -165,7 +165,7 @@ public class Loader {
 					image = rs.getString("productId") + increament + ".jpg";
 					blob = rs.getBlob("productSample"+imageColumn);
 					byte [] imageArr = blob.getBytes(1, (int)blob.length());
-					file = new FileOutputStream(path + "product\\relatedProduct\\" + image);
+					file = new FileOutputStream("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\relatedProduct\\" + image);
 					file.write(imageArr);	
 					
 					increament++;

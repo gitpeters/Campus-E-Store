@@ -24,7 +24,6 @@
 
 <style>
 /* Preloder */
-
 #preloder {
   position: fixed;
   width: 100%;
@@ -130,7 +129,6 @@ aside .logo img {
 	}
 }
 
-
 	
 .alert.hide{
 	animation: hide_slide 1s ease forwards;
@@ -218,7 +216,7 @@ aside .logo img {
 	font-size: 22px;
 	line-height: 40px;
 }
-.submit-btn{
+.submit-btn, .del-btn{
 	background: #73b0ec;
 	padding: 2px 6px;
 	color: #fff;
@@ -227,10 +225,280 @@ aside .logo img {
 	transition: opacity 300ms ease;
 }
 
-.submit-btn:hover{
+.del-btn{
+	background: #ff7782;
+}
+
+.submit-btn:hover, .del-btn:hover{
 	opacity:0.7; 
 }
+
+.call_action_popup{
+	width: 300px;
+	background: #fff;
+	border-radius: 6px;
+	position: absolute;
+	top: 50%;
+	left: 40%;
+	transition: translate(-50%, -40%) scale(1);
+	text-align: center;
+	padding: 0 30px 0 30px;
+	color: #333;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+	transition: 300ms ease;
+	visibility: visible;
+	transition: transform 0.4s, top 0.4s;
+}
+
+.call_action_popup_hide{
+	visibility: hidden;
+}
+
+.close-call_action_popup{
+	visibility: hidden;
+	top: 0;
+	transition: translate(-20%, -50%) scale(0.1);
+}
+
+.call_action_popup h2{
+	font-size: 20px;
+	font-weight: 500px;
+	margin: 30px 0 10px;
+	background: #ff7782;
+	color: #fff;
+	position: absolute;
+	width: 80%;
+	top: -30%;
+	border-radius: 5px;
+}
+
+.call_action_popup p{
+	font-size: 18px;
+	margin-top: 20px;
+	font-weight: bolder;
+	padding: 12px 0px;
+}
+
+.call_action_popup_btn{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px; 
+}
+
+.call_action_popup_btn button{
+	border: none;
+	outline: none;
+	cursor: pointer;
+	margin: 0 15px;
+	padding: 5px;
+	width: 120px;
+	border-radius: 5px;
+	background: #57b952;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 500;
+	transition: 300ms ease;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.call_action_popup_btn .cancel-btn{
+	background: #ff7782;
+}
+
+
+
+.call_action_popup button:hover{
+	box-shadow: none;
+}
+
+/* ================== MEDIA QUERY ================= */
+
+/* ================ Big Tablets & Small Laptops ========= */
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 94%;
+    grid-template-columns: 7rem auto 23rem;
+  }
+
+  aside .sidebar h3 {
+    display: none;
+  }
+
+  aside .sidebar a {
+    width: 5.6rem;
+  }
+
+  aside .sidebar a:last-child {
+    position: relative;
+    margin-top: 1.8rem;
+  }
+
+  aside .logo span {
+    display: none;
+  }
+
+  main .insights {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  main .recent-orders {
+    width: 94%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2rem 0 0 8.8rem;
+  }
+
+  main .recent-orders table {
+    width: 83vw;
+    text-align: center;
+  }
+
+  main table thead tr th:nth-child(3),
+  main table thead tr th:nth-child(4) {
+    display: none;
+  }
+
+  main table tbody tr td:nth-child(3),
+  main table tbody tr td:nth-child(4) {
+    display: none;
+  }
+  
+  main table thead tr th:last-child{
+  	display: block;
+  }
+  
+  main table tbody tr td:last-child{
+  	display:block;
+  }
+}
+
+/* ================ Small Tablets & Mobile ========= */
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    position: fixed;
+    left: -100%;
+    background: var(--color-white);
+    width: 18rem;
+    z-index: 3;
+    box-shadow: 1rem 3rem 4rem var(--color-light);
+    height: 100vh;
+    padding-right: var(--card-padding);
+    display: none;
+    animation: showMenu 400ms ease forwards;
+  }
+
+  aside .logo span {
+    display: inline;
+  }
+
+  @keyframes showMenu {
+    to {
+      left: 0;
+    }
+  }
+  aside .logo {
+    margin-left: 1rem;
+  }
+
+  aside .sidebar h3 {
+    display: inline;
+  }
+
+  aside .sidebar a {
+    width: 100%;
+    height: 3.4rem;
+  }
+  aside .sidebar a:last-child {
+    position: absolute;
+    bottom: 4rem;
+  }
+
+  aside .close {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  main {
+    margin-top: 8rem;
+    padding: 0 1rem;
+  }
+
+  main .recent-orders {
+    position: relative;
+    margin: 3rem 0 0 0;
+    width: 100%;
+  }
+
+  main .recent-orders table {
+    width: 100%;
+    margin: 0;
+  }
+
+  .right {
+    width: 94%;
+    margin: 0 auto 4rem;
+  }
+
+  .right .top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    padding: 0 0.8rem;
+    height: 4.6rem;
+    background: var(--color-white);
+    width: 100%;
+    margin: 0;
+    z-index: 2;
+    box-shadow: 0 1rem 1rem var(--color-light);
+  }
+
+  .right .top .theme-toggler {
+    width: 4.4rem;
+    position: absolute;
+    left: 66%;
+  }
+
+  .right .profile .info {
+    display: none;
+  }
+
+  .right .top button {
+    display: inline-block;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-dark);
+    position: absolute;
+    left: 1rem;
+  }
+
+  .right .top button span {
+    font-size: 2rem;
+  }
+
+  .right .recent-updates {
+    position: relative;
+    margin-top: 40rem;
+  }
+  
+  .call_action_popup{
+  	left: 15%;
+  	top: 70%;
+  }
+}
+
 </style>
+
+
 <script type="text/javascript">
         function preventBack() { window.history.forward(); }
         
@@ -262,6 +530,7 @@ aside .logo img {
       <div class="loader"></div>
     </div>
     <%
+    	
 		MessageReport m1 = (MessageReport) session.getAttribute("msg");
 		if (m1 != null) {
 		%>
@@ -406,7 +675,7 @@ aside .logo img {
                         List <Product> product = DAO.getProductByVendorID(vendor.getVendorId());
                         	if(product!=null){
                         		for(Product p:product){
-                        			out.println("<tr><td>"+p.getProductId()+"</td><td>"+p.getProductName()+"</td><td>"+p.getProductCondition()+"</td><td>"+p.getProductCategory()+"</td><td>"+p.getProductStatus()+"</td><td><form action='VendorView' method='post'><input type='hidden' name='productID' value='"+p.getProductId()+"'/><button type='submit' class='submit-btn'>View</button></form></td></tr>");
+                        			out.println("<tr><td>"+p.getProductId()+"</td><td>"+p.getProductName()+"</td><td>"+p.getProductCondition()+"</td><td>"+p.getProductCategory()+"</td><td>"+p.getProductStatus()+"</td><td><form action='VendorView' method='post'><input type='hidden' name='productID' value='"+p.getProductId()+"'/><button type='submit' class='submit-btn'>View</button></form></td><td><form action='DeleteProduct' name='myform' ><input type='hidden' name='pId' value='"+p.getProductId()+"'/><button type='submit'' class='del-btn'>Delete</button></form></td></tr>");
                         		}
                         		
                         	}else{
@@ -539,6 +808,35 @@ aside .logo img {
             </div>
         </div>
     </div>
+    <div id="report"></div>
+    
+     <%
+     	HttpSession session2 = request.getSession();
+     	
+		DeleteProductReport report = (DeleteProductReport) session2.getAttribute("report");
+     	
+     	String id = (String)session.getAttribute("pid");
+		if (report!=null) {
+		%>
+		<div class="call_action_popup" id="popup">
+		<h2><%=report.getMessageTitle() %></h2>
+		<p><%=report.getMessageBody() %></p>
+		<div class="call_action_popup_btn">
+			<form action="ConfirmProductDelete" method="post">
+				<input type="hidden" name="productId" value="<%=id %>"/>
+				<button type="submit">Yes</button>
+			</form>
+			<button type="button" class="cancel-btn" onclick="hidePopup()">Cancel</button>
+		</div>
+	</div>
+		
+		<%
+		}		
+		session2.getAttribute("");
+		%>
+     
+	
+
 	<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/js/app.js"></script>
     <script src="${pageContext.request.contextPath}/js/.js"></script>
@@ -566,6 +864,11 @@ aside .logo img {
    	function hideAlert(){
    		alertBox.classList.add("hide");
    	}
+   	
+   	
+   	
+   	function hidePopup(){document.querySelector('#popup').classList.add('close-call_action_popup');}
+   	//window.onload = hidePopup();
     </script>
 </body>
 </html>

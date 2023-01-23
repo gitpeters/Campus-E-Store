@@ -254,7 +254,7 @@ public class DAO {
 	}
 	
 	public static List <Product> getProductDetailsWithList (String prodId) throws SQLException {
-		List <Product> product = new ArrayList();
+		List <Product> product = new ArrayList<Product>();
 		Connection con = DbConnection.connection();
 		
 		String sql = "SELECT * FROM campusestock.product WHERE productId = '"+prodId+"'";
@@ -335,5 +335,15 @@ public class DAO {
 		}
 		
 		return product;
+	}
+	
+	// Delete Product by productId
+	public static int deleteProductById(Product product) throws SQLException {
+		int i = 0;
+		Connection con = DbConnection.connection();
+		String sql = "DELETE FROM campusestock.product WHERE productId = '"+product.getProductId()+"'";
+		PreparedStatement pst = con.prepareStatement(sql);
+		i = pst.executeUpdate();
+		return i;
 	}
 }
