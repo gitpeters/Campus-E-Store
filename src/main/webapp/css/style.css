@@ -654,8 +654,9 @@ ol {
 }
 
 .hero__search {
-  overflow: hidden;
+
   margin-bottom: 30px;
+	overflow: hidden;
 }
 
 .hero__search__form {
@@ -3634,10 +3635,3 @@ ol {
 }
 
 /* ======= SEARCH DROP =========*/
-.search-result-container{
-	width: 100%;
-	height: 30vh;
-	background: #fff;
-	z-index: 1111;
-	
-}

@@ -456,45 +456,56 @@ translateX
 }
 
 /* ======= SEARCH DROP =========*/
+.search-result-container{
+	position: absolute;
+	top: 47px;
+	width: 55%;
+	border: none;
+	/*background: linear-gradient(to bottom, rgba(2, 8, 15, 0), #192133 90%);*/
+	background: #fff;
+	box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+	border-radius: 0 0 6px 6px;
+	z-index: 2;
+	
+}
 
+
+.search-result-container .search-result{
+	width: 100%;
+	padding: 0px;
+	list-style: none;
+	opacity: 0;
+	pointer-events: none;
+}
+.search-result-container.active .search-result{
+	padding: 20px;
+	opacity: 1;
+	pointer-events: auto;
+}
+.search-result-container .search-result li{
+	font-size: 16px;
+	width: 100%;
+	border-bottom: 1px solid #f5f5f5;
+	padding: 4px;
+	display: none;
+}
+
+.search-result-container .search-result li a{
+	text-decoration: none;
+	font-size: 16px;
+	color: #192133;
+}
+
+.search-result-container.active .search-result li{
+	display: block;
+}
+.search-result-container .search-result li:hover{
+	background: #f5f5f5;
+	
+}
 </style>
-<script type="text/javascript">
-        function preventBack() { window.history.forward(); }
-        
-        setTimeout("preventBack()", 0.0);
-        window.onunload = function () { null };
+<script src="${pageContext.request.contextPath}/js/ajax.js"></script>
 
-        function search() {
-            var searchTerm = document.getElementsByName("searchTerm")[0].value;
-            var url = "SearchServlet?searchTerm=" + searchTerm;
-            if (window.XMLHttpRequest) {
-                    request = new XMLHttpRequest();
-            }else if (window.ActiveXObject) {
-                    request = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            try{
-                request.onreadystatechange = getInfo;
-                request.open("GET", url, true);
-                request.send();
-            }catch (e){alert("Unable to connect to server");}
-        }
-
-        function getInfo() {
-            if (request.readyState == 4) {
-                var results = request.responseText;
-				alert(results);
-                var container = document.getElementById("search-results");
-                container.innerHTML = "";
-                results.forEach(function(result) {
-                    var item = document.createElement("div");
-                    item.innerHTML = result.name;
-                    container.appendChild(item);
-                });
-            }
-        }
-
-        
-    </script>
 </head>
 <body>
 
@@ -503,7 +514,8 @@ translateX
 		<div class="loader"></div>
 	</div>
 	<%
-		MessageReport m1 = (MessageReport) session.getAttribute("msg");
+		HttpSession sn = request.getSession();
+		MessageReport m1 = (MessageReport) sn.getAttribute("msg");
 		if (m1 != null) {
 		%>
 		<div class="alert alert-<%=m1.getMessageColor()%> show">
@@ -515,6 +527,10 @@ translateX
 		</div>
 		
 		<%
+		}
+		sn = request.getSession(false);
+		if(sn!=null){
+		    sn.removeAttribute("msg");
 		}
 		%>
 	<div class="body-container" id="body-container">
@@ -720,27 +736,17 @@ translateX
                     All Categories
                     <span class="arrow_carrot-down"></span>
                   </div> -->
-									<input type="text" placeholder="What do yo u need?" name="searchTerm" onkeyup="search()"/>
+									<input type="text" placeholder="What do yo u need?" id="productSearch" name="searchTerm" onkeyup="search()"/>
 									
 									<button type="submit" class="site-btn">SEARCH</button>
-									
-									<div class="search-result-container">
-										<ul class="search-result">
-											<li class="result-item"><a href="#" class="result-link"></a>Hellooooo </li>
-										</ul>
-									</div>
 								</form>
 								
 							</div>
-							<!-- <div class="hero__search__phone">
-                <div class="hero__search__phone__icon">
-                  <i class="fa fa-phone"></i>
-                </div>
-                <div class="hero__search__phone__text">
-                  <h5>+2348143055218</h5>
-                  <span> 24/7 Customer Services</span>
-                </div>
-              </div> -->
+						<div class="search-result-container">
+										<ul class="search-result">
+											<li class="result-item">Hellooooo </li>
+										</ul>
+									</div>
 						</div>
 						<div class="hero__item set-bg" data-setbg="img/hero/men.png">
 							<div class="hero__text">
@@ -766,7 +772,7 @@ translateX
 						ArrayList <File> image = new ArrayList <File>();
 						ld.deleteImageInIndex();
 						ld.imageSample();
-						String filePath = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\";
+						String filePath = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\";
 						File dir = new File(filePath).getAbsoluteFile();
 						File [] dirListing = dir.listFiles();
 						if(dirListing != null){
@@ -835,7 +841,7 @@ translateX
 					Loader ld2 = new Loader();
 					ld2.featuredProducts();
 					ArrayList<File> featuredImage = new ArrayList<File>();
-					String featured = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\featuredProduct\\";
+					String featured = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\featuredProduct\\";
 					File dir2 = new File(featured).getAbsoluteFile();
 					dirListing = dir2.listFiles();
 					if (dirListing != null) {
@@ -951,7 +957,7 @@ translateX
 									int count = 0;
 									filter1.filteredImage1();
 									ArrayList <File> filterImage1 = new ArrayList <File>();
-									File dir3 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter1\\").getAbsoluteFile();
+									File dir3 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\filter1\\");
 									dirListing = dir3.listFiles();
 									 if(dirListing != null){
 										 for (File fl: dirListing){
@@ -1019,7 +1025,7 @@ translateX
 									int count = 0;
 									filter2.filteredImage2();
 									ArrayList <File> filterImage2 = new ArrayList <File>();
-									File dir4 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter2\\").getAbsoluteFile();
+									File dir4 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\filter2\\").getAbsoluteFile();
 									dirListing = dir4.listFiles();
 									 if(dirListing != null){
 										 for (File fl: dirListing){
@@ -1086,7 +1092,7 @@ translateX
 									int count = 0;
 									filter3.filteredImage3();
 									ArrayList <File> filterImage3 = new ArrayList <File>();
-									File dir5 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\filter3\\").getAbsoluteFile();
+									File dir5 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\filter3\\").getAbsoluteFile();
 									dirListing = dir5.listFiles();
 									 if(dirListing != null){
 										 for (File fl: dirListing){
@@ -1377,6 +1383,7 @@ translateX
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 	<script src="${pageContext.request.contextPath}/js/signup.js"></script>
 	<script src="${pageContext.request.contextPath}/js/product-filter.js"></script>
+	<script src="${pageContext.request.contextPath}/js/ajax.js"></script>
 
 	<script type="text/javascript">
     ( function ( document, window, index )
@@ -1483,7 +1490,6 @@ translateX
     		return showPage(currentPage - 1);
     	});
     });
-     	
      	
     </script>
 </body>

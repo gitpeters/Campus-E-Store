@@ -510,6 +510,7 @@ aside .logo img {
 <%! String productImage1="", productImage2="", productImage3="";%>
 	<%
 		HttpSession sessionV = request.getSession();
+	
 		Vendor vendor = (Vendor)sessionV.getAttribute("vendor");
 		
 		if (vendor.getVendorId() != null){
@@ -530,8 +531,8 @@ aside .logo img {
       <div class="loader"></div>
     </div>
     <%
-    	
-		MessageReport m1 = (MessageReport) session.getAttribute("msg");
+    	HttpSession session1 = request.getSession();
+		MessageReport m1 = (MessageReport) session1.getAttribute("msg");
 		if (m1 != null) {
 		%>
 		<div class="alert alert-<%=m1.getMessageColor()%> show">
@@ -542,6 +543,10 @@ aside .logo img {
 		</div>
 		
 		<%
+		}
+		session1 = request.getSession(false);
+		if(session1!=null){
+		    session1.removeAttribute("msg");
 		}
 		%>
     <div class="container">
@@ -836,6 +841,7 @@ aside .logo img {
 		if(session2!=null){
 		    session2.removeAttribute("report");
 		}
+
 		%>
      
 	
