@@ -509,8 +509,8 @@ aside .logo img {
 <body>
 <%! String productImage1="", productImage2="", productImage3="";%>
 	<%
-		
-		Vendor vendor = (Vendor)session.getAttribute("vendor");
+		HttpSession sessionV = request.getSession();
+		Vendor vendor = (Vendor)sessionV.getAttribute("vendor");
 		
 		if (vendor.getVendorId() != null){
 			
@@ -832,7 +832,11 @@ aside .logo img {
 		
 		<%
 		}		
-		
+		session2 = request.getSession(false);
+		if(session2!=null){
+		    session2.removeAttribute("report");
+		}
+
 		%>
      
 	
