@@ -282,7 +282,7 @@ File [] dirListing;%>
 		Loader ld = new Loader();
 		ld.deleteProductImageInProductDetails();
 		ld.imageSampleByIdForProduct(productID);
-		path = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\productDetails\\";
+		path = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\productDetails\\";
 		File dir = new File(path).getAbsoluteFile();
 		dirListing = dir.listFiles();
 		 if(dirListing != null){
@@ -416,17 +416,84 @@ File [] dirListing;%>
                 <span>All departments</span>
               </div>
               <ul>
-                <li><a href="#">Fresh Meat</a></li>
-                <li><a href="#">Vegetables</a></li>
-                <li><a href="#">Fruit & Nut Gifts</a></li>
-                <li><a href="#">Fresh Berries</a></li>
-                <li><a href="#">Ocean Foods</a></li>
-                <li><a href="#">Butter & Eggs</a></li>
-                <li><a href="#">Fastfood</a></li>
-                <li><a href="#">Fresh Onion</a></li>
-                <li><a href="#">Papayaya & Crisps</a></li>
-                <li><a href="#">Oatmeal</a></li>
-                <li><a href="#">Fresh Bananas</a></li>
+                <li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Supermarket">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Supermarket</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Health & Beauty">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Health & Beauty</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Home & Office">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Home & Office</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Phones & Tablets">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Phones & Tablets</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Computing">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Computing</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Electronic">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Electronic</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Fashion">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Fashion</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Baby Products">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Baby Products</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Gaming">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Gaming</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Automobile">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Automobile</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Jewelries">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Jewelries</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Accessories">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Accessories</button>
+									</form>
+								</li>
+								<li>
+									<form method="post" action="ProductCategory">
+										<input type="hidden" name="category" value="Others">
+										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Others</button>
+									</form>
+								</li>
               </ul>
             </div>
           </div>
@@ -524,12 +591,13 @@ File [] dirListing;%>
               	<div class ="call_action_popup" id="popup">
               		<img src="img/phone-flat.png" alt="" />
               		<h2>Seller's Number</h2>
-              		<p><%=vendorPhone %></p>
+              		<p><a href="tel:<%=vendorPhone %>"><%=vendorPhone %></a></p>
               		<div class="call_action_popup_btn">
               			<button type="button" onclick="hidePopup()">OK</button>
               		</div>
               	</div>
               	</div>
+              	<a href="ProductDetails?productId=<%=productID%>"><button onclick="" style="border: none; outline: none;" class="primary-btn"> View other product by Seller</button></a>
               <ul>
                 <li><b>Availability</b> <span><%= productStatus %></span></li>
                 <li>Rate: <span><i class="fa-regular fa-star" id="rate"></i></span></li>
@@ -683,7 +751,7 @@ File [] dirListing;%>
 				loader.deleteRelatedProductImage();
 				loader.relatedImage(productCategory);
 				ArrayList <File> relatedProduct = new ArrayList <File>();
-					File dir2 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\relatedProduct\\");
+					File dir2 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\relatedProduct\\");
 					dirListing = dir2.listFiles();
 					 if(dirListing != null){
 						 for (File fl: dirListing){
@@ -731,78 +799,7 @@ File [] dirListing;%>
 									}
 									 
 								%>
-         <!--  <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/product/product-2.jpg"
-              >
-                <ul class="product__item__pic__hover">
-                  <li>
-                    <a href="#"><i class="fa fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-retweet"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Crab Pool Security</a></h6>
-                <h5>$30.00</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/product/product-3.jpg"
-              >
-                <ul class="product__item__pic__hover">
-                  <li>
-                    <a href="#"><i class="fa fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-retweet"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Crab Pool Security</a></h6>
-                <h5>$30.00</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="product__item">
-              <div
-                class="product__item__pic set-bg"
-                data-setbg="img/product/product-7.jpg"
-              >
-                <ul class="product__item__pic__hover">
-                  <li>
-                    <a href="#"><i class="fa fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-retweet"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product__item__text">
-                <h6><a href="#">Crab Pool Security</a></h6>
-                <h5>$30.00</h5>
-              </div>
-            </div>
-          </div> -->
+     
         </div>
       </div>
     </section>

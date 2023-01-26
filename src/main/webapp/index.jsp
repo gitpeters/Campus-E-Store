@@ -455,6 +455,7 @@ translateX
 	color: #7fad39;
 }
 
+/* ======= SEARCH DROP =========*/
 
 </style>
 <script type="text/javascript">
@@ -462,6 +463,37 @@ translateX
         
         setTimeout("preventBack()", 0.0);
         window.onunload = function () { null };
+
+        function search() {
+            var searchTerm = document.getElementsByName("searchTerm")[0].value;
+            var url = "SearchServlet?searchTerm=" + searchTerm;
+            if (window.XMLHttpRequest) {
+                    request = new XMLHttpRequest();
+            }else if (window.ActiveXObject) {
+                    request = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            try{
+                request.onreadystatechange = getInfo;
+                request.open("GET", url, true);
+                request.send();
+            }catch (e){alert("Unable to connect to server");}
+        }
+
+        function getInfo() {
+            if (request.readyState == 4) {
+                var results = request.responseText;
+				alert(results);
+                var container = document.getElementById("search-results");
+                container.innerHTML = "";
+                results.forEach(function(result) {
+                    var item = document.createElement("div");
+                    item.innerHTML = result.name;
+                    container.appendChild(item);
+                });
+            }
+        }
+
+        
     </script>
 </head>
 <body>
@@ -683,15 +715,22 @@ translateX
 					<div class="col-lg-9">
 						<div class="hero__search">
 							<div class="hero__search__form">
-								<form action="#">
+								<form action="#" id="searchForm" style="position: relative;">
 									<!-- <div class="hero__search__categories">
                     All Categories
                     <span class="arrow_carrot-down"></span>
                   </div> -->
-									<input type="text" placeholder="What do yo u need?" />
+									<input type="text" placeholder="What do yo u need?" name="searchTerm" onkeyup="search()"/>
 									
 									<button type="submit" class="site-btn">SEARCH</button>
+									
+									<div class="search-result-container">
+										<ul class="search-result">
+											<li class="result-item"><a href="#" class="result-link"></a>Hellooooo </li>
+										</ul>
+									</div>
 								</form>
+								
 							</div>
 							<!-- <div class="hero__search__phone">
                 <div class="hero__search__phone__icon">
@@ -727,7 +766,7 @@ translateX
 						ArrayList <File> image = new ArrayList <File>();
 						ld.deleteImageInIndex();
 						ld.imageSample();
-						String filePath = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\";
+						String filePath = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\allImage\\";
 						File dir = new File(filePath).getAbsoluteFile();
 						File [] dirListing = dir.listFiles();
 						if(dirListing != null){
@@ -796,7 +835,7 @@ translateX
 					Loader ld2 = new Loader();
 					ld2.featuredProducts();
 					ArrayList<File> featuredImage = new ArrayList<File>();
-					String featured = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\featuredProduct\\";
+					String featured = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\featuredProduct\\";
 					File dir2 = new File(featured).getAbsoluteFile();
 					dirListing = dir2.listFiles();
 					if (dirListing != null) {
@@ -1093,33 +1132,7 @@ translateX
 								<%
 								}
 								%>
-								<!-- <div class="latest-prdouct__slider__item">
-									<a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-1.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-2.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a> <a href="#" class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/latest-product/lp-3.jpg" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6>Crab Pool Security</h6>
-											<span>&#8358;10,000.00</span>
-										</div>
-									</a>
-								</div> -->
+								
 							</div>
 						</div>
 					</div>

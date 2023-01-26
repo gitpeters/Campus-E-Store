@@ -337,6 +337,38 @@ public class DAO {
 		return product;
 	}
 	
+	public static List <Product> getProductByName (String prodName) throws SQLException {
+		List <Product> product = new ArrayList<Product>();
+		Connection con = DbConnection.connection();
+		
+		String sql = "SELECT * FROM campusestock.product WHERE productName = '"+prodName+"'";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			Product pr = new Product();
+			/*
+			 * pr.setProductId(rs.getString("productId"));
+			 * pr.setVendorId(rs.getString("vendorId"));
+			 */
+			pr.setProductName(rs.getString("productName"));
+			/*
+			 * pr.setProductDescription(rs.getString("productDescription"));
+			 * pr.setProductCategory(rs.getString("productCategory"));
+			 * pr.setProductCondition(rs.getString("productCondition"));
+			 * pr.setDatePosted(rs.getString("datePosted"));
+			 * pr.setProductStatus(rs.getString("productStatus"));
+			 * pr.setAdsStatus(rs.getString("adsStatus"));
+			 * pr.setBrandName(rs.getString("brandName"));
+			 * pr.setKeywords(rs.getString("keywords"));
+			 * pr.setProductAmount(rs.getDouble("productAmount"));
+			 */
+			
+			product.add(pr);
+		}
+		
+		return product;
+	}
+	
 	// Delete Product by productId
 	public static int deleteProductById(Product product) throws SQLException {
 		int i = 0;

@@ -3633,3 +3633,11 @@ ol {
 	line-height: 40px;
 }
 
+/* ======= SEARCH DROP =========*/
+.search-result-container{
+	width: 100%;
+	height: 30vh;
+	background: #fff;
+	z-index: 1111;
+	
+}
