@@ -282,7 +282,7 @@ public class DAO {
 	}
 	
 	public static List <Product> getAllProductDetails () throws SQLException {
-		List <Product> product = new ArrayList();
+		List <Product> product = new ArrayList<Product>();
 		Connection con = DbConnection.connection();
 		
 		String sql = "SELECT * FROM campusestock.product";

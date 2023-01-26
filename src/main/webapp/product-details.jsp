@@ -282,7 +282,7 @@ File [] dirListing;%>
 		Loader ld = new Loader();
 		ld.deleteProductImageInProductDetails();
 		ld.imageSampleByIdForProduct(productID);
-		path = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\productDetails\\";
+		path = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\productDetails\\";
 		File dir = new File(path).getAbsoluteFile();
 		dirListing = dir.listFiles();
 		 if(dirListing != null){
@@ -751,7 +751,7 @@ File [] dirListing;%>
 				loader.deleteRelatedProductImage();
 				loader.relatedImage(productCategory);
 				ArrayList <File> relatedProduct = new ArrayList <File>();
-					File dir2 = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\relatedProduct\\");
+					File dir2 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\relatedProduct\\");
 					dirListing = dir2.listFiles();
 					 if(dirListing != null){
 						 for (File fl: dirListing){

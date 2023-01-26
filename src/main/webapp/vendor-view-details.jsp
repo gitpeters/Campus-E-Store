@@ -209,7 +209,7 @@ File [] dirListing;%>
 		Loader ld = new Loader();
 		ld.deleteProductImage();
 		ld.imageSampleById(productID);
-		path = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\product\\vendorDetails\\";
+		path = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\vendorDetails\\";
 		File dir = new File(path).getAbsoluteFile();
 		dirListing = dir.listFiles();
 		 if(dirListing != null){
