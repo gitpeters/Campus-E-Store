@@ -832,7 +832,7 @@ aside .logo img {
 		
 		<%
 		}		
-		session2.getAttribute("");
+		
 		%>
      
 	
