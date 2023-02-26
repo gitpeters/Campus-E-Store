@@ -105,26 +105,21 @@ body {
 @media only screen and (min-width: 1200px){
   .main {
     transform: scale(1);
-    left: 18%; 
-    margin-top: -200px;
+    /* left: 18%; */ 
+    margin: 0px 30% 0px;
+   /*  margin-top: -200px; */
   }
 }
 /* Tablet Device = 768px */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .main {
     margin-top: -200px;
-    left: 0;
-    transform: scale(0.79);
   }
 }
 /* Wide Mobile = 480px */
 @media only screen and (max-width: 767px) {
   .main {
     transform: scale(0.69);
-    margin-top: -200px;
-    /* top: -10%; */
-    left: -17%;
-    
   }
 }
 

@@ -16,7 +16,9 @@
 <meta name="keywords" content="E-Campus, store, ecommerce, jsp" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon" />
+<link rel="shortcut icon"
+	href="./img/logo/campus-e-stock-high-resolution-logo-white-on-transparent-background.png"
+	type="image/x-icon" />
 <title>Campus E-store || Home</title>
 
 <!-- Google Font -->
@@ -61,8 +63,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
-
-body{
+body {
 	overflow-x: hidden;
 }
 /* LOGIN/SIGN MODAL, MOBILE & LARGE SCREEN RESPONSIVENESS */
@@ -225,73 +226,147 @@ keyframes show_slide { 0%{
 40
 
 
+
+
+
+
 %
 {
 transform
 
 
+
+
+
+
 :
 
 
+
+
+
+
 translateX
+
+
+
+
 (
 
 
+
+
+
+
 -10
+
+
+
+
 %
-
-
 )
+
+
+
+
 ;
-
-
 }
 80
 
 
+
+
+
+
 %
 {
 transform
 
 
+
+
+
+
 :
 
 
+
+
+
+
 translateX
+
+
+
+
 (
 
 
+
+
+
+
 0
+
+
+
+
 %
-
-
 )
+
+
+
+
 ;
-
-
 }
 100
 
 
+
+
+
+
 %
 {
 transform
 
 
+
+
+
+
 :
 
 
+
+
+
+
 translateX
+
+
+
+
 (
+
+
+
+
 
 
 -10px
 
 
+
+
+
+
 )
+
+
+
+
 ;
-
-
 }
 }
 .alert.hide {
@@ -306,74 +381,146 @@ keyframes hide_slide { 0%{
 40
 
 
+
+
+
+
 %
 {
 transform
 
 
+
+
+
+
 :
 
 
+
+
+
+
 translateX
+
+
+
+
 (
 
 
+
+
+
+
 0
+
+
+
+
 %
-
-
 )
+
+
+
+
 ;
-
-
 }
 80
 
 
+
+
+
+
 %
 {
 transform
 
 
+
+
+
+
 :
 
 
+
+
+
+
 translateX
+
+
+
+
 (
 
 
+
+
+
+
 -10
+
+
+
+
 %
-
-
 )
+
+
+
+
 ;
-
-
 }
 100
 
 
+
+
+
+
 %
 {
 transform
 
 
+
+
+
+
 :
 
 
+
+
+
+
 translateX
+
+
+
+
 (
 
 
+
+
+
+
 100
+
+
+
+
 %
-
-
 )
+
+
+
+
 ;
-
-
 }
 }
 .alert-danger {
@@ -441,7 +588,7 @@ translateX
 	line-height: 40px;
 }
 
-.login{
+.login {
 	text-decoration: underline;
 	color: #1058cc;
 	font-weight: bold;
@@ -451,12 +598,12 @@ translateX
 	margin-left: -15px;
 }
 
-.hero__categories ul li a:hover{
+.hero__categories ul li a:hover {
 	color: #7fad39;
 }
 
 /* ======= SEARCH DROP =========*/
-.search-result-container{
+.search-result-container {
 	position: absolute;
 	top: 47px;
 	width: 55%;
@@ -466,23 +613,23 @@ translateX
 	box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
 	border-radius: 0 0 6px 6px;
 	z-index: 2;
-	
 }
 
-
-.search-result-container .search-result{
+.search-result-container .search-result {
 	width: 100%;
 	padding: 0px;
 	list-style: none;
 	opacity: 0;
 	pointer-events: none;
 }
-.search-result-container.active .search-result{
+
+.search-result-container.active .search-result {
 	padding: 20px;
 	opacity: 1;
 	pointer-events: auto;
 }
-.search-result-container .search-result li{
+
+.search-result-container .search-result li {
 	font-size: 16px;
 	width: 100%;
 	border-bottom: 1px solid #f5f5f5;
@@ -490,18 +637,18 @@ translateX
 	display: none;
 }
 
-.search-result-container .search-result li a{
+.search-result-container .search-result li a {
 	text-decoration: none;
 	font-size: 16px;
 	color: #192133;
 }
 
-.search-result-container.active .search-result li{
+.search-result-container.active .search-result li {
 	display: block;
 }
-.search-result-container .search-result li:hover{
+
+.search-result-container .search-result li:hover {
 	background: #f5f5f5;
-	
 }
 </style>
 <script src="${pageContext.request.contextPath}/js/ajax.js"></script>
@@ -514,31 +661,33 @@ translateX
 		<div class="loader"></div>
 	</div>
 	<%
-		HttpSession sn = request.getSession();
-		MessageReport m1 = (MessageReport) sn.getAttribute("msg");
-		if (m1 != null) {
-		%>
-		<div class="alert alert-<%=m1.getMessageColor()%> show">
-			<p class="alert-msg"><%=m1.getMessageContent()%></p>
-			<p class="login" onclick="signupToggle()">Proceed to login </p>
-			<div class="close-alert">
-				<span>x</span>
-			</div>
+	HttpSession sn = request.getSession();
+	MessageReport m1 = (MessageReport) sn.getAttribute("msg");
+	if (m1 != null) {
+	%>
+	<div class="alert alert-<%=m1.getMessageColor()%> show">
+		<p class="alert-msg"><%=m1.getMessageContent()%></p>
+		<p class="login" onclick="signupToggle()">Proceed to login</p>
+		<div class="close-alert">
+			<span>x</span>
 		</div>
-		
-		<%
-		}
-		sn = request.getSession(false);
-		if(sn!=null){
-		    sn.removeAttribute("msg");
-		}
-		%>
+	</div>
+
+	<%
+	}
+	sn = request.getSession(false);
+	if (sn != null) {
+	sn.removeAttribute("msg");
+	}
+	%>
 	<div class="body-container" id="body-container">
 		<!-- Humberger Begin -->
 		<div class="humberger__menu__overlay"></div>
 		<div class="humberger__menu__wrapper">
 			<div class="humberger__menu__logo">
-				<a href="#"><img src="./img/logo.png" alt="" /></a>
+				<a href="#"><img
+					src="./img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png"
+					alt="" /></a>
 			</div>
 
 			<div class="humberger__menu__widget">
@@ -609,7 +758,9 @@ translateX
 				<div class="row">
 					<div class="col-lg-3">
 						<div class="header__logo">
-							<a href="./index.html"><img src="img/logo.png" alt="" /></a>
+							<a href="#"><img
+								src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png"
+								alt="" style="height: 80px;" /></a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -650,79 +801,96 @@ translateX
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Supermarket">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Supermarket</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Supermarket</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Health & Beauty">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Health & Beauty</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Health
+											& Beauty</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Home & Office">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Home & Office</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Home
+											& Office</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Phones & Tablets">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Phones & Tablets</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Phones
+											& Tablets</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Computing">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Computing</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Computing</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Electronic">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Electronic</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Electronic</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Fashion">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Fashion</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Fashion</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Baby Products">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Baby Products</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Baby
+											Products</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Gaming">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Gaming</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Gaming</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Automobile">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Automobile</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Automobile</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Jewelries">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Jewelries</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Jewelries</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Accessories">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Accessories</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Accessories</button>
 									</form>
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
 										<input type="hidden" name="category" value="Others">
-										<button type="submit" style="border:none; outline:none; background:none; margin:5px;">Others</button>
+										<button type="submit"
+											style="border: none; outline: none; background: none; margin: 5px;">Others</button>
 									</form>
 								</li>
 							</ul>
@@ -736,17 +904,18 @@ translateX
                     All Categories
                     <span class="arrow_carrot-down"></span>
                   </div> -->
-									<input type="text" placeholder="What do yo u need?" id="productSearch" name="searchTerm" onkeyup="search()"/>
-									
+									<input type="text" placeholder="What do yo u need?"
+										id="productSearch" name="searchTerm" onkeyup="search()" />
+
 									<button type="submit" class="site-btn">SEARCH</button>
 								</form>
-								
+
 							</div>
-						<div class="search-result-container">
-										<ul class="search-result">
-											<li class="result-item">Hellooooo </li>
-										</ul>
-									</div>
+							<div class="search-result-container">
+								<ul class="search-result">
+									<li class="result-item"></li>
+								</ul>
+							</div>
 						</div>
 						<div class="hero__item set-bg" data-setbg="img/hero/men.png">
 							<div class="hero__text">
@@ -764,47 +933,50 @@ translateX
 			<div class="container">
 				<div class="row">
 					<div class="categories__slider owl-carousel">
-					<%! String productName, productId, filePath;
-						double productAmount; %>
-					<%
+						<%!String productName, productId, filePath;
+	double productAmount;%>
+						<%
 						Loader ld = new Loader();
 						Random rand = new Random();
-						ArrayList <File> image = new ArrayList <File>();
+						ArrayList<File> image = new ArrayList<File>();
 						ld.deleteImageInIndex();
 						ld.imageSample();
-						String filePath = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\allImage\\";
+						final File generalDirectory = new File(
+								"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img").getAbsoluteFile();
+						String filePath = generalDirectory + "\\allImage\\";
 						File dir = new File(filePath).getAbsoluteFile();
-						File [] dirListing = dir.listFiles();
-						if(dirListing != null){
-							for (File fl: dirListing){
+						File[] dirListing = dir.listFiles();
+						if (dirListing != null) {
+							for (File fl : dirListing) {
 								image.add(fl);
 							}
 							Collections.shuffle(image);
-							for(File imageIndex: image){				
-								
+							for (File imageIndex : image) {
+
 								String imageName = imageIndex.getName();
 								String prodId = imageName.substring(0, 9);
 								DAO dao = new DAO();
-								ArrayList <Product> pr = (ArrayList<Product>)DAO.getProductDetailsWithList(prodId);
-								for(Product details: pr){
-									productName = details.getProductName();
-									productAmount = details.getProductAmount();
+								ArrayList<Product> pr = (ArrayList<Product>) DAO.getProductDetailsWithList(prodId);
+								for (Product details : pr) {
+							productName = details.getProductName();
+							productAmount = details.getProductAmount();
 								}
-					%>
-								<div class="col-lg-3">
-									<div class="categories__item set-bg"
-										data-setbg="img/allImage/<%=imageName %>">
-											<h5><a href="ProductDetails?productId=<%=prodId %>"><%=productName %>
-											</a></h5>
-									</div>
-								</div>
-					<%
-							}
-						}else{
-							System.out.println("Image File is empty!");
+						%>
+						<div class="col-lg-3">
+							<div class="categories__item set-bg"
+								data-setbg="img/allImage/<%=imageName%>">
+								<h5>
+									<a href="ProductDetails?productId=<%=prodId%>"><%=productName%>
+									</a>
+								</h5>
+							</div>
+						</div>
+						<%
 						}
-														
-					%>
+						} else {
+						System.out.println("Image File is empty!");
+						}
+						%>
 					</div>
 				</div>
 			</div>
@@ -830,18 +1002,19 @@ translateX
 						</div>
 					</div>
 				</div>
-				<div class="row featured__filter products-content" id="product-lists">
+				<div class="row featured__filter products-content"
+					id="product-lists">
 
 					<%!String productID = "", prodName = "", productCategory = "", productStatus = "",
-								productDescription = "", productCondition = "", productImage1 = "", productImage2 = "",
-								productImage3 = "", path = "";
-						double productAmt = 0.0;%>
+									productDescription = "", productCondition = "", productImage1 = "",
+									productImage2 = "", productImage3 = "", path = "";
+							double productAmt = 0.0;%>
 
 					<%
 					Loader ld2 = new Loader();
 					ld2.featuredProducts();
 					ArrayList<File> featuredImage = new ArrayList<File>();
-					String featured = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\featuredProduct\\";
+					String featured = generalDirectory + "\\product\\featuredProduct\\";
 					File dir2 = new File(featured).getAbsoluteFile();
 					dirListing = dir2.listFiles();
 					if (dirListing != null) {
@@ -855,7 +1028,6 @@ translateX
 
 							List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID);
 							for (Product p : product) {
-
 						productID = p.getProductId();
 						prodName = p.getProductName();
 						productCategory = p.getProductCategory();
@@ -869,18 +1041,20 @@ translateX
 							}
 					%>
 
-					<div class="col-lg-3 col-md-4 col-sm-6 mix product_items <%=productCategory%>">
+					<div
+						class="col-lg-3 col-md-4 col-sm-6 mix product_items <%=productCategory%>">
 						<div class="featured__item">
-								<div class="featured__item__pic set-bg"
+							<div class="featured__item__pic set-bg"
 								data-setbg="img/product/featuredProduct/<%=imageName%>">
-							
+
 								<ul class="featured__item__pic__hover">
-									
-									<li><a href="ProductDetails?productId=<%=productID%>"><i class="fa-solid fa-paper-plane"></i></a></li>
-								
+
+									<li><a href="ProductDetails?productId=<%=productID%>"><i
+											class="fa-solid fa-paper-plane"></i></a></li>
+
 								</ul>
 							</div>
-						
+
 							<div class="featured__item__text">
 								<h6>
 									<a href="ProductDetails?productId=<%=productID%>"><%=prodName%></a>
@@ -900,8 +1074,8 @@ translateX
 
 				</div>
 				<!-- Product pagination -->
-						<div class="product_pagination">
-			<!--  		
+				<div class="product_pagination">
+					<!--  		
              <li class="page-item previous-page disable"><a href="#" class="page_link"><i class="fa fa-long-arrow-left"></i></a></li>
              <li class="page-item current-page selected-page"><a href="#" class="page_link">1</a></li>
               <li class="page-item dots"><a href="#" class="page_link">...</a></li>
@@ -910,8 +1084,8 @@ translateX
               
               <li class="page-item current-page"><a href="#" class="page_link">10</a></li>
               <li class="page-item next-page"><a href="#" class="page_link"><i class="fa fa-long-arrow-right"></i></a></li>
-               -->	
-						</div>
+               -->
+				</div>
 			</div>
 		</section>
 		<!-- Featured Section End -->
@@ -943,67 +1117,66 @@ translateX
 						<div class="latest-product__text">
 							<h4>Latest Products</h4>
 							<div class="latest-product__slider owl-carousel">
-								
-								<%! String productID1 ="", prodName1 ="", productCategory1 ="", productStatus1 ="", productDescription1 ="", productCondition1 ="", path3 =""; 
-								double productAmt1 =0.0;%>
-								
-								<%	
-								for(int rept = 1; rept <= 3; rept++){
-									
-								%>
-									<div class="latest-prdouct__slider__item">
+
+								<%!String productID1 = "", prodName1 = "", productCategory1 = "", productStatus1 = "",
+								productDescription1 = "", productCondition1 = "", path3 = "";
+						double productAmt1 = 0.0;%>
+
 								<%
+								for (int rept = 1; rept <= 3; rept++) {
+								%>
+								<div class="latest-prdouct__slider__item">
+									<%
 									Loader filter1 = new Loader();
 									int count = 0;
 									filter1.filteredImage1();
-									ArrayList <File> filterImage1 = new ArrayList <File>();
-									File dir3 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\filter1\\");
+									ArrayList<File> filterImage1 = new ArrayList<File>();
+									File dir3 = new File(generalDirectory + "\\product\\filter1\\");
 									dirListing = dir3.listFiles();
-									 if(dirListing != null){
-										 for (File fl: dirListing){
-											 filterImage1.add(fl);
-											}
-												Collections.shuffle(filterImage1);
-												for(File imageIndex: filterImage1){	
-													if(filterImage1.indexOf(imageIndex) < 3){
-													 String imageName = imageIndex.getName();
-													 productID1 = imageName.substring(0, 9);
-													 
-													 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID1);
-														for(Product p:product){
-										
-															productID1 = p.getProductId();
-															prodName1 = p.getProductName();
-															productCategory1 = p.getProductCategory();
-															productCondition1 = p.getProductCondition();
-															productStatus1 = p.getProductStatus();
-															productAmt1 = p.getProductAmount();
-															productDescription1 = p.getProductDescription();
-														}
-														
-								%>
-									<a href="ProductDetails?productId=<%=productID1 %>" class="latest-product__item">
+									if (dirListing != null) {
+										for (File fl : dirListing) {
+											filterImage1.add(fl);
+										}
+										Collections.shuffle(filterImage1);
+										for (File imageIndex : filterImage1) {
+											if (filterImage1.indexOf(imageIndex) < 3) {
+										String imageName = imageIndex.getName();
+										productID1 = imageName.substring(0, 9);
+
+										List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID1);
+										for (Product p : product) {
+
+											productID1 = p.getProductId();
+											prodName1 = p.getProductName();
+											productCategory1 = p.getProductCategory();
+											productCondition1 = p.getProductCondition();
+											productStatus1 = p.getProductStatus();
+											productAmt1 = p.getProductAmount();
+											productDescription1 = p.getProductDescription();
+										}
+									%>
+									<a href="ProductDetails?productId=<%=productID1%>"
+										class="latest-product__item">
 										<div class="latest-product__item__pic">
-											<img src="img/product/filter1/<%= imageName %>" alt="" />
+											<img src="img/product/filter1/<%=imageName%>" alt="" />
 										</div>
 										<div class="latest-product__item__text">
-											<h6><%= prodName1 %></h6>
-											<span>&#8358;<%= productAmt1 %></span>
+											<h6><%=prodName1%></h6>
+											<span>&#8358;<%=productAmt1%></span>
 										</div>
-									</a> 
-								<%
-													}
-										 }
-							        }else{
-										System.out.println("Image File is empty!");
+									</a>
+									<%
 									}
-									 
-								%>
+									}
+									} else {
+									System.out.println("Image File is empty!");
+									}
+									%>
 								</div>
 								<%
 								}
 								%>
-								
+
 							</div>
 						</div>
 					</div>
@@ -1011,67 +1184,66 @@ translateX
 						<div class="latest-product__text">
 							<h4>Top Rated Products</h4>
 							<div class="latest-product__slider owl-carousel">
-							
-							<%! String productID2 ="", prodName2 ="", productCategory2 ="", productStatus2 ="", productDescription2 ="", productCondition2 ="", path4 =""; 
-								double productAmt2 =0.0;%>
-								
-								<%	
-								for(int rept = 1; rept <= 3; rept++){
-									
-								%>
-									<div class="latest-prdouct__slider__item">
+
+								<%!String productID2 = "", prodName2 = "", productCategory2 = "", productStatus2 = "",
+								productDescription2 = "", productCondition2 = "", path4 = "";
+						double productAmt2 = 0.0;%>
+
 								<%
+								for (int rept = 1; rept <= 3; rept++) {
+								%>
+								<div class="latest-prdouct__slider__item">
+									<%
 									Loader filter2 = new Loader();
 									int count = 0;
 									filter2.filteredImage2();
-									ArrayList <File> filterImage2 = new ArrayList <File>();
-									File dir4 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\filter2\\").getAbsoluteFile();
+									ArrayList<File> filterImage2 = new ArrayList<File>();
+									File dir4 = new File(generalDirectory + "\\product\\filter2\\").getAbsoluteFile();
 									dirListing = dir4.listFiles();
-									 if(dirListing != null){
-										 for (File fl: dirListing){
-											 filterImage2.add(fl);
-											}
-												Collections.shuffle(filterImage2);
-												for(File imageIndex: filterImage2){	
-													if(filterImage2.indexOf(imageIndex) < 3){
-													 String imageName = imageIndex.getName();
-													 productID2 = imageName.substring(0, 9);
-													 
-													 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID2);
-														for(Product p:product){
-										
-															productID2 = p.getProductId();
-															prodName2 = p.getProductName();
-															productCategory2 = p.getProductCategory();
-															productCondition2 = p.getProductCondition();
-															productStatus2 = p.getProductStatus();
-															productAmt2 = p.getProductAmount();
-															productDescription2 = p.getProductDescription();
-														}
-														
-								%>
-									<a href="ProductDetails?productId=<%=productID2 %>" class="latest-product__item">
+									if (dirListing != null) {
+										for (File fl : dirListing) {
+											filterImage2.add(fl);
+										}
+										Collections.shuffle(filterImage2);
+										for (File imageIndex : filterImage2) {
+											if (filterImage2.indexOf(imageIndex) < 3) {
+										String imageName = imageIndex.getName();
+										productID2 = imageName.substring(0, 9);
+
+										List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID2);
+										for (Product p : product) {
+
+											productID2 = p.getProductId();
+											prodName2 = p.getProductName();
+											productCategory2 = p.getProductCategory();
+											productCondition2 = p.getProductCondition();
+											productStatus2 = p.getProductStatus();
+											productAmt2 = p.getProductAmount();
+											productDescription2 = p.getProductDescription();
+										}
+									%>
+									<a href="ProductDetails?productId=<%=productID2%>"
+										class="latest-product__item">
 										<div class="latest-product__item__pic">
-											<img src="img/product/filter1/<%= imageName %>" alt="" />
+											<img src="img/product/filter1/<%=imageName%>" alt="" />
 										</div>
 										<div class="latest-product__item__text">
-											<h6><%= prodName2 %></h6>
-											<span>&#8358;<%= productAmt2 %></span>
+											<h6><%=prodName2%></h6>
+											<span>&#8358;<%=productAmt2%></span>
 										</div>
-									</a> 
-								<%
-													}
-										 }
-							        }else{
-										System.out.println("Image File is empty!");
+									</a>
+									<%
 									}
-									 
-								%>
+									}
+									} else {
+									System.out.println("Image File is empty!");
+									}
+									%>
 								</div>
 								<%
 								}
 								%>
-								
+
 							</div>
 						</div>
 					</div>
@@ -1079,66 +1251,65 @@ translateX
 						<div class="latest-product__text">
 							<h4>Review Products</h4>
 							<div class="latest-product__slider owl-carousel">
-								<%! String productID3 ="", prodName3 ="", productCategory3 ="", productStatus3 ="", productDescription3 ="", productCondition3 ="", path5 =""; 
-								double productAmt3 =0.0;%>
-								
-								<%	
-								for(int rept = 1; rept <= 3; rept++){
-									
-								%>
-									<div class="latest-prdouct__slider__item">
+								<%!String productID3 = "", prodName3 = "", productCategory3 = "", productStatus3 = "",
+										productDescription3 = "", productCondition3 = "", path5 = "";
+								double productAmt3 = 0.0;%>
+
 								<%
+								for (int rept = 1; rept <= 3; rept++) {
+								%>
+								<div class="latest-prdouct__slider__item">
+									<%
 									Loader filter3 = new Loader();
 									int count = 0;
 									filter3.filteredImage3();
-									ArrayList <File> filterImage3 = new ArrayList <File>();
-									File dir5 = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img\\product\\filter3\\").getAbsoluteFile();
+									ArrayList<File> filterImage3 = new ArrayList<File>();
+									File dir5 = new File(generalDirectory + "\\product\\filter3\\").getAbsoluteFile();
 									dirListing = dir5.listFiles();
-									 if(dirListing != null){
-										 for (File fl: dirListing){
-											 filterImage3.add(fl);
-											}
-												Collections.shuffle(filterImage3);
-												for(File imageIndex: filterImage3){	
-													if(filterImage3.indexOf(imageIndex) < 3){
-													 String imageName = imageIndex.getName();
-													 productID3 = imageName.substring(0, 9);
-													 
-													 List <Product> product = (List <Product>)DAO.getProductDetailsWithList(productID3);
-														for(Product p:product){
-										
-															productID3 = p.getProductId();
-															prodName3 = p.getProductName();
-															productCategory3 = p.getProductCategory();
-															productCondition3 = p.getProductCondition();
-															productStatus3 = p.getProductStatus();
-															productAmt3 = p.getProductAmount();
-															productDescription3 = p.getProductDescription();
-														}
-														
-								%>
-									<a href="ProductDetails?productId=<%=productID3 %>" class="latest-product__item">
+									if (dirListing != null) {
+										for (File fl : dirListing) {
+											filterImage3.add(fl);
+										}
+										Collections.shuffle(filterImage3);
+										for (File imageIndex : filterImage3) {
+											if (filterImage3.indexOf(imageIndex) < 3) {
+										String imageName = imageIndex.getName();
+										productID3 = imageName.substring(0, 9);
+
+										List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID3);
+										for (Product p : product) {
+
+											productID3 = p.getProductId();
+											prodName3 = p.getProductName();
+											productCategory3 = p.getProductCategory();
+											productCondition3 = p.getProductCondition();
+											productStatus3 = p.getProductStatus();
+											productAmt3 = p.getProductAmount();
+											productDescription3 = p.getProductDescription();
+										}
+									%>
+									<a href="ProductDetails?productId=<%=productID3%>"
+										class="latest-product__item">
 										<div class="latest-product__item__pic">
-											<img src="img/product/filter1/<%= imageName %>" alt="" />
+											<img src="img/product/filter1/<%=imageName%>" alt="" />
 										</div>
 										<div class="latest-product__item__text">
-											<h6><%= prodName3 %></h6>
-											<span>&#8358;<%= productAmt3 %></span>
+											<h6><%=prodName3%></h6>
+											<span>&#8358;<%=productAmt3%></span>
 										</div>
-									</a> 
-								<%
-													}
-										 }
-							        }else{
-										System.out.println("Image File is empty!");
+									</a>
+									<%
 									}
-									 
-								%>
+									}
+									} else {
+									System.out.println("Image File is empty!");
+									}
+									%>
 								</div>
 								<%
 								}
 								%>
-								
+
 							</div>
 						</div>
 					</div>

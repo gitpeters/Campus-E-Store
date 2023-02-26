@@ -8,7 +8,9 @@
 <meta name="keywords" content="E-Campus, store, ecommerce, jsp" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon" />
+<link rel="shortcut icon"
+	href="./img/logo/campus-e-stock-high-resolution-logo-white-on-transparent-background.png"
+	type="image/x-icon" />
 <title>Campus E-store || Login</title>
 
 <!-- Google Font -->
@@ -48,6 +50,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -61,13 +64,16 @@
 			<form action="" class="form" id="a-form">
 				<h2 class="form-title title">Create Account</h2>
 				<div class="form_icons"></div>
-				<span class="form_span">or use email for registration</span> 
-				<input type="text" class="form_input" placeholder="Name" required name="name"/> 
-				<input type="email" class="form_input" placeholder="Email" required name="email"/> 
-				<input type="text" class="form_input" placeholder="Student ID Number" required name="student_id">
-				<input type="text" class="form_input" placeholder="Business Name/Brand Name" name="brand_name">
-				<input type="password" class="form_input" placeholder="Password" required name="password" />
-				<input type="text" class="form_input" placeholder="Phone Number" required name="phone" />
+				<span class="form_span">or use email for registration</span> <input
+					type="text" class="form_input" placeholder="Name" required
+					name="name" /> <input type="email" class="form_input"
+					placeholder="Email" required name="email" /> <input type="text"
+					class="form_input" placeholder="Student ID Number" required
+					name="student_id"> <input type="text" class="form_input"
+					placeholder="Business Name/Brand Name" name="brand_name"> <input
+					type="password" class="form_input" placeholder="Password" required
+					name="password" /> <input type="text" class="form_input"
+					placeholder="Phone Number" required name="phone" />
 				<button type="submit" class="form_button button submit">
 					SIGN UP</button>
 			</form>
@@ -91,7 +97,9 @@
 			<div class="switch_circle switch_circle-t"></div>
 
 			<div class="switch_container" id="switch-c1">
-				<a href="#" class="logo_link"> <img src="img/logo.png" alt="" />
+				<a href="#" class="logo_link"> <img
+					src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png"
+					alt="" />
 				</a>
 				<h2 class="switch_title title click" id="click-me">Welcome Back
 					!</h2>
@@ -101,7 +109,9 @@
 			</div>
 
 			<div class="switch_container is-hidden" id="switch-c2">
-				<a href="#" class="logo_link"> <img src="img/logo.png" alt="" />
+				<a href="#" class="logo_link"> <img
+					src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png"
+					alt="" />
 				</a>
 				<h2 class="switch_title title">Hello Friend !</h2>
 				<p class="switch_description description">Enter your personal
@@ -113,7 +123,8 @@
 	<!-- Js Plugins -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
 	<script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>

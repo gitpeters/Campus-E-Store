@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merchant Dashboard</title>
     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/dashboard.css"type="text/css" />
-    <link rel="shortcut icon" href="./img/estock1.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./img/logo/campus-e-stock-high-resolution-logo-white-on-transparent-background.png" type="image/x-icon">
     <!-- material icon -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
@@ -556,7 +556,7 @@ aside .logo img {
             <div class="top">
                 <!-- logo -->
                 <div class="logo">  
-                    <img src="img/logo.png" id="logo" alt="logo">
+                    <img src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png" alt="" style= "height: 80px;"/>
                 </div>
 
                  <!-- hamburger -->
