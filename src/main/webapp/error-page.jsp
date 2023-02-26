@@ -19,7 +19,7 @@
     <nav>
       <!-- Logo -->
       <a href="#" class="logo">
-        <img src="./img/logo.png" alt="" />
+        <img src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png" alt="" style= "height: 80px;"/>
       </a>
     </nav>
 
@@ -35,7 +35,7 @@
       </p>
 
       <!-- btn -->
-      <button><a href="index.jsp">Back</a></button>
+      <a href="index.jsp"><button>Back</button></a>
     </section>
   </body>
 </html>

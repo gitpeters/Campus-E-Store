@@ -7,7 +7,7 @@ var searchValue;
 
 function preventBack() {
 	window.history.forward();
-	
+
 }
 
 setTimeout("preventBack()", 0.0);
@@ -20,7 +20,7 @@ function search() {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			getInfo(this.responseText);
-		}else{
+		} else {
 			searchWrapper.classList.remove("active");
 		}
 	};
@@ -33,24 +33,24 @@ function search() {
 }
 
 function getInfo(response) {
-	
+
 	var results = JSON.parse(response);
 	results = results.map((data) => {
-		return data = '<li><a href="shop.jsp">' + data + '</a></li>'
+		return data = '<li><a href="ProductDisplay?productName=' + data + '">' + data + '</a></li>'
 	});
-	
-	
+
+
 	//console.log(results);
 	searchWrapper.classList.add("active");
-	showSearchResult(results);	
+	showSearchResult(results);
 	let allList = suggestionBox.querySelectorAll("li");
-	for(let i=0; i<allList.length; i++){
-		allList[i].setAttribute("onclick", "select(this)");
+	for (let i = 0; i < allList.length; i++) {
+		//	allList[i].setAttribute("onclick", "select(this)");
 	}
-	
+
 }
 
-function select(element){
+function select(element) {
 	searchInput = document.getElementById("productSearch")
 	let selectUserData = element.textContent;
 	searchInput.value = selectUserData;
@@ -60,18 +60,12 @@ function select(element){
 
 function showSearchResult(list) {
 	let listData;
-	
+
 	if (!list.length) {
-		listData = '<li>'+searchValue+'</li>'
+		listData = '<li>' + searchValue + '</li>'
 	} else {
 		listData = list.join('');
 	}
 
 	suggestionBox.innerHTML = listData;
 }
-
-
-
-
-
-
