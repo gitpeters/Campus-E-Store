@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <link rel="shortcut icon"
-	href="./img/logo/campus-e-stock-high-resolution-logo-white-on-transparent-background.png"
+	href="./img/logo/favicon.PNG"
 	type="image/x-icon" />
 <title>Campus E-store || Shop</title>
 
@@ -228,7 +228,7 @@
 		<div class="humberger__menu__wrapper">
 			<div class="humberger__menu__logo">
 				<a href="#"><img
-					src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png"
+					src="img/logo/projectLogo.PNG"
 					alt="" style="height: 80px;" /></a>
 			</div>
 			<div class="humberger__menu__cart"></div>
@@ -300,7 +300,7 @@
 				<div class="row">
 					<div class="col-lg-3">
 						<div class="header__logo">
-							<a href="./index.html"><img src="img/logo.png" alt="" /></a>
+							<a href="./index.html"><img src="img/logo/projectLogo.PNG" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-lg-6">

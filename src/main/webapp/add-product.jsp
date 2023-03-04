@@ -15,7 +15,7 @@
 	href="${pageContext.request.contextPath}/css/add-product.css"
 	type="text/css" />
 <link rel="shortcut icon"
-	href="./img/logo/campus-e-stock-high-resolution-logo-white-on-transparent-background.png"
+	href="./img/logo/favicon.PNG"
 	type="image/x-icon">
 <!-- material icon -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -30,6 +30,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/dashboard.css"type="text/css" />
 
 <style>
 /* Preloder */
@@ -156,12 +157,7 @@ aside .logo img {
 	height: auto;
 }
 </style>
-<script type="text/javascript">
-        function preventBack() { window.history.forward(); }
-        
-        setTimeout("preventBack()", 0.0);
-        window.onunload = function () { null };
-    </script>
+
 </head>
 <body>
 	<%
@@ -205,7 +201,7 @@ aside .logo img {
 				<!-- logo -->
 				<div class="logo">
 					<img
-						src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png"
+						src="img/logo/projectLogo.PNG"
 						alt="" style="height: 80px;" />
 				</div>
 
@@ -279,46 +275,45 @@ aside .logo img {
 
 								<ul class="list-items categories">
 									<li class="item"><input type="checkbox"
-										name="productcategory" class="items" id="item1"
+										name="productcategory" class="items categoryItem" id="item1"
 										value="Supermarket">
 										<p class="item-text">Supermarket</p></li>
 									<li class="item"><input type="checkbox"
-										name="productcategory" class="items" value="Health & Beauty">
+										name="productcategory" class="items categoryItem" id="item1" value="Health & Beauty">
 										<p class="item-text">Health & Beauty</p></li>
 									<li class="item"><input type="checkbox"
-										name="productcategory" class="items" value="Home & Office">
+										name="productcategory" class="items categoryItem" id="item1" value="Home & Office">
 										<p class="item-text">Home & Office</p></li>
 									<li class="item"><input type="checkbox"
-										name="productcategory" class="items" value="Phones & Tablets">
+										name="productcategory" class="items categoryItem" id="item1" value="Phones & Tablets">
 										<p class="item-text">Phones & Tablets</p></li>
 									<li class="item"><input type="checkbox"
-										name="productcategory" class="items" value="Computing">
+										name="productcategory" class="items categoryItem" id="item1" value="Computing">
 										<p class="item-text">Computing</p></li>
 									<li class="item"><input type='checkbox'
-										name="productcategory" class="items" value="Electronics">
+										name="productcategory" class="items categoryItem" id="item1" value="Electronics">
 										<p class="item-text">Electronics</p></li>
 									<li class="item"><input type="checkbox"
-										name="productcategory" class="items" value="Fashion">
+										name="productcategory" class="items categoryItem" id="item1" value="Fashion">
 										<p class="item-text">Fashion</p></li>
 									<li class="item"><input type='checkbox'
-										name="productcategory" value="Baby Products">
+										name="productcategory" id="item1" value="Baby Products" class="categoryItem">
 										<p class="item-text">Baby Products</p></li>
 									<li class="item"><input type='checkbox'
-										name="productcategory" value="Gaming">
+										name="productcategory" id="item1" value="Gaming" class="categoryItem">
 										<p class="item-text">Gaming</p></li>
 									<li class="item"><input type='checkbox'
-										name="productcategory" value="Automobile">
+										name="productcategory" id="item1" value="Automobile" class="categoryItem">
 										<p class="item-text">Automobile</p></li>
 									<li class="item"><input type='checkbox'
-										name="productcategory" value="Jewelries">
+										name="productcategory" id="item1" value="Jewelries" class="categoryItem">
 										<p class="item-text">Jewelries</p></li>
 									<li class="item"><input type='checkbox'
-										name="productcategory" value="Accessories">
+										name="productcategory" id="item1" value="Accessories" class="categoryItem">
 										<p class="item-text">Accessories</p></li>
 									<li class="item"><input type='checkbox'
-										name="productcategory" value="others">
-										<p class="item-text">Others</p> <input type="text"
-										name="productcategory" placeholder="Others? Specify">
+										name="productcategory" id="item1" value="others" class="categoryItem">
+										<p class="item-text">Others</p>
 									</li>
 								</ul>
 							</div>
@@ -381,66 +376,37 @@ aside .logo img {
 
 			<!-- recent orders -->
 			<div class="recent-orders">
-				<h2>Recent Orders</h2>
-				<table>
-					<thead>
-						<tr>
-							<th>Product Name</th>
-							<th>Product Number</th>
-							<th>Payment</th>
-							<th>Status</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Cow meat (5kilos)</td>
-							<td>8993</td>
-							<td>Due</td>
-							<td class="warning">Pending</td>
-							<td class="primary">Details</td>
-						</tr>
-						<tr>
-							<td>Cow meat (5kilos)</td>
-							<td>8993</td>
-							<td>Due</td>
-							<td class="warning">Pending</td>
-							<td class="primary">Details</td>
-						</tr>
-						<tr>
-							<td>Cow meat (5kilos)</td>
-							<td>8993</td>
-							<td>Due</td>
-							<td class="warning">Pending</td>
-							<td class="primary">Details</td>
-						</tr>
-						<tr>
-							<td>Cow meat (5kilos)</td>
-							<td>8993</td>
-							<td>Due</td>
-							<td class="warning">Pending</td>
-							<td class="primary">Details</td>
-						</tr>
-						<tr>
-							<td>Cow meat (5kilos)</td>
-							<td>8993</td>
-							<td>Due</td>
-							<td class="warning">Pending</td>
-							<td class="primary">Details</td>
-						</tr>
-						<tr>
-							<td>Cow meat (5kilos)</td>
-							<td>8993</td>
-							<td>Due</td>
-							<td class="warning">Pending</td>
-							<td class="primary">Details</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="show-all">
-					<a href="#show-all">Show All</a>
-				</div>
-			</div>
+                <h2>Recent Orders</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Product Condition</th>
+                            <th>Product Category</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% 
+                        List <Product> product = DAO.getProductByVendorID(vendor.getVendorId());
+                        	if(product!=null){
+                        		for(Product p:product){
+                        			out.println("<tr><td>"+p.getProductId()+"</td><td>"+p.getProductName()+"</td><td>"+p.getProductCondition()+"</td><td>"+p.getProductCategory()+"</td><td>"+p.getProductStatus()+"</td><td><form action='VendorView' method='post'><input type='hidden' name='productID' value='"+p.getProductId()+"'/><button type='submit' class='submit-btn'>View</button></form></td><td><form action='DeleteProduct' name='myform' ><input type='hidden' name='pId' value='"+p.getProductId()+"'/><button type='submit'' class='del-btn'>Delete</button></form></td></tr>");
+                        		}
+                        		
+                        	}else{
+                        		out.println("<tr><td colspan='6'> No record available!</td></tr>");
+                        	}
+                        	
+                        %>
+                    </tbody>
+                </table>
+                <div class="show-all">
+                    <a href="#show-all">Show All</a>
+                </div>
+            </div>
 		</main>
 		<!-- ============= END OF MAIN ===================== -->
 
@@ -489,17 +455,18 @@ aside .logo img {
 	<script type="text/javascript">
     //Product category display
     const productCategorySelectBtn = document.querySelector(".category-select-btn"),
-        productCategoryItem = document.querySelectorAll(".item");
+        productCategoryItem = document.querySelectorAll("#item1");
 
     productCategorySelectBtn.addEventListener("click", ()=>{
     	productCategorySelectBtn.classList.toggle("open");
     })
 
-    productCategoryItem.forEach((item)=> {
-    	item.addEventListener("click", ()=>{
+    productCategoryItem.forEach((items)=> {
+    	items.addEventListener("click", ()=>{
 	    	productCategorySelectBtn.classList.remove("open");
 	    	productCategorySelectBtn.classList.toggle("close");
-	    	document.getElementById("displaySelect").innerHTML=	item.innerText;
+	    	console.log(items.value);
+	    	document.getElementById("displaySelect").innerHTML=	items.value;
 	    	
 	    })
     })

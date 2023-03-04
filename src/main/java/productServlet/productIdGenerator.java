@@ -5,7 +5,7 @@ public class productIdGenerator {
     static String id;
     
     public static String productId(String productName) {
-    	String prodName = productName.substring(0, 3).replaceAll("\\s+", "");
+    	String prodName = productName.replaceAll("\\s+", "").substring(0, 3);
     	int [] integers = {1, 2, 3, 4, 5, 6, 7,8, 9};
         
         for (int iteration = 0; iteration < 4; iteration++){
@@ -33,7 +33,7 @@ public class productIdGenerator {
         String pp = String.valueOf(p);
         
         id = prodName.toUpperCase()+cc+ll+dd+ff+kk+bb;
-    	return id;
+    	return id.replaceAll("\\s+", "");
 	}
     
     public static String randomProductId() {
