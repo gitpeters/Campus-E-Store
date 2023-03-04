@@ -371,7 +371,7 @@ public class Loader {
 			    System.out.println(directory + " Created");
 			}
 			
-			String sql = "SELECT * FROM campusestock.product WHERE productCategory = 'Health & Beauty' OR productCategory = 'Home & Office' OR productCategory = 'Computing' OR productCategory = 'others'";
+			String sql = "SELECT * FROM campusestock.product WHERE productCategory = 'Health & Beauty' OR productCategory = 'Home & Office' OR productCategory = 'Computing'";
 			con = DbConnection.connection();
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();

@@ -19,7 +19,7 @@
     <nav>
       <!-- Logo -->
       <a href="#" class="logo">
-        <img src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png" alt="" style= "height: 80px;"/>
+        <img src="img/logo/projectLogo.PNG" alt="" style= "height: 80px;"/>
       </a>
     </nav>
 

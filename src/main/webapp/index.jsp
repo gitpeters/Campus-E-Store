@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <link rel="shortcut icon"
-	href="./img/logo/campus-e-stock-high-resolution-logo-white-on-transparent-background.png"
+	href="./img/logo/favicon.PNG"
 	type="image/x-icon" />
 <title>Campus E-store || Home</title>
 
@@ -218,310 +218,35 @@ body {
 	animation: show_slide 1s ease forwards;
 }
 
-@
-keyframes show_slide { 0%{
-	transform: translateX(100%);
+@keyframes show_slide { 0%{
+		transform: translateX(100%);
+	}
+	40%{
+		transform:translateX(-10%);
+	}
+	80%{
+		transform:translateX(0%);
+	}
+	100%{
+		transform:translateX(-10px);
+	}
 }
-
-40
-
-
-
-
-
-
-%
-{
-transform
-
-
-
-
-
-
-:
-
-
-
-
-
-
-translateX
-
-
-
-
-(
-
-
-
-
-
-
--10
-
-
-
-
-%
-)
-
-
-
-
-;
-}
-80
-
-
-
-
-
-
-%
-{
-transform
-
-
-
-
-
-
-:
-
-
-
-
-
-
-translateX
-
-
-
-
-(
-
-
-
-
-
-
-0
-
-
-
-
-%
-)
-
-
-
-
-;
-}
-100
-
-
-
-
-
-
-%
-{
-transform
-
-
-
-
-
-
-:
-
-
-
-
-
-
-translateX
-
-
-
-
-(
-
-
-
-
-
-
--10px
-
-
-
-
-
-
-)
-
-
-
-
-;
-}
-}
-.alert.hide {
-	animation: hide_slide 1s ease forwards;
-}
-
-@
-keyframes hide_slide { 0%{
-	transform: translateX(-10px);
-}
-
-40
-
-
-
-
-
-
-%
-{
-transform
-
-
-
-
-
-
-:
-
-
-
-
-
-
-translateX
-
-
-
-
-(
-
-
-
-
-
-
-0
-
-
-
-
-%
-)
-
-
-
-
-;
-}
-80
-
-
-
-
-
-
-%
-{
-transform
-
-
-
-
-
-
-:
-
-
-
-
-
-
-translateX
-
-
-
-
-(
-
-
-
-
-
-
--10
-
-
-
-
-%
-)
-
-
-
-
-;
-}
-100
-
-
-
-
-
-
-%
-{
-transform
-
-
-
-
-
-
-:
-
-
-
-
-
-
-translateX
-
-
-
-
-(
-
-
-
-
-
-
-100
-
-
-
-
-%
-)
-
-
-
-
-;
-}
+	.alert.hide {
+		animation: hide_slide 1s ease forwards;
+	}
+	
+@keyframes hide_slide { 0%{
+		transform: translateX(-10px);
+	}
+	40%{
+	transform:translateX(0%);
+	}
+	80%{
+	transform:translateX(-10%);
+	}
+	100%{
+	transform:translateX(100%);
+	}
 }
 .alert-danger {
 	border-left: 4px solid #ce8500;
@@ -686,7 +411,7 @@ translateX
 		<div class="humberger__menu__wrapper">
 			<div class="humberger__menu__logo">
 				<a href="#"><img
-					src="./img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png"
+					src="./img/logo/projectLogo.PNG"
 					alt="" /></a>
 			</div>
 
@@ -759,7 +484,7 @@ translateX
 					<div class="col-lg-3">
 						<div class="header__logo">
 							<a href="#"><img
-								src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png"
+								src="img/logo/projectLogo.PNG"
 								alt="" style="height: 80px;" /></a>
 						</div>
 					</div>
@@ -933,12 +658,14 @@ translateX
 			<div class="container">
 				<div class="row">
 					<div class="categories__slider owl-carousel">
-						<%!String productName, productId, filePath;
-	double productAmount;%>
+						<%!String productName, productId, filePath, imageName, prodId, productCategory; double productAmount; int index;%>
 						<%
 						Loader ld = new Loader();
+						DAO dao = new DAO();
 						Random rand = new Random();
 						ArrayList<File> image = new ArrayList<File>();
+						ArrayList <String> productIds = new ArrayList <String>();
+						ArrayList<Product> pr = new ArrayList<Product>();
 						ld.deleteImageInIndex();
 						ld.imageSample();
 						final File generalDirectory = new File(
@@ -951,16 +678,16 @@ translateX
 								image.add(fl);
 							}
 							Collections.shuffle(image);
-							for (File imageIndex : image) {
-
-								String imageName = imageIndex.getName();
-								String prodId = imageName.substring(0, 9);
-								DAO dao = new DAO();
-								ArrayList<Product> pr = (ArrayList<Product>) DAO.getProductDetailsWithList(prodId);
-								for (Product details : pr) {
-							productName = details.getProductName();
-							productAmount = details.getProductAmount();
-								}
+							pr.addAll(dao.getAllProductDetails());
+							Collections.shuffle(pr);
+							for(File imageIndex : image){
+								imageName = imageIndex.getName();
+								for(Product details: pr){
+									if(imageName.substring(0, 9).equals(details.getProductId())){
+										productName = details.getProductName();
+										productAmount = details.getProductAmount();
+										productCategory = details.getProductCategory();
+										productId = details.getProductId();
 						%>
 						<div class="col-lg-3">
 							<div class="categories__item set-bg"
@@ -972,10 +699,10 @@ translateX
 							</div>
 						</div>
 						<%
-						}
-						} else {
-						System.out.println("Image File is empty!");
-						}
+									}
+								}
+							}
+						} 
 						%>
 					</div>
 				</div>
@@ -1005,71 +732,56 @@ translateX
 				<div class="row featured__filter products-content"
 					id="product-lists">
 
-					<%!String productID = "", prodName = "", productCategory = "", productStatus = "",
-									productDescription = "", productCondition = "", productImage1 = "",
-									productImage2 = "", productImage3 = "", path = "";
-							double productAmt = 0.0;%>
-
 					<%
-					Loader ld2 = new Loader();
-					ld2.featuredProducts();
-					ArrayList<File> featuredImage = new ArrayList<File>();
-					String featured = generalDirectory + "\\product\\featuredProduct\\";
-					File dir2 = new File(featured).getAbsoluteFile();
-					dirListing = dir2.listFiles();
+					
 					if (dirListing != null) {
 						for (File fl : dirListing) {
-							featuredImage.add(fl);
+							image.add(fl);
 						}
-						Collections.shuffle(featuredImage);
-						for (File imageIndex : featuredImage) {
-							String imageName = imageIndex.getName();
-							productID = imageName.substring(0, 9);
-
-							List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID);
-							for (Product p : product) {
-						productID = p.getProductId();
-						prodName = p.getProductName();
-						productCategory = p.getProductCategory();
-						productCondition = p.getProductCondition();
-						productStatus = p.getProductStatus();
-						productAmt = p.getProductAmount();
-						productDescription = p.getProductDescription();
-							}
-							if (productCategory.equals("Phones & Tablets")) {
-						productCategory = "Phones";
-							}
+						Collections.shuffle(image);
+						Collections.shuffle(pr);
+						for(File imageIndex : image){
+							imageName = imageIndex.getName();
+							for(Product details: pr){
+								if(imageName.substring(0, 9).equals(details.getProductId())){
+									productName = details.getProductName();
+									productAmount = details.getProductAmount();
+									productCategory = details.getProductCategory();
+									productId = details.getProductId();
+									if(productCategory.equalsIgnoreCase("Phones & Tablets") || productCategory.equalsIgnoreCase("Fashion") || productCategory.equalsIgnoreCase("Supermarket") || productCategory.equalsIgnoreCase("Jewelries")){
+										if (productCategory.equals("Phones & Tablets")) {
+											productCategory = "Phones";
+										}
 					%>
 
 					<div
 						class="col-lg-3 col-md-4 col-sm-6 mix product_items <%=productCategory%>">
 						<div class="featured__item">
 							<div class="featured__item__pic set-bg"
-								data-setbg="img/product/featuredProduct/<%=imageName%>">
+								data-setbg="img/allImage/<%=imageName%>">
 
 								<ul class="featured__item__pic__hover">
-
-									<li><a href="ProductDetails?productId=<%=productID%>"><i
+									<li><a href="ProductDetails?productId=<%=productId%>"><i
 											class="fa-solid fa-paper-plane"></i></a></li>
-
 								</ul>
 							</div>
 
 							<div class="featured__item__text">
 								<h6>
-									<a href="ProductDetails?productId=<%=productID%>"><%=prodName%></a>
+									<a href="ProductDetails?productId=<%=productId%>"><%=productName%></a>
 								</h6>
 								<h5>
-									&#8358;<span class="amount"><%=productAmt%></span>
+									&#8358;<span class="amount"><%=productAmount%></span>
 								</h5>
 							</div>
 						</div>
 					</div>
 					<%
-					}
-					} else {
-					System.out.println("Image File is empty!");
-					}
+									}
+								}
+							}
+						}
+					} 
 					%>
 
 				</div>
@@ -1118,58 +830,43 @@ translateX
 							<h4>Latest Products</h4>
 							<div class="latest-product__slider owl-carousel">
 
-								<%!String productID1 = "", prodName1 = "", productCategory1 = "", productStatus1 = "",
-								productDescription1 = "", productCondition1 = "", path3 = "";
-						double productAmt1 = 0.0;%>
-
 								<%
-								for (int rept = 1; rept <= 3; rept++) {
+									for (int rept = 1; rept <= 3; rept++) {
 								%>
 								<div class="latest-prdouct__slider__item">
-									<%
-									Loader filter1 = new Loader();
-									int count = 0;
-									filter1.filteredImage1();
-									ArrayList<File> filterImage1 = new ArrayList<File>();
-									File dir3 = new File(generalDirectory + "\\product\\filter1\\");
-									dirListing = dir3.listFiles();
-									if (dirListing != null) {
-										for (File fl : dirListing) {
-											filterImage1.add(fl);
-										}
-										Collections.shuffle(filterImage1);
-										for (File imageIndex : filterImage1) {
-											if (filterImage1.indexOf(imageIndex) < 3) {
-										String imageName = imageIndex.getName();
-										productID1 = imageName.substring(0, 9);
-
-										List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID1);
-										for (Product p : product) {
-
-											productID1 = p.getProductId();
-											prodName1 = p.getProductName();
-											productCategory1 = p.getProductCategory();
-											productCondition1 = p.getProductCondition();
-											productStatus1 = p.getProductStatus();
-											productAmt1 = p.getProductAmount();
-											productDescription1 = p.getProductDescription();
-										}
+								<%
+								if (dirListing != null) {
+									for (File fl : dirListing) {
+										image.add(fl);
+									}
+									Collections.shuffle(image);
+									pr.clear();
+									pr.addAll(dao.filterImage1());
+									Collections.shuffle(pr);
+									for(File imageIndex : image){
+										imageName = imageIndex.getName();
+										for(Product details: pr){
+											if(imageName.substring(0, 9).equals(details.getProductId())){
+												productName = details.getProductName();
+												productAmount = details.getProductAmount();
+												productCategory = details.getProductCategory();
+												productId = details.getProductId();
 									%>
-									<a href="ProductDetails?productId=<%=productID1%>"
+									<a href="ProductDetails?productId=<%=productId%>"
 										class="latest-product__item">
 										<div class="latest-product__item__pic">
-											<img src="img/product/filter1/<%=imageName%>" alt="" />
+											<img src="img/allImage/<%=imageName%>" alt="" />
 										</div>
 										<div class="latest-product__item__text">
-											<h6><%=prodName1%></h6>
-											<span>&#8358;<%=productAmt1%></span>
+											<h6><%=productName%></h6>
+											<span>&#8358;<%=productAmount%></span>
 										</div>
 									</a>
 									<%
-									}
-									}
-									} else {
-									System.out.println("Image File is empty!");
+												}
+											
+											}
+										}
 									}
 									%>
 								</div>
@@ -1185,58 +882,42 @@ translateX
 							<h4>Top Rated Products</h4>
 							<div class="latest-product__slider owl-carousel">
 
-								<%!String productID2 = "", prodName2 = "", productCategory2 = "", productStatus2 = "",
-								productDescription2 = "", productCondition2 = "", path4 = "";
-						double productAmt2 = 0.0;%>
-
 								<%
-								for (int rept = 1; rept <= 3; rept++) {
+									for (int rept = 1; rept <= 3; rept++) {
 								%>
 								<div class="latest-prdouct__slider__item">
 									<%
-									Loader filter2 = new Loader();
-									int count = 0;
-									filter2.filteredImage2();
-									ArrayList<File> filterImage2 = new ArrayList<File>();
-									File dir4 = new File(generalDirectory + "\\product\\filter2\\").getAbsoluteFile();
-									dirListing = dir4.listFiles();
 									if (dirListing != null) {
 										for (File fl : dirListing) {
-											filterImage2.add(fl);
+											image.add(fl);
 										}
-										Collections.shuffle(filterImage2);
-										for (File imageIndex : filterImage2) {
-											if (filterImage2.indexOf(imageIndex) < 3) {
-										String imageName = imageIndex.getName();
-										productID2 = imageName.substring(0, 9);
-
-										List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID2);
-										for (Product p : product) {
-
-											productID2 = p.getProductId();
-											prodName2 = p.getProductName();
-											productCategory2 = p.getProductCategory();
-											productCondition2 = p.getProductCondition();
-											productStatus2 = p.getProductStatus();
-											productAmt2 = p.getProductAmount();
-											productDescription2 = p.getProductDescription();
-										}
+										Collections.shuffle(image);
+										pr.clear();
+										pr.addAll(dao.filterImage2());
+										Collections.shuffle(pr);
+										for(File imageIndex : image){
+											imageName = imageIndex.getName();
+											for(Product details: pr){
+												if(imageName.substring(0, 9).equals(details.getProductId())){
+													productName = details.getProductName();
+													productAmount = details.getProductAmount();
+													productCategory = details.getProductCategory();
+													productId = details.getProductId();												
 									%>
-									<a href="ProductDetails?productId=<%=productID2%>"
+									<a href="ProductDetails?productId=<%=productId%>"
 										class="latest-product__item">
 										<div class="latest-product__item__pic">
-											<img src="img/product/filter1/<%=imageName%>" alt="" />
+											<img src="img/allImage/<%=imageName%>" alt="" />
 										</div>
 										<div class="latest-product__item__text">
-											<h6><%=prodName2%></h6>
-											<span>&#8358;<%=productAmt2%></span>
+											<h6><%=productName%></h6>
+											<span>&#8358;<%=productAmount%></span>
 										</div>
 									</a>
-									<%
-									}
-									}
-									} else {
-									System.out.println("Image File is empty!");
+									<%	
+												}
+											}
+										}
 									}
 									%>
 								</div>
@@ -1251,58 +932,43 @@ translateX
 						<div class="latest-product__text">
 							<h4>Review Products</h4>
 							<div class="latest-product__slider owl-carousel">
-								<%!String productID3 = "", prodName3 = "", productCategory3 = "", productStatus3 = "",
-										productDescription3 = "", productCondition3 = "", path5 = "";
-								double productAmt3 = 0.0;%>
 
 								<%
-								for (int rept = 1; rept <= 3; rept++) {
+									for (int rept = 1; rept <= 3; rept++) {
 								%>
 								<div class="latest-prdouct__slider__item">
 									<%
-									Loader filter3 = new Loader();
-									int count = 0;
-									filter3.filteredImage3();
-									ArrayList<File> filterImage3 = new ArrayList<File>();
-									File dir5 = new File(generalDirectory + "\\product\\filter3\\").getAbsoluteFile();
-									dirListing = dir5.listFiles();
 									if (dirListing != null) {
 										for (File fl : dirListing) {
-											filterImage3.add(fl);
+											image.add(fl);
 										}
-										Collections.shuffle(filterImage3);
-										for (File imageIndex : filterImage3) {
-											if (filterImage3.indexOf(imageIndex) < 3) {
-										String imageName = imageIndex.getName();
-										productID3 = imageName.substring(0, 9);
-
-										List<Product> product = (List<Product>) DAO.getProductDetailsWithList(productID3);
-										for (Product p : product) {
-
-											productID3 = p.getProductId();
-											prodName3 = p.getProductName();
-											productCategory3 = p.getProductCategory();
-											productCondition3 = p.getProductCondition();
-											productStatus3 = p.getProductStatus();
-											productAmt3 = p.getProductAmount();
-											productDescription3 = p.getProductDescription();
-										}
+										Collections.shuffle(image);
+										pr.clear();
+										pr.addAll(dao.filterImage1());
+										Collections.shuffle(pr);
+										for(File imageIndex : image){
+											imageName = imageIndex.getName();
+											for(Product details: pr){
+												if(imageName.substring(0, 9).equals(details.getProductId())){
+													productName = details.getProductName();
+													productAmount = details.getProductAmount();
+													productCategory = details.getProductCategory();
+													productId = details.getProductId();										
 									%>
-									<a href="ProductDetails?productId=<%=productID3%>"
+									<a href="ProductDetails?productId=<%=productId%>"
 										class="latest-product__item">
 										<div class="latest-product__item__pic">
-											<img src="img/product/filter1/<%=imageName%>" alt="" />
+											<img src="img/allImage/<%=imageName%>" alt="" />
 										</div>
 										<div class="latest-product__item__text">
-											<h6><%=prodName3%></h6>
-											<span>&#8358;<%=productAmt3%></span>
+											<h6><%=productName%></h6>
+											<span>&#8358;<%=productAmount%></span>
 										</div>
 									</a>
 									<%
-									}
-									}
-									} else {
-									System.out.println("Image File is empty!");
+												}
+											}
+										}
 									}
 									%>
 								</div>

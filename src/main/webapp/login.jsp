@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <link rel="shortcut icon"
-	href="./img/logo/campus-e-stock-high-resolution-logo-white-on-transparent-background.png"
+	href="./img/logo/favicon.PNG"
 	type="image/x-icon" />
 <title>Campus E-store || Login</title>
 
@@ -98,7 +98,7 @@
 
 			<div class="switch_container" id="switch-c1">
 				<a href="#" class="logo_link"> <img
-					src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png"
+					src="img/logo/projectLogo.PNG"
 					alt="" />
 				</a>
 				<h2 class="switch_title title click" id="click-me">Welcome Back
@@ -110,7 +110,7 @@
 
 			<div class="switch_container is-hidden" id="switch-c2">
 				<a href="#" class="logo_link"> <img
-					src="img/logo/campus-e-stock-high-resolution-logo-color-on-transparent-background.png"
+					src="img/logo/projectLogo.PNG"
 					alt="" />
 				</a>
 				<h2 class="switch_title title">Hello Friend !</h2>
