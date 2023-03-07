@@ -51,18 +51,16 @@ public class SearchServlet extends HttpServlet {
 		} else {
 			// perform the search
 			try (PrintWriter out = response.getWriter()) {
-				//JSONArray jArray = new JSONArray();
+				// JSONArray jArray = new JSONArray();
 				String productNames;
 				List<String> products = new ArrayList<String>();
 				List<Product> alternative = DAO.getAllProductDetails();
 				for (Product pr : alternative) {
-					if (pr.getProductName().toLowerCase().contains(searchTerm.toLowerCase())) {
+					if (pr.getProductName().toLowerCase().contains(searchTerm.toLowerCase())
+							|| pr.getKeywords().toLowerCase().contains(searchTerm.toLowerCase())) {
+						
 						productNames = pr.getProductName();
-						
 						products.add(productNames);
-						//out.println(pr.getProductName());
-						//String json = new Gson().toJson(productNames);
-						
 					}
 				}
 				String json = JSONArray.toJSONString(products);

@@ -312,7 +312,7 @@ function getFeedback(response){
 <body>
 	<%!String productID = "", productName = "", vendorPhone = "", vendorID = "", productCategory = "", productStatus = "",
 			productDescription = "", productCondition = "", productImage1 = "", productImage2 = "", productImage3 = "",
-			path = "";
+			path = "", prodCat="";
 	double productAmount = 0.0;
 	File[] dirListing;%>
 
@@ -331,17 +331,16 @@ function getFeedback(response){
 		vendorID = p.getVendorId();
 	}
 	List<Vendor> vendorDetails = DAO.getVendorById(vendorID);
-
+	prodCat = productCategory;
 	for (Vendor vn : vendorDetails) {
 		vendorPhone = vn.getVendorPhone();
 	}
 
 	Loader ld = new Loader();
-	ld.deleteProductImageInProductDetails();
-	ld.imageSampleByIdForProduct(productID);
+	ld.imageSample();
 	final File generalDirectory = new File(
 			"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img");
-	path = generalDirectory + "\\product\\productDetails\\";
+	path = generalDirectory + "\\allImage\\";
 	File dir = new File(path).getAbsoluteFile();
 	dirListing = dir.listFiles();
 	if (dirListing != null) {
@@ -440,7 +439,7 @@ function getFeedback(response){
 				<div class="row">
 					<div class="col-lg-3">
 						<div class="header__logo">
-							<a href="./index.html"><img src="img/logo/projectLogo.PNG" alt="" /></a>
+							<a href="./index.html"><img src="img/logo/projectLogo.PNG" alt="" style="height: 80px;"/></a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -618,18 +617,18 @@ function getFeedback(response){
 						<div class="product__details__pic">
 							<div class="product__details__pic__item">
 								<img class="product__details__pic__item--large"
-									src="img/product/productDetails/<%=productImage1%>" alt="" />
+									src="img/allImage/<%=productImage1%>" alt="" />
 							</div>
 							<div class="product__details__pic__slider owl-carousel">
 								<img
-									data-imgbigurl="img/product/productDetails/<%=productImage1%>"
-									src="img/product/productDetails/<%=productImage1%>" alt="" />
+									data-imgbigurl="img/allImage/<%=productImage1%>"
+									src="img/allImage/<%=productImage1%>" alt="" />
 								<img
-									data-imgbigurl="img/product/productDetails/<%=productImage2%>"
-									src="img/product/productDetails/<%=productImage2%>" alt="" />
+									data-imgbigurl="img/allImage/<%=productImage2%>"
+									src="img/allImage/<%=productImage2%>" alt="" />
 								<img
-									data-imgbigurl="img/product/productDetails/<%=productImage3%>"
-									src="img/product/productDetails/<%=productImage3%>" alt="" />
+									data-imgbigurl="img/allImage/<%=productImage3%>"
+									src="img/allImage/<%=productImage3%>" alt="" />
 							</div>
 						</div>
 					</div>
@@ -790,63 +789,60 @@ function getFeedback(response){
 					</div>
 				</div>
 				<div class="row">
-					<%!String productID1 = "", prodName1 = "", productCategory1 = "", productStatus1 = "", productDescription1 = "",
-		productCondition1 = "", path1 = "";
-double productAmt1 = 0.0;%>
-
-
-					<%
-					Loader loader = new Loader();
-					loader.deleteRelatedProductImage();
-					loader.relatedImage(productCategory);
-					ArrayList<File> relatedProduct = new ArrayList<File>();
-					File dir2 = new File(
-							generalDirectory + "\\product\\relatedProduct\\");
-					dirListing = dir2.listFiles();
-					if (dirListing != null) {
-						for (File fl : dirListing) {
-							relatedProduct.add(fl);
-						}
-						Collections.shuffle(relatedProduct);
-						for (File imageIndex : relatedProduct) {
-							String imageName = imageIndex.getName();
-							productID1 = imageName.substring(0, 9);
-
-							List<Product> product2 = DAO.getProductDetailsWithList(productID1);
-							for (Product p : product2) {
-
-						productID1 = p.getProductId();
-						prodName1 = p.getProductName();
-						productCategory1 = p.getProductCategory();
-						productCondition1 = p.getProductCondition();
-						productStatus1 = p.getProductStatus();
-						productAmt1 = p.getProductAmount();
-						productDescription1 = p.getProductDescription();
+					<%!String productId, filePath, imageName, prodId;  int index;%>
+						<%
+						Loader ld1 = new Loader();
+						DAO dao = new DAO();
+						ArrayList<File> image = new ArrayList<File>();
+						ArrayList <String> productIds = new ArrayList <String>();
+						ArrayList<Product> pr = new ArrayList<Product>();
+						ld1.imageSample();
+						final File generalDirectory1 = new File(
+								"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img").getAbsoluteFile();
+						String filePath = generalDirectory1 + "\\allImage\\";
+						File dir1 = new File(filePath).getAbsoluteFile();
+						File[] dirListing = dir1.listFiles();
+						if (dirListing != null) {
+							for (File fl : dirListing) {
+								image.add(fl);
 							}
-					%>
+							Collections.shuffle(image);
+							pr.addAll(dao.getAllProductDetails());
+							Collections.shuffle(pr);
+							for(File imageIndex : image){
+								imageName = imageIndex.getName();
+								for(Product details: pr){
+									if(imageName.substring(0, 9).equals(details.getProductId())){
+										productName = details.getProductName();
+										productAmount = details.getProductAmount();
+										productCategory = details.getProductCategory();
+										productId = details.getProductId();
+										if(productCategory.equalsIgnoreCase(prodCat)){
+						%>
 					<div class="col-lg-3 col-md-4 col-sm-6">
 						<div class="product__item">
 							<div class="product__item__pic set-bg"
-								data-setbg="img/product/relatedProduct/<%=imageName%>">
+								data-setbg="img/allImage/<%=imageName%>">
 								<ul class="product__item__pic__hover">
-									<li><a href="ProductDetails?productId=<%=productID1%>"><i
+									<li><a href="ProductDetails?productId=<%=productId%>"><i
 											class="fa-solid fa-paper-plane"></i></a></li>
 								</ul>
 							</div>
 							<div class="product__item__text">
 								<h6>
-									<a href="#"><%=prodName1%></a>
+									<a href="#"><%=productName%></a>
 								</h6>
-								<h5><%=productAmt1%></h5>
+								<h5><%=productAmount%></h5>
 							</div>
 						</div>
 					</div>
 					<%
-					}
-					} else {
-					System.out.println("Image File is empty!");
-					}
-					%>
+											}
+										}
+									}
+								}
+							} 
+							%>
 
 				</div>
 			</div>
