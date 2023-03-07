@@ -215,71 +215,9 @@
 </style>
 </head>
 <body>
-	<%!String category;
-	File[] dirListing;%>
-	<%
-	Loader ld = new Loader();
-	ld.deleteImageInCategoryFolders();
-	category = (String) session.getAttribute("category");
-	System.out.println(category);
-	final File path = new File(
-			"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img");
-	//path = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img\\";
-
-	if (category.equals("Supermarket")) {
-		ld.supermarketImage();
-		File dir = new File(path + "\\supermarket\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Health & Beauty")) {
-		ld.health_beautyImage();
-		File dir = new File(path + "\\healthBeauty\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Home & Office")) {
-		ld.home_officeImage();
-		File dir = new File(path + "\\homeOffice\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Phones & Tablets")) {
-		ld.phones_tabletsImage();
-		File dir = new File(path + "\\phonesTablets\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Computing")) {
-		ld.computingImage();
-		File dir = new File(path + "\\computing\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Electronic")) {
-		ld.electronicsImage();
-		File dir = new File(path + "\\electronics\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Fashion")) {
-		ld.fashionImage();
-		File dir = new File(path + "\\fashion\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Baby Products")) {
-		ld.babyProductImage();
-		File dir = new File(path + "\\babyProduct\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Gaming")) {
-		ld.gamingImage();
-		File dir = new File(path + "\\gaming\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Automobile")) {
-		ld.automobileImage();
-		File dir = new File(path + "\\automobile\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Jewelries")) {
-		ld.jewelriesImage();
-		File dir = new File(path + "\\jewelries\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Accessories")) {
-		ld.accessoriesImage();
-		File dir = new File(path + "\\accessories\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	} else if (category.equals("Others")) {
-		ld.othersImage();
-		File dir = new File(path + "\\others\\").getAbsoluteFile();
-		dirListing = dir.listFiles();
-	}
-	%>
+	<%!String category;%>
+	<%category = (String) session.getAttribute("category"); %>
+	
 
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -660,38 +598,48 @@
 						</div>
 						<div class="row featured__filter">
 
-							<%!String productName, productId;
-								double productAmount;%>
-							<%
-							ArrayList<File> image = new ArrayList<File>();
-							if (dirListing != null) {
-								for (File fl : dirListing) {
-									image.add(fl);
-								}
-								Collections.shuffle(image);
-								for (File imageIndex : image) {
-
-									String imageName = imageIndex.getName();
-									String prodId = imageName.substring(0, 9);
-									DAO dao = new DAO();
-									ArrayList<Product> pr = (ArrayList<Product>) DAO.getProductDetailsWithList(prodId);
-									for (Product details : pr) {
-								productName = details.getProductName();
-								productAmount = details.getProductAmount();
-									}
-							%>
+							<%!String productName, productId, filePath, imageName, prodId, productCategory; double productAmount; int index;%>
+						<%
+						Loader ld = new Loader();
+						DAO dao = new DAO();
+						ArrayList<File> image = new ArrayList<File>();
+						ArrayList <String> productIds = new ArrayList <String>();
+						ArrayList<Product> pr = new ArrayList<Product>();
+						ld.imageSample();
+						final File generalDirectory = new File(
+								"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img").getAbsoluteFile();
+						String filePath = generalDirectory + "\\allImage\\";
+						File dir = new File(filePath).getAbsoluteFile();
+						File[] dirListing = dir.listFiles();
+						if (dirListing != null) {
+							for (File fl : dirListing) {
+								image.add(fl);
+							}
+							Collections.shuffle(image);
+							pr.addAll(dao.getAllProductDetails());
+							Collections.shuffle(pr);
+							for(File imageIndex : image){
+								imageName = imageIndex.getName();
+								for(Product details: pr){
+									if(imageName.substring(0, 9).equals(details.getProductId())){
+										productName = details.getProductName();
+										productAmount = details.getProductAmount();
+										productCategory = details.getProductCategory();
+										productId = details.getProductId();
+										if(productCategory.equalsIgnoreCase(category)){
+						%>
 							<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
 								<div class="featured__item">
 									<div class="featured__item__pic set-bg"
 										data-setbg="img/allImage/<%=imageName%>">
 										<ul class="featured__item__pic__hover">
-											<li><a href="ProductDetails?productId=<%=prodId%>"><i
+											<li><a href="ProductDetails?productId=<%=productId%>"><i
 													class="fa-solid fa-paper-plane"></i></a></li>
 										</ul>
 									</div>
 									<div class="featured__item__text">
 										<h6>
-											<a href="ProductDetails?productId=<%=prodId%>"><%=productName%></a>
+											<a href="ProductDetails?productId=<%=productId%>"><%=productName%></a>
 										</h6>
 										<h5>
 											&#8358;<%=productAmount%></h5>
@@ -699,10 +647,11 @@
 								</div>
 							</div>
 							<%
-							}
-							} else {
-							System.out.println("Image File is empty!");
-							}
+											}
+										}
+									}
+								}
+							} 
 							%>
 						</div>
 					</div>
@@ -722,25 +671,26 @@
 						</div>
 						<div class="row products-content" id="product-lists"
 							style="display: none;">
-							<%!String productName1, productId1;
-								double productAmount1;%>
+							
 							<%
-							ArrayList<File> image1 = new ArrayList<File>();
+							image.clear();
+							pr.clear();
 							if (dirListing != null) {
 								for (File fl : dirListing) {
-									image1.add(fl);
+									image.add(fl);
 								}
-								Collections.shuffle(image1);
-								for (File imageIndex : image1) {
-
-									String imageName = imageIndex.getName();
-									String prodId1 = imageName.substring(0, 9);
-									DAO dao = new DAO();
-									ArrayList<Product> pr = (ArrayList<Product>) DAO.getProductDetailsWithList(prodId1);
-									for (Product details : pr) {
-								productName1 = details.getProductName();
-								productAmount1 = details.getProductAmount();
-									}
+								Collections.shuffle(image);
+								pr.addAll(dao.getAllProductDetails());
+								Collections.shuffle(pr);
+								for(File imageIndex : image){
+									imageName = imageIndex.getName();
+									for(Product details: pr){
+										if(imageName.substring(0, 9).equals(details.getProductId())){
+											productName = details.getProductName();
+											productAmount = details.getProductAmount();
+											productCategory = details.getProductCategory();
+											productId = details.getProductId();
+											if(productCategory.equalsIgnoreCase(category)){
 							%>
 							<div
 								class="col-lg-4 col-md-6 col-sm-6 product_items">
@@ -749,26 +699,27 @@
 										data-setbg="img/allImage/<%=imageName%>">
 
 										<ul class="product__item__pic__hover">
-											<li><a href="ProductDetails?productId=<%=prodId1%>"><i
+											<li><a href="ProductDetails?productId=<%=productId%>"><i
 													class="fa-solid fa-paper-plane"></i></a></li>
 										</ul>
 									</div>
 
 									<div class="product__item__text"">
 										<h6>
-											<a href="ProductDetails?productId=<%=prodId1%>"><%=productName1%></a>
+											<a href="ProductDetails?productId=<%=productId%>"><%=productName%></a>
 										</h6>
 										<h5>
-											&#8358;<span class="amount"><%=productAmount1%></span>
+											&#8358;<span class="amount"><%=productAmount%></span>
 										</h5>
 									</div>
 								</div>
 							</div>
 							<%
-							}
-							} else {
-							System.out.println("Image File is empty!");
-							}
+											}
+										}
+									}
+								}
+							} 
 							%>
 
 						</div>

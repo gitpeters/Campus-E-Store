@@ -215,12 +215,18 @@
 </style>
 </head>
 <body>
-	<%!String productID = "", prodName = "", productCategory = "", productStatus = "", productDescription = "",
-			productCondition = "", vendorID = "";
+	<%!String prodName = "", productCategory = "", productStatus = "", productDescription = "",
+			productCondition = "", vendorID = "", prodCat;
 	double productAmt = 0.0;%>
 	<%
 	HttpSession sn = request.getSession();
 	prodName = (String) sn.getAttribute("productName");
+	ArrayList <Product> product = new ArrayList<Product>();
+	DAO da = new DAO();
+	product.addAll(da.getProductByName(prodName));
+	for(Product p: product){
+		prodCat = p.getProductCategory();
+	}
 	%>
 
 	<!-- Page Preloder -->
@@ -303,7 +309,7 @@
 				<div class="row">
 					<div class="col-lg-3">
 						<div class="header__logo">
-							<a href="./index.html"><img src="img/logo/projectLogo.PNG" alt="" /></a>
+							<a href="./index.html"><img src="img/logo/projectLogo.PNG" alt="" style="height:80px;"/></a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -483,67 +489,65 @@
 						<!-- PRODUCTS DISPLAY -->
 						<div class="row products-content" id="product-lists"
 							style="display: none;">
-							<%
-							Loader ld2 = new Loader();
-							ld2.deleteImageByProductName();
-							ld2.loadImageByProductName(prodName);
-							ArrayList<File> featuredImage = new ArrayList<File>();
-							final File generalDirectory = new File(
-									"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img");
-							String featured = generalDirectory + "\\product\\productName\\";
-							File dir2 = new File(featured).getAbsoluteFile();
-							File[] dirListing = dir2.listFiles();
-							dirListing = dir2.listFiles();
-							if (dirListing != null) {
-								for (File fl : dirListing) {
-									featuredImage.add(fl);
-								}
-								Collections.shuffle(featuredImage);
-								for (File imageIndex : featuredImage) {
-									String imageName = imageIndex.getName();
-									productID = imageName.substring(0, 9);
-
-									List<Product> productList = (List<Product>) DAO.getProductDetailsWithList(productID);
-									for (Product p : productList) {
-								productID = p.getProductId();
-								prodName = p.getProductName();
-								productCategory = p.getProductCategory();
-								productCondition = p.getProductCondition();
-								productStatus = p.getProductStatus();
-								productAmt = p.getProductAmount();
-								productDescription = p.getProductDescription();
-									}
-									if (productCategory.equals("Phones & Tablets")) {
-								productCategory = "Phones";
-									}
+							<%!String productName, productId, filePath, imageName, prodId, productCat; double productAmount; int index;%>
+						<%
+						Loader ld = new Loader();
+						DAO dao = new DAO();
+						ArrayList<File> image = new ArrayList<File>();
+						ArrayList <String> productIds = new ArrayList <String>();
+						ArrayList<Product> pr = new ArrayList<Product>();
+						ld.imageSample();
+						final File generalDirectory = new File(
+								"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img").getAbsoluteFile();
+						String filePath = generalDirectory + "\\allImage\\";
+						File dir = new File(filePath).getAbsoluteFile();
+						File[] dirListing = dir.listFiles();
+						if (dirListing != null) {
+							for (File fl : dirListing) {
+								image.add(fl);
+							}
+							Collections.shuffle(image);
+							pr.addAll(dao.getAllProductDetails());
+							Collections.shuffle(pr);
+							for(File imageIndex : image){
+								imageName = imageIndex.getName();
+								for(Product details: pr){
+									if(imageName.substring(0, 9).equals(details.getProductId())){
+										productName = details.getProductName();
+										productAmount = details.getProductAmount();
+										productCategory = details.getProductCategory();
+										productId = details.getProductId();
+										if(productName.equalsIgnoreCase(prodName)){
+											if (productCategory.equals("Phones & Tablets")) {
+												productCategory = "Phones";
+											}
 							%>
 							<div class="col-lg-4 col-md-6 col-sm-6 product_items">
 								<div class="product__item <%=productCategory%>">
 									<div class="product__item__pic set-bg"
-										data-setbg="img/product/productName/<%=imageName%>">
+										data-setbg="img/allImage/<%=imageName%>">
 										<ul class="product__item__pic__hover">
-											<li><a href="ProductDetails?productId=<%=productID%>"><i
+											<li><a href="ProductDetails?productId=<%=productId%>"><i
 													class="fa-solid fa-paper-plane"></i></a></li>
 										</ul>
 									</div>
 									<div class="product__item__text">
 										<h6>
-											<a href="ProductDetails?productId=<%=productID%>"><%=prodName%></a>
+											<a href="ProductDetails?productId=<%=productId%>"><%=productName%></a>
 										</h6>
 										<h5>
-											&#8358;<span class="amount"><%=productAmt%></span>
+											&#8358;<span class="amount"><%=productAmount%></span>
 										</h5>
 									</div>
 								</div>
 							</div>
 							<%
-							}
-							} else {
-							System.out.println("Image File is empty!");
-							}
+											}
+										}
+									}
+								}
+							} 
 							%>
-							
-
 						</div>
 						<!-- PRODUCTS DISPLAY ENDS-->
 						<!-- Product pagination -->
@@ -554,6 +558,66 @@
 			</div>
 		</section>
 		<!-- Product Section End -->
+		<!-- Related Product Section Begin -->
+		<section class="related-product">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-title related__product__title">
+							<h2>Related Product</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+						<%
+						image.clear();
+						pr.clear();
+						if (dirListing != null) {
+							for (File fl : dirListing) {
+								image.add(fl);
+							}
+							Collections.shuffle(image);
+							pr.addAll(dao.getAllProductDetails());
+							Collections.shuffle(pr);
+							for(File imageIndex : image){
+								imageName = imageIndex.getName();
+								for(Product details: pr){
+									if(imageName.substring(0, 9).equals(details.getProductId())){
+										productName = details.getProductName();
+										productAmount = details.getProductAmount();
+										productCategory = details.getProductCategory();
+										productId = details.getProductId();
+										if(productCategory.equalsIgnoreCase(prodCat)){
+						%>
+					<div class="col-lg-3 col-md-4 col-sm-6">
+						<div class="product__item">
+							<div class="product__item__pic set-bg"
+								data-setbg="img/allImage/<%=imageName%>">
+								<ul class="product__item__pic__hover">
+									<li><a href="ProductDetails?productId=<%=productId%>"><i
+											class="fa-solid fa-paper-plane"></i></a></li>
+								</ul>
+							</div>
+							<div class="product__item__text">
+								<h6>
+									<a href="#"><%=productName%></a>
+								</h6>
+								<h5><%=productAmount%></h5>
+							</div>
+						</div>
+					</div>
+					<%
+											}
+										}
+									}
+								}
+							} 
+							%>
+
+				</div>
+			</div>
+		</section>
+		<!-- Related Product Section End -->
 
 		<!-- Footer Section Begin -->
 		<footer class="footer spad">

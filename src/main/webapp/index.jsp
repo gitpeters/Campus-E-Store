@@ -831,44 +831,47 @@ body {
 							<div class="latest-product__slider owl-carousel">
 
 								<%
-									for (int rept = 1; rept <= 3; rept++) {
+									for (int rept = 1; rept <= 5; rept++) {
 								%>
 								<div class="latest-prdouct__slider__item">
 								<%
 								if (dirListing != null) {
-									for (File fl : dirListing) {
-										image.add(fl);
-									}
-									Collections.shuffle(image);
-									pr.clear();
+								    for (File fl : dirListing) {
+								        image.add(fl);
+								    }
+								    Collections.shuffle(image);
+								    pr.clear();
 									pr.addAll(dao.filterImage1());
-									Collections.shuffle(pr);
-									for(File imageIndex : image){
-										imageName = imageIndex.getName();
-										for(Product details: pr){
-											if(imageName.substring(0, 9).equals(details.getProductId())){
-												productName = details.getProductName();
-												productAmount = details.getProductAmount();
-												productCategory = details.getProductCategory();
-												productId = details.getProductId();
-									%>
-									<a href="ProductDetails?productId=<%=productId%>"
-										class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/allImage/<%=imageName%>" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6><%=productName%></h6>
-											<span>&#8358;<%=productAmount%></span>
-										</div>
-									</a>
-									<%
-												}
-											
-											}
-										}
-									}
-									%>
+								    Collections.shuffle(pr);
+								    int uniqueImageCount = 0; // initialize count to 0
+								    for (File imageIndex : image) {
+								        if (uniqueImageCount >= 3) { // print only 3 unique images
+								            break;
+								        }
+								        imageName = imageIndex.getName();
+								        for (Product details : pr) {
+								            if (imageName.substring(0, 9).equals(details.getProductId())) {
+								                productName = details.getProductName();
+								                productAmount = details.getProductAmount();
+								                productCategory = details.getProductCategory();
+								                productId = details.getProductId();
+								                %><a href="ProductDetails?productId=<%=productId%>" class="latest-product__item">
+								                    <div class="latest-product__item__pic">
+								                        <img src="img/allImage/<%=imageName%>" alt="" />
+								                    </div>
+								                    <div class="latest-product__item__text">
+								                        <h6><%=productName%></h6>
+								                        <span>&#8358;<%=productAmount%></span>
+								                    </div>
+								                </a>
+								                <% 
+								                uniqueImageCount++; // increment count for each unique image
+								                break; // break out of the loop once a unique image is found
+								            }
+								        }
+								    }
+								}
+								%>
 								</div>
 								<%
 								}
@@ -883,41 +886,45 @@ body {
 							<div class="latest-product__slider owl-carousel">
 
 								<%
-									for (int rept = 1; rept <= 3; rept++) {
+									for (int rept = 1; rept <= 5; rept++) {
 								%>
 								<div class="latest-prdouct__slider__item">
 									<%
 									if (dirListing != null) {
-										for (File fl : dirListing) {
-											image.add(fl);
-										}
-										Collections.shuffle(image);
-										pr.clear();
+									    for (File fl : dirListing) {
+									        image.add(fl);
+									    }
+									    Collections.shuffle(image);
+									    pr.clear();
 										pr.addAll(dao.filterImage2());
-										Collections.shuffle(pr);
-										for(File imageIndex : image){
-											imageName = imageIndex.getName();
-											for(Product details: pr){
-												if(imageName.substring(0, 9).equals(details.getProductId())){
-													productName = details.getProductName();
-													productAmount = details.getProductAmount();
-													productCategory = details.getProductCategory();
-													productId = details.getProductId();												
-									%>
-									<a href="ProductDetails?productId=<%=productId%>"
-										class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/allImage/<%=imageName%>" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6><%=productName%></h6>
-											<span>&#8358;<%=productAmount%></span>
-										</div>
-									</a>
-									<%	
-												}
-											}
-										}
+									    Collections.shuffle(pr);
+									    int uniqueImageCount = 0; // initialize count to 0
+									    for (File imageIndex : image) {
+									        if (uniqueImageCount >= 3) { // print only 3 unique images
+									            break;
+									        }
+									        imageName = imageIndex.getName();
+									        for (Product details : pr) {
+									            if (imageName.substring(0, 9).equals(details.getProductId())) {
+									                productName = details.getProductName();
+									                productAmount = details.getProductAmount();
+									                productCategory = details.getProductCategory();
+									                productId = details.getProductId();
+									                %><a href="ProductDetails?productId=<%=productId%>" class="latest-product__item">
+									                    <div class="latest-product__item__pic">
+									                        <img src="img/allImage/<%=imageName%>" alt="" />
+									                    </div>
+									                    <div class="latest-product__item__text">
+									                        <h6><%=productName%></h6>
+									                        <span>&#8358;<%=productAmount%></span>
+									                    </div>
+									                </a>
+									                <% 
+									                uniqueImageCount++; // increment count for each unique image
+									                break; // break out of the loop once a unique image is found
+									            }
+									        }
+									    }
 									}
 									%>
 								</div>
@@ -934,41 +941,45 @@ body {
 							<div class="latest-product__slider owl-carousel">
 
 								<%
-									for (int rept = 1; rept <= 3; rept++) {
+									for (int rept = 1; rept <= 5; rept++) {
 								%>
 								<div class="latest-prdouct__slider__item">
 									<%
 									if (dirListing != null) {
-										for (File fl : dirListing) {
-											image.add(fl);
-										}
-										Collections.shuffle(image);
-										pr.clear();
-										pr.addAll(dao.filterImage1());
-										Collections.shuffle(pr);
-										for(File imageIndex : image){
-											imageName = imageIndex.getName();
-											for(Product details: pr){
-												if(imageName.substring(0, 9).equals(details.getProductId())){
-													productName = details.getProductName();
-													productAmount = details.getProductAmount();
-													productCategory = details.getProductCategory();
-													productId = details.getProductId();										
-									%>
-									<a href="ProductDetails?productId=<%=productId%>"
-										class="latest-product__item">
-										<div class="latest-product__item__pic">
-											<img src="img/allImage/<%=imageName%>" alt="" />
-										</div>
-										<div class="latest-product__item__text">
-											<h6><%=productName%></h6>
-											<span>&#8358;<%=productAmount%></span>
-										</div>
-									</a>
-									<%
-												}
-											}
-										}
+									    for (File fl : dirListing) {
+									        image.add(fl);
+									    }
+									    Collections.shuffle(image);
+									    pr.clear();
+										pr.addAll(dao.filterImage3());
+									    Collections.shuffle(pr);
+									    int uniqueImageCount = 0; // initialize count to 0
+									    for (File imageIndex : image) {
+									        if (uniqueImageCount >= 3) { // print only 3 unique images
+									            break;
+									        }
+									        imageName = imageIndex.getName();
+									        for (Product details : pr) {
+									            if (imageName.substring(0, 9).equals(details.getProductId())) {
+									                productName = details.getProductName();
+									                productAmount = details.getProductAmount();
+									                productCategory = details.getProductCategory();
+									                productId = details.getProductId();
+									                %><a href="ProductDetails?productId=<%=productId%>" class="latest-product__item">
+									                    <div class="latest-product__item__pic">
+									                        <img src="img/allImage/<%=imageName%>" alt="" />
+									                    </div>
+									                    <div class="latest-product__item__text">
+									                        <h6><%=productName%></h6>
+									                        <span>&#8358;<%=productAmount%></span>
+									                    </div>
+									                </a>
+									                <% 
+									                uniqueImageCount++; // increment count for each unique image
+									                break; // break out of the loop once a unique image is found
+									            }
+									        }
+									    }
 									}
 									%>
 								</div>
