@@ -68,50 +68,6 @@ body {
 }
 /* LOGIN/SIGN MODAL, MOBILE & LARGE SCREEN RESPONSIVENESS */
 
-/* Medium Device = 1200px */
-@media only screen and (min-width: 1200px) {
-	.main {
-		transform: scale(1);
-		left: 20%;
-		margin-top: -200px;
-	}
-}
-/* Tablet Device = 768px */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-	.main {
-		margin-top: -200px;
-		left: 0;
-		transform: scale(0.79);
-	}
-}
-/* Wide Mobile = 480px */
-@media only screen and (max-width: 767px) {
-	.main {
-		transform: scale(0.69);
-		margin-top: -200px;
-		/* top: -10%; */
-		left: -17%;
-	}
-}
-
-/* Small Device > 320px */
-@media only screen and (max-width: 479px) {
-	.main {
-		transform: scale(0.45);
-		margin-top: -200px;
-		/* top: -10%; */
-		left: -52%;
-	}
-}
-/* Small Device = 320px */
-@media only screen and (max-width: 360px) {
-	.main {
-		transform: scale(0.43);
-		margin-top: -200px;
-		/* top: -10%; */
-		left: -60%;
-	}
-}
 
 .header__top__right__auth, .header__cart__price {
 	cursor: pointer;
@@ -485,7 +441,7 @@ body {
 						<div class="header__logo">
 							<a href="#"><img
 								src="img/logo/projectLogo.PNG"
-								alt="" style="height: 80px;" /></a>
+								alt="" style="height: 50px;" /></a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -669,7 +625,7 @@ body {
 						ld.deleteImageInIndex();
 						ld.imageSample();
 						final File generalDirectory = new File(
-								"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img").getAbsoluteFile();
+								"C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img").getAbsoluteFile();
 						String filePath = generalDirectory + "\\allImage\\";
 						File dir = new File(filePath).getAbsoluteFile();
 						File[] dirListing = dir.listFiles();
@@ -1180,7 +1136,7 @@ body {
 		<!-- login section -->
 		<div class="modal-container b-container" id="b-container">
 
-			<form action="AuthenticateServlet" class="modal-form" id="b-form">
+			<form action="AuthenticateServlet" method="post" class="modal-form" id="b-form">
 				<div class="close-modal" onclick="signupToggle()">Close</div>
 				<h2 class="form_title title">Sign in to dashboard</h2>
 				<div class="form_icons"></div>

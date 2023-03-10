@@ -47,6 +47,7 @@
   -webkit-animation: loader 0.8s linear infinite;
 }
 
+
 @keyframes loader {
   0% {
     -webkit-transform: rotate(0deg);
@@ -556,7 +557,7 @@ aside .logo img {
             <div class="top">
                 <!-- logo -->
                 <div class="logo">  
-                    <img src="img/logo/projectLogo.PNG" id="logo" alt="logo">
+                    <img src="img/logo/projectLogo.PNG" style="height: 50px;" id="logo" alt="logo">
                 </div>
 
                  <!-- hamburger -->
@@ -583,11 +584,11 @@ aside .logo img {
                     <span class="material-icons">layers</span>
                     <h3>Products</h3>
                 </a>
-                <a href="#settings">
+                <a href="settings.jsp">
                     <span class="material-icons">settings</span>
                     <h3>Settings</h3>
                 </a>
-                <a href="add-product.jsp">
+                <a href="TableServlet">
                     <span class="material-icons">add</span>
                     <h3>Add Products</h3>
                 </a>

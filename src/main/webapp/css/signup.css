@@ -17,7 +17,7 @@ body{
 .main {
   position: absolute;
   top: 50%;
-  left: 20%;
+  left: 0%;
   transform: translate(-50%, -50%);
   width: 800px;
   min-width: 800px;
@@ -35,7 +35,7 @@ body{
 
 .main.active{
 	top: 50%;
-	left: 20%;
+	left: 0%;
 	transition: .5s;
 	visibility: visible;
 	opacity: 1;
@@ -50,13 +50,24 @@ body{
 
 /* LOGIN/SIGN MODAL, MOBILE & LARGE SCREEN RESPONSIVENESS */
 
+@media only screen and (min-width: 1800px){
+	.main.active{
+	top: 50%;
+	left: 60%;
+	transform: scale(1.2);
+}
+}
 /* Medium Device = 1200px */
 @media only screen and (min-width: 1200px){
   .main {
     transform: scale(1);
-    left: 20%; 
+    left: -20%; 
     margin-top: -200px;
   }
+  .main.active{
+	top: 50%;
+	left: 20%;
+}
 }
 /* Tablet Device = 768px */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -65,6 +76,10 @@ body{
     left: 0;
     transform: scale(0.79);
   }
+  .main.active{
+	top: 50%;
+	left: 0%;
+}
 }
 /* Wide Mobile = 480px */
 @media only screen and (max-width: 767px) {
@@ -72,9 +87,12 @@ body{
     transform: scale(0.69);
     margin-top: -200px;
     /* top: -10%; */
-    left: -17%;
-    
+    left: 0%;
   }
+  .main.active{
+	top: 50%;
+	left: 0%;
+}
 }
 
 /* Small Device > 320px */
@@ -83,19 +101,27 @@ body{
     transform: scale(0.45);
     margin-top: -200px;
     /* top: -10%; */
-    left: -52%;
+    
     
   }
+  .main.active{
+  transform: scale(0.45);
+	top: 50%;
+	left: -56%;
+}
 }
 /* Small Device = 320px */
 @media only screen and (max-width: 360px) {
   .main {
     transform: scale(0.43);
     margin-top: -200px;
-    /* top: -10%; */
-    left: -60%;
     
   }
+  .main.active{
+	top: 50%;
+    left: -92%;
+    transform: scale(0.32);
+}
 }
 
 .modal-container {

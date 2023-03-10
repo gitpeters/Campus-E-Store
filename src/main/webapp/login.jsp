@@ -99,7 +99,7 @@
 			<div class="switch_container" id="switch-c1">
 				<a href="#" class="logo_link"> <img
 					src="img/logo/projectLogo.PNG"
-					alt="" />
+					alt="" style="height: 90px;"/>
 				</a>
 				<h2 class="switch_title title click" id="click-me">Welcome Back
 					!</h2>
@@ -111,7 +111,7 @@
 			<div class="switch_container is-hidden" id="switch-c2">
 				<a href="#" class="logo_link"> <img
 					src="img/logo/projectLogo.PNG"
-					alt="" />
+					alt="" style="height: 90px;"/>
 				</a>
 				<h2 class="switch_title title">Hello Friend !</h2>
 				<p class="switch_description description">Enter your personal

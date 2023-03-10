@@ -14,7 +14,7 @@ import connection.DbConnection;
 import model.*;
 
 public class DAO {
-
+	private int noOfRecords;
 	// Save Vendor Information
 
 	public static int saveVendor(Vendor vn, FileItem fi) {
@@ -328,6 +328,7 @@ public class DAO {
 
 		return product;
 	}
+	
 	public static List<Product> filterImage1() throws SQLException {
 		List<Product> product = new ArrayList<Product>();
 		Connection con = DbConnection.connection();
@@ -441,6 +442,47 @@ public class DAO {
 		return product;
 	}
 
+	// Product List Pagination
+	public  List<Product> getProductByVendorIDPagination(String vendorID, int start, int noOfRecords) throws SQLException {
+		List<Product> product = new ArrayList<Product>();
+		Connection con = DbConnection.connection();
+
+		String sql = "SELECT * FROM campusestock.product WHERE vendorId = '" + vendorID + "' LIMIT "+start+","+noOfRecords;
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			Product pr = new Product();
+			pr.setProductId(rs.getString("productId"));
+			pr.setVendorId(rs.getString("vendorId"));
+			pr.setProductName(rs.getString("productName"));
+			pr.setProductDescription(rs.getString("productDescription"));
+			pr.setProductCategory(rs.getString("productCategory"));
+			pr.setProductCondition(rs.getString("productCondition"));
+			pr.setDatePosted(rs.getString("datePosted"));
+			pr.setProductStatus(rs.getString("productStatus"));
+			pr.setAdsStatus(rs.getString("adsStatus"));
+			pr.setBrandName(rs.getString("brandName"));
+			pr.setKeywords(rs.getString("keywords"));
+			pr.setProductAmount(rs.getDouble("productAmount"));
+
+			product.add(pr);
+		}
+		rs.close();
+		rs = ps.executeQuery("SELECT FOUND_ROWS()");
+		  
+        if (rs.next())
+           this.noOfRecords = rs.getInt(1);
+        
+
+		return product;
+	}
+	
+	// getter
+	public int getNoOfRecords() { 
+		System.out.println("number records:: "+noOfRecords);
+		return noOfRecords; 
+	}
+
 	// Query Product table by Name
 	public static List<Product> getProductByName(String prodName) throws SQLException {
 		List<Product> product = new ArrayList<Product>();
@@ -470,6 +512,18 @@ public class DAO {
 
 		return product;
 	}
+	
+	public static Vendor getVendorPassword(String email) throws SQLException {
+		Vendor vendor = new Vendor();
+		Connection con = DbConnection.connection();
+		String sql = "SELECT vendorPassword from campusestock.vendor WHERE vendorEmail = '"+email+"'";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			vendor.setVendorPassword(rs.getString("vendorPassword"));
+		}
+		return vendor;
+	}
 
 	// Delete Product by productId
 	public static int deleteProductById(Product product) throws SQLException {
@@ -480,4 +534,48 @@ public class DAO {
 		i = pst.executeUpdate();
 		return i;
 	}
+	
+	//Update vendor info
+	
+	public static int updateVendorInfo(Vendor vendor) throws SQLException {
+		int i =0;
+		
+		Connection con = DbConnection.connection();
+		String sql = "UPDATE campusestock.vendor set vendorPhone = '"+vendor.getVendorPhone()+"', vendorBrandName= '"+vendor.getVendorBrandName()+"'  WHERE vendorEmail = '"+vendor.getVendorEmail()+"' ";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+//		ps.setString(1, vendor.getVendorEmail());
+//		ps.setString(2, vendor.getVendorPhone());
+//		ps.setString(3, vendor.getVendorBrandName());
+		i = ps.executeUpdate();
+		return i;
+	}
+	
+	
+	
+	
+	// Change vendor password
+	public static int changeVendorPassword(Vendor vendor) throws SQLException {
+		int i =0;
+		
+		Connection con = DbConnection.connection();
+		String sql = "UPDATE campusestock.vendor set vendorPassword = '"+vendor.getVendorPassword()+"' WHERE vendorEmail = '"+vendor.getVendorEmail()+"' ";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		i = ps.executeUpdate();
+		return i;
+	}
+	
+	// Change vendor password
+		public static int changeBrandName(Vendor vendor) throws SQLException {
+			int i =0;
+			
+			Connection con = DbConnection.connection();
+			String sql = "UPDATE campusestock.vendor set vendorBrandName = '"+vendor.getVendorBrandName()+"' WHERE vendorEmail = '"+vendor.getVendorEmail()+"' ";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			i = ps.executeUpdate();
+			return i;
+		}
 }

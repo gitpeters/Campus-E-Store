@@ -238,7 +238,7 @@
 })(jQuery);
 
 
-// LOGIN/REGISTRATION ALERT MESSAGE
+// ALERT MESSAGE
 const closeBtn = document.querySelector(".close-alert");
  	const alertBox = document.querySelector(".alert");
  	const inputField = document.querySelectorAll(".input-field");

@@ -222,7 +222,7 @@ aside .logo span {
   width: 96%;
   margin: 0 auto;
   gap: 1.8rem;
-  grid-template-columns: 12rem auto 16rem;
+  grid-template-columns: 12rem auto 6rem;
 }
 
 aside {
@@ -316,155 +316,265 @@ main {
   margin-top: 1.4rem;
   width: 100%;
   height: 100vh;
-}
-
-main .date {
-  display: inline-block;
   background: var(--color-white);
   border-radius: var(--border-radius-1);
-  margin-top: 1rem;
-  padding: 0.5rem 0.6rem;
-}
-
-main .date input[type="date"] {
-  background: transparent;
-  color: var(--color-dark);
-}
-
-main .insights {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.6rem;
+  gap: 1.8rem;
+  grid-template-columns: 17rem auto;
+  position: relative;
 }
 
-main .insights > div {
-  background: var(--color-white);
-  padding: var(--card-padding);
-  border-radius: var(--card-border-radius);
-  margin-top: 1rem;
-  box-shadow: var(--box-shadow);
+main .sub-nav{
+	height: 100%;
+	width: 100%;
+	border-right: 1px solid var(--company-lightColor);
+	padding: 10px 15px;
+	margin-top: 30px;
+	text-align: center;
+}
+
+main .sub-nav .nav{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: start;
+	margin-top: 50px;
+}
+
+main .sub-nav .nav li{
+  	margin-left: 2rem;
+  	width: 100%;
+  	text-align: left;
+  gap: 1rem;
+  position: relative;
+  height: 3.7rem;
   transition: all 300ms ease;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
 }
 
-main .insights > div:hover {
-  box-shadow: none;
+
+main .sub-nav .nav li a{
+	font-size: 1.3rem;
+	color: var(--color-info-dark);
+  	transition: all 300ms ease;
+  	width: 100%;
+ 	 height: 100%;
+ 	 display: flex;
+ 	 align-items: center;
 }
 
-main .insights > div span {
-  background: var(--color-primary);
-  padding: 0.5rem;
-  border-radius: 50%;
-  color: var(--color-white);
-  font-size: 2rem;
-}
-
-main .insights > div.expenses span {
-  background: var(--color-danger);
-}
-main .insights > div.income span {
+main .sub-nav .nav li.selected::before {
+  content: "";
+  width: 6px;
+  height: 100%;
   background: var(--company-mainColor);
 }
 
-main .insights > div .middle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+main .sub-nav .nav li.selected{
+	background: var(--company-lightColor);
+	color: var(--company-mainColor);
+  	margin-left: 0;
+}
+main .sub-nav .nav li.selected a{
+	color: var(--company-mainColor);
 }
 
-main .insights h3 {
-  margin: 1rem 0 0.6rem;
-  font-size: 1rem;
+main .sub-nav .nav li a:hover{
+	color: var(--company-mainColor);
 }
 
-main .insights .progress {
-  position: relative;
-  width: 92px;
-  height: 92px;
-  border-radius: 50%;
+main .sub-nav .nav li:hover a{
+	margin-left: 1rem;
 }
 
-main .insights svg {
-  width: 7rem;
-  height: 7rem;
+main .setting-content{
+	 overflow-y: scroll;
 }
 
-main .insights svg circle {
-  fill: none;
-  stroke: var(--color-primary);
-  stroke-width: 14;
-  stroke-linecap: round;
-  transform: translate(5px, 5px);
-  stroke-dashoffset: 92;
+main .setting-content::-webkit-scrollbar{
+    width: 0.3vw;
 }
 
-main .insights .sales svg circle {
-  stroke-dashoffset: -30;
-  stroke-dasharray: 200;
-}
-main .insights .expenses svg circle {
-  stroke-dashoffset: 35;
-  stroke-dasharray: 110;
-}
-main .insights .income svg circle {
-  stroke-dashoffset: 30;
-  stroke-dasharray: 90;
+main .setting-content::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 10px;
 }
 
-main .insights .progress .number {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+main .setting-content::-webkit-scrollbar-track{
+    background: #f0f0f0;
 }
 
-main .insights small {
-  margin-top: 1.6rem;
-  display: block;
-}
+main .setting-content .profile-section, 
+.security-section,
+.business-section,
+.language-section{
+	width: 100%;
+	height: 100vh;
+	padding: 30px;
+	margin: 40px auto;
+} 
 
-/* ================== RECENT ORDERS ===============*/
-main .recent-orders {
-  margin-top: 2rem;
+main .setting-content .profile-section .content-body{
+	margin-top: 20px;
 }
-
-main .recent-orders h2 {
-  margin-bottom: 0.8rem;
-}
-
-main .recent-orders table {
-  background: var(--color-white);
-  width: 100%;
+main .setting-content .profile-section .content-body table{
+	  width: 100%;
   border-radius: var(--card-border-radius);
   padding: var(--card-padding);
   text-align: left;
   margin-bottom: 2rem;
-  box-shadow: var(--box-shadow);
-  transition: all 300ms ease;
 }
 
-main .recent-orders table:hover {
-  box-shadow: none;
+
+.update-bio-form{
+	display: none;
 }
 
-main table tbody td {
-  height: 1.8rem;
+
+main .setting-content .profile-section .content-body table td{
+	  height: 1.8rem;
   border-bottom: 1px solid var(--company-lightColor);
   color: var(--color-dark-variant);
+  font-size: 1.2rem;
+  padding: 20px 0 0 0;
 }
 
-main table tbody tr:last-child td {
-  border-bottom: none;
+main .setting-content .profile-section .content-body table th{
+	 border-bottom: 1px solid var(--company-lightColor);
+	 font-size: 1.2rem;
+	 padding: 20px 0 0 0;
 }
 
-main .recent-orders .show-all {
-  text-align: center;
-  margin: 1rem auto;
-  color: var(--color-dark);
+main .setting-content .profile-section .content-body form input{
+	background: transparent;
+	font-size: 1.2rem;
+	color: var(--color-dark-variant);
 }
 
+.setting-content .profile-section .content-body form input::placeholder{
+	font-size: 1.2rem;
+	color: var(--color-info-light);
+}
+
+ .profile-section .content-body .update-btn{
+	border: none;
+	outline: none;
+	width: 160px;
+	padding: 12px 5px;
+	background: var(--company-mainColor);
+	color: var(--color-white);
+	font-size: 1.5rem;
+	border-radius: var(--border-radius-2);
+	box-shadow: var(--box-shadow);
+	transition: box-shadow 300ms ease;
+	cursor: pointer;
+}
+
+.security-section .chage-password, 
+.business-section .chage-password{	
+	font-weight: 300;
+	color: var(--color-info-dark);
+	padding-left: 2rem;
+}
+
+.security-section .content-body, 
+.business-section .content-body{
+	margin: 20px auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.security-section .content-body form,
+.business-section .content-body form{
+	display: flex;
+	flex-direction: column;
+	margin-top: 40px;
+	padding: 20px;
+	width:	80%; 
+}
+
+.security-section .content-body form .form-control,
+.business-section .content-body form .form-control
+{
+	width: 100%;
+	border: 1px solid var(--color-light);
+	border-radius: var(--border-radius-2);
+	padding: 12px 8px;
+	margin: 15px 0;
+	font-size: 1.3rem;
+}
+
+
+.security-section .content-body form button,
+.business-section .content-body form button
+{
+	border: none;
+	outline: none;
+	width: 100%;
+	padding: 12px 5px;
+	background: var(--company-mainColor);
+	color: var(--color-white);
+	font-size: 1.5rem;
+	border-radius: var(--border-radius-2);
+	box-shadow: var(--box-shadow);
+	transition: box-shadow 300ms ease;
+	cursor: pointer;
+	margin-top: 15px;
+}
+
+.security-section .content-body form button:hover, 
+.business-section .content-body form button:hover{
+	box-shadow: none;
+}
+
+
+.profile-section .content-body .update-btn:hover{
+	box-shadow: none;
+}
+
+
+.page-not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.page-not-found h1{
+    color: #3b3a39;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    margin: 40px 0px 40px 0px;
+}
+
+.page-not-found p{
+    color: #808080;
+    font-size: 1rem;
+    width: 60%;
+    text-align: center;
+    margin: 5px;
+    font-weight: 300;
+}
+
+.page-not-found p a{
+    color: #637eff;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.page-not-found img {
+  max-width: 105px;
+  width: 105px;
+  transform: rotate(180deg);
+  background-color: rgba(255, 255, 255, 0.5);
+}
 /* ==================== RIGHT ================ */
 .right {
   margin-top: 1.4rem;
@@ -480,130 +590,117 @@ main .recent-orders .show-all {
   display: none;
 }
 
-.right .theme-toggler {
-  background: var(--color-light);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 1.6rem;
-  width: 4.2rem;
-  cursor: pointer;
-  border-radius: var(--border-radius-1);
+
+.alert {
+	display: flex;
+	flex-direction: row;
+	padding: 15px 20px;
+	width: 420px;
+	position: absolute;
+	right: 0px;
+	top: 10px;
+	border-radius: 4px;
+	overflow: hidden;
+	z-index: 999;
 }
 
-.right .theme-toggler span {
-  font-size: 1.2rem;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.right .theme-toggler span.active {
-  background: var(--company-mainColor);
-  color: #fff;
-  border-radius: var(--border-radius-1);
+.alert.show {
+	animation: show_slide 1s ease forwards;
 }
 
-.right .top .profile {
-  display: flex;
-  gap: 2rem;
-  text-align: right;
+@keyframes show_slide { 0%{
+		transform: translateX(100%);
+	}
+	40%{
+		transform:translateX(-10%);
+	}
+	80%{
+		transform:translateX(0%);
+	}
+	100%{
+		transform:translateX(-10px);
+	}
+}
+	.alert.hide {
+		animation: hide_slide 1s ease forwards;
+	}
+	
+@keyframes hide_slide { 0%{
+		transform: translateX(-10px);
+	}
+	40%{
+	transform:translateX(0%);
+	}
+	80%{
+	transform:translateX(-10%);
+	}
+	100%{
+	transform:translateX(100%);
+	}
+}
+.alert-danger {
+	border-left: 4px solid #ce8500;
 }
 
-.right .recent-updates {
-  margin-top: 1rem;
+.alert-success {
+	border-left: 4px solid #014214;
 }
 
-.right .recent-updates h2 {
-  margin-bottom: 0.8rem;
+.alert-danger {
+	background-color: #ffdb9b;
+	font-weight: bolder;
 }
 
-.right .recent-updates .updates {
-  background: var(--color-white);
-  padding: var(--card-padding);
-  border-radius: var(--card-border-radius);
-  box-shadow: var(--box-shadow);
-  transition: all 300ms ease;
+.alert-success {
+	background: #d6fedf;
+	font-weight: bolder;
 }
 
-.right .recent-updates .updates:hover {
-  box-shadow: none;
+.alert .alert-msg {
+	padding: 0 20px;
+	font-size: 18px;
 }
 
-.right .recent-updates .updates .update {
-  display: grid;
-  grid-template-columns: 2.6rem auto;
-  gap: 1rem;
-  margin-bottom: 1rem;
+.alert-danger .alert-msg {
+	color: #ce8500;
 }
 
-
-/* ===================== SALES ANALYTICS ================ */
-.right .sales-analytics {
-  margin-top: 2rem;
+.alert-success .alert-msg {
+	color: #014214;
 }
 
-.right .sales-analytics h2 {
-  margin-bottom: 0.8rem;
+.alert .close-alert {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	padding: 20px 18px;
+	cursor: pointer;
 }
 
-.right .sales-analytics .item {
-  background: var(--color-white);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.7rem;
-  padding: 1.4rem var(--card-padding);
-  border-radius: var(--border-radius-3);
-  box-shadow: var(--box-shadow);
-  transition: all 300ms ease;
+.alert .close-alert:hover {
+	opacity: 0.86;
 }
 
-.right .sales-analytics .item:hover {
-  box-shadow: none;
+.alert-success .close-alert {
+	background: #014214;
 }
 
-.right .sales-analytics .item .right {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin: 0;
-  width: 100%;
+.alert-success .close-alert span {
+	color: #d6fedf;
+	font-size: 22px;
+	line-height: 40px;
+	user-select: none;
 }
 
-.right .sales-analytics .item .icon {
-  padding: 0.6rem;
-  color: var(--color-white);
-  border-radius: 50%;
-  background: var(--color-primary);
-  display: flex;
+.alert-danger .close-alert {
+	background-color: #ce8500;
 }
 
-.right .sales-analytics .item.offline .icon {
-  background: var(--color-danger);
-}
-.right .sales-analytics .item.customers .icon {
-  background: var(--company-mainColor);
-}
-
-.right .sales-analytics .add-product {
-  background: transparent;
-  border: 2px dashed var(--color-primary);
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.right .sales-analytics .add-product div {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.right .sales-analytics .add-product div h3 {
-  font-weight: 600;
+.alert-danger .close-alert span {
+	color: #ffdb9b;
+	font-size: 22px;
+	line-height: 40px;
 }
 
 /* ================== MEDIA QUERY ================= */
@@ -629,34 +726,6 @@ main .recent-orders .show-all {
   }
 
   aside .logo span {
-    display: none;
-  }
-
-  main .insights {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  main .recent-orders {
-    width: 94%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 2rem 0 0 8.8rem;
-  }
-
-  main .recent-orders table {
-    width: 83vw;
-    text-align: center;
-  }
-
-  main table thead tr th:nth-child(3),
-  main table thead tr th:nth-child(4) {
-    display: none;
-  }
-
-  main table tbody tr td:nth-child(3),
-  main table tbody tr td:nth-child(4) {
     display: none;
   }
 }
@@ -709,16 +778,23 @@ main .recent-orders .show-all {
   main {
     margin-top: 8rem;
     padding: 0 1rem;
+    grid-template-columns: 1fr;
   }
-  main .recent-orders {
-    position: relative;
-    margin: 3rem 0 0 0;
-    width: 100%;
-  }
-  main .recent-orders table {
-    width: 100%;
-    margin: 0;
-  }
+  
+ main .sub-nav{
+ 	display: none;
+ }
+ 
+ main .setting-content .profile-section, 
+.security-section,
+.business-section,
+.language-section{
+	height: auto;
+	padding: 30px;
+	margin: 40px auto;
+	border-bottom: 1px solid var(--color-light);
+} 
+  
   .right {
     width: 94%;
     margin: 0 auto 4rem;
