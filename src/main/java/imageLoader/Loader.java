@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import connection.DbConnection;
 
 public class Loader {
-	static String path = "C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img";
-	static File generalDirectory = new File("C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img");
+	static String path = "C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img";
+	static File generalDirectory = new File("C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img");
 	//Load Product Image
 	public static String imageSample(){
 		String image = "";

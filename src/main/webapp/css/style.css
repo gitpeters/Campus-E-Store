@@ -424,6 +424,9 @@ ol {
   display: inline-block;
 }
 
+.header__logo a img{
+	height: 50px;	
+}
 .header__menu {
   padding: 24px 0;
   display: flex;
@@ -3055,6 +3058,9 @@ ol {
   }
   .humberger__menu__logo a {
     display: inline-block;
+  }
+  .humberger__menu__logo a img{
+  	height: 50px;
   }
   .humberger__menu__contact {
     padding: 10px 0 13px;

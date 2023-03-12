@@ -230,7 +230,7 @@
 			<div class="humberger__menu__logo">
 				<a href="#"><img
 					src="img/logo/projectLogo.PNG"
-					alt="" style="height: 80px;" /></a>
+					alt="" style="height: 60px;" /></a>
 			</div>
 			<div class="humberger__menu__cart"></div>
 			<div class="humberger__menu__widget">
@@ -301,7 +301,7 @@
 				<div class="row">
 					<div class="col-lg-3">
 						<div class="header__logo">
-							<a href="./index.html"><img src="img/logo/projectLogo.PNG" alt="" /></a>
+							<a href="./index.html"><img src="img/logo/projectLogo.PNG" style="height: 60px;" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -607,7 +607,7 @@
 						ArrayList<Product> pr = new ArrayList<Product>();
 						ld.imageSample();
 						final File generalDirectory = new File(
-								"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img").getAbsoluteFile();
+								"C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img").getAbsoluteFile();
 						String filePath = generalDirectory + "\\allImage\\";
 						File dir = new File(filePath).getAbsoluteFile();
 						File[] dirListing = dir.listFiles();
