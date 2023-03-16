@@ -184,7 +184,7 @@
 							<input type="password" name="old_password"
 								placeholder="Enter old password" class="form-control" /> <input
 								type="password" name="new_password"
-								placeholder="Enter old password" class="form-control" />
+								placeholder="Enter new password" class="form-control" />
 							
 							<button class="update-btn">Change Password</button>
 						</form>

@@ -523,7 +523,6 @@ aside .logo img {
 		
 		if(productImage1!=null && productImage1!=null && productImage3!=null){
 			Loader loader = new Loader();
-			loader.deleteProductImage();
 		}
 	%>
 

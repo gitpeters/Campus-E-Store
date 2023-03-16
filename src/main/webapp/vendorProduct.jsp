@@ -215,9 +215,7 @@
 </style>
 </head>
 <body>
-	<%!String productID = "", prodName = "", productCategory = "", productStatus = "", productDescription = "",
-			productCondition = "", vendorID = "";
-	double productAmt = 0.0;%>
+	<%!String vendorID = "";%>
 	<%
 	HttpSession sn = request.getSession();
 	vendorID = (String) sn.getAttribute("vendorID");
@@ -382,7 +380,7 @@
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
-										<input type="hidden" name="category" value="Electronic">
+										<input type="hidden" name="category" value="Electronics">
 										<button type="submit"
 											style="border: none; outline: none; background: none; margin: 5px;">Electronic</button>
 									</form>
@@ -483,36 +481,35 @@
 						<!-- PRODUCTS DISPLAY -->
 						<div class="row products-content" id="product-lists"
 							style="display: none;">
-							<%
-							Loader ld2 = new Loader();
-							ld2.deleteImageByVendor();
-							ld2.loadImageByVendorID(vendorID);
-							ArrayList<File> featuredImage = new ArrayList<File>();
-							final File generalDirectory = new File(
-									"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img");
-							String featured = generalDirectory + "\\product\\vendorProduct\\";
-							File dir2 = new File(featured).getAbsoluteFile();
-							File[] dirListing = dir2.listFiles();
-							dirListing = dir2.listFiles();
-							if (dirListing != null) {
-								for (File fl : dirListing) {
-									featuredImage.add(fl);
-								}
-								Collections.shuffle(featuredImage);
-								for (File imageIndex : featuredImage) {
-									String imageName = imageIndex.getName();
-									productID = imageName.substring(0, 9);
-
-									List<Product> productList = (List<Product>) DAO.getProductDetailsWithList(productID);
-									for (Product p : productList) {
-								productID = p.getProductId();
-								prodName = p.getProductName();
-								productCategory = p.getProductCategory();
-								productCondition = p.getProductCondition();
-								productStatus = p.getProductStatus();
-								productAmt = p.getProductAmount();
-								productDescription = p.getProductDescription();
-									}
+							<%!String productName, productId, filePath, imageName, prodId, productCategory; double productAmount; int index;%>
+						<%
+						Loader ld = new Loader();
+						DAO dao = new DAO();
+						ArrayList<File> image = new ArrayList<File>();
+						ArrayList <String> productIds = new ArrayList <String>();
+						ArrayList<Product> pr = new ArrayList<Product>();
+						ld.imageSample();
+						final File generalDirectory = new File(
+								"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img").getAbsoluteFile();
+						String filePath = generalDirectory + "\\allImage\\";
+						File dir = new File(filePath).getAbsoluteFile();
+						File[] dirListing = dir.listFiles();
+						if (dirListing != null) {
+							for (File fl : dirListing) {
+								image.add(fl);
+							}
+							Collections.shuffle(image);
+							pr.addAll(dao.getProductByVendorID(vendorID));
+							Collections.shuffle(pr);
+							for(File imageIndex : image){
+								imageName = imageIndex.getName();
+								for(Product details: pr){
+									if(imageName.substring(0, 9).equals(details.getProductId())){
+										productName = details.getProductName();
+										productAmount = details.getProductAmount();
+										productCategory = details.getProductCategory();
+										productId = details.getProductId();
+										if(details.getVendorId().equals(vendorID)){
 									if (productCategory.equals("Phones & Tablets")) {
 								productCategory = "Phones";
 									}
@@ -520,30 +517,29 @@
 							<div class="col-lg-4 col-md-6 col-sm-6 product_items">
 								<div class="product__item <%=productCategory%>">
 									<div class="product__item__pic set-bg"
-										data-setbg="img/product/productName/<%=imageName%>">
+										data-setbg="img/allImage/<%=imageName%>">
 										<ul class="product__item__pic__hover">
-											<li><a href="ProductDetails?productId=<%=productID%>"><i
+											<li><a href="ProductDetails?productId=<%=productId%>"><i
 													class="fa-solid fa-paper-plane"></i></a></li>
 										</ul>
 									</div>
 									<div class="product__item__text">
 										<h6>
-											<a href="ProductDetails?productId=<%=productID%>"><%=prodName%></a>
+											<a href="ProductDetails?productId=<%=productId%>"><%=productName%></a>
 										</h6>
 										<h5>
-											&#8358;<span class="amount"><%=productAmt%></span>
+											&#8358;<span class="amount"><%=productAmount%></span>
 										</h5>
 									</div>
 								</div>
 							</div>
 							<%
+										}
+									}
+								}
 							}
-							} else {
-							System.out.println("Image File is empty!");
-							}
-							%>
-							
-
+						} 
+						%>
 						</div>
 						<!-- PRODUCTS DISPLAY ENDS-->
 						<!-- Product pagination -->
@@ -562,12 +558,12 @@
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="footer__about">
 							<div class="footer__about__logo">
-								<a href="./index.html"><img src="img/logo.png" alt="" /></a>
+								<a href="./index.jsp"> <img src="img/logo/projectLogo.PNG" alt=""  style="height:80px;"/></a>
 							</div>
 							<ul>
-								<li>Address: 60-49 Road 11378 New York</li>
-								<li>Phone: +65 11.188.888</li>
-								<li>Email: hello@colorlib.com</li>
+								<li>Address: 4 Phase 3, After The Und St., Gwagwalada FCT.</li>
+								<li>Phone: +08136793904, 08036770752</li>
+								<li>Email: oniokikijesu04@gmail.com</li>
 							</ul>
 						</div>
 					</div>
@@ -690,7 +686,7 @@
 			<div class="switch_circle switch_circle-t"></div>
 
 			<div class="switch_container" id="switch-c1">
-				<a href="#" class="logo_link"> <img src="img/logo.png" alt="" />
+				<a href="#" class="logo_link"> <img src="img/logo/projectLogo.PNG" alt="" style="height:80px;"/>
 				</a>
 				<h2 class="switch_title title click" id="click-me">Welcome Back
 					!</h2>
@@ -700,7 +696,7 @@
 			</div>
 
 			<div class="switch_container is-hidden" id="switch-c2">
-				<a href="#" class="logo_link"> <img src="img/logo.png" alt="" />
+				<a href="#" class="logo_link"> <img src="img/logo/projectLogo.PNG" alt="" style="height:80px;"/>
 				</a>
 				<h2 class="switch_title title">Hello Friend !</h2>
 				<p class="switch_description description">Enter your personal

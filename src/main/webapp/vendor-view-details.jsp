@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.*"%>
 <%@page import="model.*"%>
 <%@page import="dao.*"%>
 <%@page import="imageLoader.*"%>
@@ -207,20 +208,19 @@
 <body>
 
 	<%!String productID = "", productName = "", productCategory = "", productStatus = "", productDescription = "",
-			productCondition = "", productImage1 = "", productImage2 = "", productImage3 = "", path = "";
+			productCondition = "", productImage1 = "", productImage2 = "", productImage3 = "", path = "", vendorID;
 	double productAmount = 0.0;
 	File[] dirListing;%>
 
 	<%
 	Vendor vendor = (Vendor) session.getAttribute("vendor");
+	productID = (String) session.getAttribute("productId");
 
 	if (vendor.getVendorId() != null) {
 
 	} else {
 		response.sendRedirect("index.jsp");
 	}
-
-	productID = (String) session.getAttribute("productId");
 
 	List<Product> product = DAO.getProductDetailsWithList(productID);
 	for (Product p : product) {
@@ -232,14 +232,14 @@
 		productStatus = p.getProductStatus();
 		productAmount = p.getProductAmount();
 		productDescription = p.getProductDescription();
+		vendorID = p.getVendorId();
 	}
 
 	Loader ld = new Loader();
-	ld.deleteProductImage();
-	ld.imageSampleById(productID);
+	ld.imageSample();
 	final File generalDirectory = new File(
-			"C:\\Users\\ABRAHAM\\eclipse-workspace\\Campus E-stock\\src\\main\\webapp\\img");
-	path = generalDirectory + "\\product\\vendorDetails\\";
+			"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img");
+	path = generalDirectory + "\\allImage\\";
 	File dir = new File(path).getAbsoluteFile();
 	dirListing = dir.listFiles();
 	if (dirListing != null) {
@@ -416,7 +416,7 @@
 								</li>
 								<li>
 									<form method="post" action="ProductCategory">
-										<input type="hidden" name="category" value="Electronic">
+										<input type="hidden" name="category" value="Electronics">
 										<button type="submit"
 											style="border: none; outline: none; background: none; margin: 5px;">Electronic</button>
 									</form>
@@ -516,18 +516,18 @@
 						<div class="product__details__pic">
 							<div class="product__details__pic__item">
 								<img class="product__details__pic__item--large"
-									src="img/product/vendorDetails/<%=productImage1%>" alt="" />
+									src="img/allImage/<%=productImage1%>" alt="" />
 							</div>
 							<div class="product__details__pic__slider owl-carousel">
 								<img
-									data-imgbigurl="img/product/vendorDetails/<%=productImage1%>"
-									src="img/product/vendorDetails/<%=productImage1%>" alt="" />
+									data-imgbigurl="img/allImage/<%=productImage1%>"
+									src="img/allImage/<%=productImage1%>" alt="" />
 								<img
-									data-imgbigurl="img/product/vendorDetails/<%=productImage2%>"
-									src="img/product/vendorDetails/<%=productImage2%>" alt="" />
+									data-imgbigurl="img/allImage/<%=productImage2%>"
+									src="img/allImage/<%=productImage2%>" alt="" />
 								<img
-									data-imgbigurl="img/product/vendorDetails/<%=productImage3%>"
-									src="img/product/vendorDetails/<%=productImage3%>" alt="" />
+									data-imgbigurl="img/allImage/<%=productImage3%>"
+									src="img/allImage/<%=productImage3%>" alt="" />
 							</div>
 						</div>
 					</div>
@@ -666,78 +666,62 @@
 					</div>
 				</div>
 				<div class="row">
+					<%!String productId, filePath, imageName, prodId;  int index;%>
+						<%
+						Loader ld1 = new Loader();
+						DAO dao = new DAO();
+						ArrayList<File> image = new ArrayList<File>();
+						ArrayList <String> productIds = new ArrayList <String>();
+						ArrayList<Product> pr = new ArrayList<Product>();
+						ld1.imageSample();
+						final File generalDirectory1 = new File(
+								"C:\\Users\\Depittaz\\Desktop\\Online_Marketplace\\Campus-E-Store-1\\src\\main\\webapp\\img").getAbsoluteFile();
+						String filePath = generalDirectory1 + "\\allImage\\";
+						File dir1 = new File(filePath).getAbsoluteFile();
+						File[] dirListing = dir1.listFiles();
+						if (dirListing != null) {
+							for (File fl : dirListing) {
+								image.add(fl);
+							}
+							Collections.shuffle(image);
+							pr.addAll(dao.getAllProductDetails());
+							Collections.shuffle(pr);
+							for(File imageIndex : image){
+								imageName = imageIndex.getName();
+								for(Product details: pr){
+									if(imageName.substring(0, 9).equals(details.getProductId())){
+										productName = details.getProductName();
+										productAmount = details.getProductAmount();
+										productCategory = details.getProductCategory();
+										productId = details.getProductId();
+										if(details.getVendorId().equals(vendorID)){
+						%>
 					<div class="col-lg-3 col-md-4 col-sm-6">
 						<div class="product__item">
 							<div class="product__item__pic set-bg"
-								data-setbg="img/product/product-1.jpg">
+								data-setbg="img/allImage/<%=imageName%>">
 								<ul class="product__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+									<li><a href="ProductDetails?productId=<%=productId%>"><i
+											class="fa-solid fa-paper-plane"></i></a></li>
 								</ul>
 							</div>
 							<div class="product__item__text">
 								<h6>
-									<a href="#">Crab Pool Security</a>
+									<a href="#"><%=productName%></a>
 								</h6>
-								<h5>$30.00</h5>
+								<h5><%=productAmount%></h5>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6">
-						<div class="product__item">
-							<div class="product__item__pic set-bg"
-								data-setbg="img/product/product-2.jpg">
-								<ul class="product__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="product__item__text">
-								<h6>
-									<a href="#">Crab Pool Security</a>
-								</h6>
-								<h5>$30.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6">
-						<div class="product__item">
-							<div class="product__item__pic set-bg"
-								data-setbg="img/product/product-3.jpg">
-								<ul class="product__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="product__item__text">
-								<h6>
-									<a href="#">Crab Pool Security</a>
-								</h6>
-								<h5>$30.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6">
-						<div class="product__item">
-							<div class="product__item__pic set-bg"
-								data-setbg="img/product/product-7.jpg">
-								<ul class="product__item__pic__hover">
-									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-								</ul>
-							</div>
-							<div class="product__item__text">
-								<h6>
-									<a href="#">Crab Pool Security</a>
-								</h6>
-								<h5>$30.00</h5>
-							</div>
-						</div>
-					</div>
+					<%
+												
+											}
+										}
+									}
+								}
+							} 
+							%>
+
 				</div>
 			</div>
 		</section>
@@ -750,12 +734,12 @@
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="footer__about">
 							<div class="footer__about__logo">
-								<a href="./index.html"><img src="img/logo.png" alt="" /></a>
+								<a href="./index.jsp"> <img src="img/logo/projectLogo.PNG" alt=""  style="height:80px;"/></a>
 							</div>
 							<ul>
-								<li>Address: 60-49 Road 11378 New York</li>
-								<li>Phone: +65 11.188.888</li>
-								<li>Email: hello@colorlib.com</li>
+								<li>Address: 4 Phase 3, After The Und St., Gwagwalada FCT.</li>
+								<li>Phone: +08136793904, 08036770752</li>
+								<li>Email: oniokikijesu04@gmail.com</li>
 							</ul>
 						</div>
 					</div>
@@ -877,7 +861,7 @@
 			<div class="switch_circle switch_circle-t"></div>
 
 			<div class="switch_container" id="switch-c1">
-				<a href="#" class="logo_link"> <img src="img/logo.png" alt="" />
+				<a href="#" class="logo_link"> <img src="img/logo/projectLogo.PNG" alt="" style="height:80px;"/>
 				</a>
 				<h2 class="switch_title title click" id="click-me">Welcome Back
 					!</h2>
@@ -887,7 +871,7 @@
 			</div>
 
 			<div class="switch_container is-hidden" id="switch-c2">
-				<a href="#" class="logo_link"> <img src="img/logo.png" alt="" />
+				<a href="#" class="logo_link"> <img src="img/logo/projectLogo.PNG" alt="" style="height:80px;"/>
 				</a>
 				<h2 class="switch_title title">Hello Friend !</h2>
 				<p class="switch_description description">Enter your personal
